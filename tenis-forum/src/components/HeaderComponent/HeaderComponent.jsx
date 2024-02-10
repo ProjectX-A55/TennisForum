@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
-import "./Header.css"
+import "./HeaderComponent.css"
 
-const Header = () => {
+export function HeaderComponent() {
     return (
         <header className="header">
             <NavLink to="/">Home</NavLink>
@@ -10,5 +10,3 @@ const Header = () => {
         </header>
     )
 }
-
-export default Header
