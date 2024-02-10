@@ -5,7 +5,7 @@ import { ToggleThemeButton } from './ToggleThemeButton';
 import { Logo } from './Logo';
 import { MenuComponent } from './MenuComponent';
 import { NavLink } from 'react-router-dom';
-import './ForumLayout.css'
+
 import { HeaderComponent } from './HeaderComponent/HeaderComponent';
 
 const { Content, Header, Sider } = Layout;
@@ -43,7 +43,7 @@ function ForumLayout({ children }) {
           <Logo darkTheme={!darkTheme} collapsed={collapsed} />
           <MenuComponent darkTheme={!darkTheme} />
         </Sider>
-        <Content>
+        <Content style={{background: 'rgb(0, 21, 41)', margin: '5px'}}>
           {children}
         </Content>
       </Layout>
