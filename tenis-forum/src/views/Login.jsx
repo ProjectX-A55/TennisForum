@@ -25,6 +25,7 @@ const LogIn = () => {
     }, [user, location.state?.from.pathname, navigate]);
 
     const login = async () => {
+        
         try {
             const credentials = await loginUser(form.email, form.password);
             setContext({ user: credentials.user, userData: null });
