@@ -8,12 +8,16 @@ import { MenuComponent } from './MenuComponent';
 const { Content, Sider } = Layout;
 
 function ForumLayout({ children }) {
+  if(localStorage.getItem('dark') === null) {
+    localStorage.getItem('dark', true)
+  }
 
-  const [darkTheme, setDarkTheme] = useState(true);
+  const [darkTheme, setDarkTheme] = useState(localStorage.getItem('dark'));
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleTheme = () => {
     setDarkTheme(!darkTheme);
+    localStorage.setItem('dark', !darkTheme);
   };
 
   const toggleCollapsed = () => {
@@ -27,12 +31,12 @@ function ForumLayout({ children }) {
         trigger={
           <>
             <ToggleCollapsedButton collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
-            <ToggleThemeButton darkTheme={darkTheme} toggleTheme={toggleTheme} />
+            <ToggleThemeButton darkTheme={!darkTheme} toggleTheme={toggleTheme} />
           </>}
-        theme={darkTheme ? 'dark' : 'light'}
+        theme={!darkTheme ? 'dark' : 'light'}
         className="sidebar">
-        <Logo collapsed={collapsed} />
-        <MenuComponent darkTheme={darkTheme} />
+        <Logo darkTheme={!darkTheme} collapsed={collapsed} />
+        <MenuComponent darkTheme={!darkTheme} />
       </Sider>
       <Content
         style={{

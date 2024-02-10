@@ -1,4 +1,4 @@
-export function Logo({collapsed}) {
+export function Logo({darkTheme, collapsed}) {
     return (
         <div style={{display: "flex"}} className="sider-logo">
             <svg className="logo" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
@@ -11,7 +11,7 @@ export function Logo({collapsed}) {
                     </g>
                 </g>
             </svg>
-            <div style={{ display: collapsed ? "none" : "block" }} className="logo-text">Project Tennis<br/>Forum</div>
+            <div style={{ display: collapsed ? "none" : "block", color: darkTheme ? '#fff' : '#000' }} className="logo-text">Project Tennis<br/>Forum</div>
         </div>
     )
 }
