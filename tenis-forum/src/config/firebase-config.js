@@ -14,7 +14,7 @@ const firebaseConfig = {
   messagingSenderId: "86376823601",
   appId: "1:86376823601:web:225f9290feaba384c70e10",
 
-  dataBaseURL: "https://tennis-forum-projectx-default-rtdb.europe-west1.firebasedatabase.app/"
+  dataBaseURL: "https://tennis-forum-12fa0-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
