@@ -5,41 +5,33 @@ import { loginUser } from "../services/auth-service";
 import { Button, Flex } from 'antd';
 
 const LogIn = () => {
-    const { user, setContext } = useContext(AppContext)
+    const { user, setContext } = useContext(AppContext);
     const [form, setForm] = useState({
-        email: "",
-        password: ""
-    })
+        email: '',
+        password: '',
+    });
 
-    const navigate = useNavigate()
-    const location = useLocation()
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const updateForm = prop => e => {
-
-        setForm({
-            ...form,
-            [prop]: e.target.value
-        })
-
-    }
+        setForm({ ...form, [prop]: e.target.value });
+    };
 
     useEffect(() => {
         if (user) {
-            navigate(location.state?.form.pathname || "/");
+            navigate(location.state?.from.pathname || '/');
         }
-
-    }, [user])
+    }, [user, location.state?.from.pathname, navigate]);
 
     const login = async () => {
-
         try {
             const credentials = await loginUser(form.email, form.password);
             setContext({ user: credentials.user, userData: null });
-        } catch (e) {
-            alert(e.message);
+        } catch (error) {
+            console.log(error);
         }
-
-    }
+    };
 
     return (
         <div>
