@@ -29,7 +29,7 @@ function ForumLayout({ children }) {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <HeaderComponent />
+        <HeaderComponent />
       <Layout>
         <Sider collapsible
           collapsed={collapsed}
@@ -43,7 +43,7 @@ function ForumLayout({ children }) {
           <Logo darkTheme={!darkTheme} collapsed={collapsed} />
           <MenuComponent darkTheme={!darkTheme} />
         </Sider>
-        <Content style={{ background: 'rgb(0, 21, 41)', margin: '5px' }}>
+        <Content style={{background: 'rgb(0, 21, 41)', margin: '5px'}}>
           {children}
         </Content>
       </Layout>

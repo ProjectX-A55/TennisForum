@@ -28,16 +28,23 @@ const Register = () => {
 
     const register = async () => {
 
-        const user = await getUserByUserName(form.username);
-        if (user.exists()) {
-            alert("Username already exists");
-            return;
-        }
-        const credentials = await registerUser(form.email, form.password);
-        await createUserUserName(form.username, credentials.user.uid, form.email);
+        try {
+            const user = await getUserByUserName(form.handle);
+            if (user.exists()) {
+                alert("User name already in existence. Please choose another one.");
+                return
+            }
+            const credentials = await registerUser(form.email, form.password);
+            await createUserUserName(form.handle, credentials.user.uid, form.email);
 
-        setContext({ user, userData: null });
-        navigate("/");
+            setContext({ user, userData: null });
+            navigate('/');
+        }
+        catch (error) {
+            if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+                alert("Email already in use")
+            }
+        }
     }
 
     return (
@@ -47,7 +54,7 @@ const Register = () => {
             <label htmlFor="email">Email: </label><input value={form.email} onChange={updateForm('email')} type="text" name="email" id="email" /><br />
             <label htmlFor="password">Password: </label><input value={form.password} onChange={updateForm('password')} type="password" name="password" id="password" /><br />
             <Flex gap="small" wrap="wrap">
-                <Button onClick= {register}type="primary">Register</Button>
+                <Button onClick={register} type="primary">Register</Button>
             </Flex>
         </div>
     )
