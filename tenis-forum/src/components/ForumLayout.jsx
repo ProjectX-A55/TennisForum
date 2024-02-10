@@ -38,13 +38,7 @@ function ForumLayout({ children }) {
         <Logo darkTheme={!darkTheme} collapsed={collapsed} />
         <MenuComponent darkTheme={!darkTheme} />
       </Sider>
-      <Content
-        style={{
-          padding: 24,
-          margin: 0,
-          minHeight: 280,
-        }}
-      >
+      <Content>
         {children}
       </Content>
     </Layout>
