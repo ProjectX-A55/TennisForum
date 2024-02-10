@@ -1,7 +1,6 @@
 import { Menu } from 'antd';
-import { Logo } from './Logo';
 import { HomeOutlined, PlayCircleOutlined, HighlightOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons'
-import { ToggleThemeButton } from './ToggleThemeButton';
+
 
 export function MenuComponent({darkTheme, inlineCollapsed = false}) {
     return (
