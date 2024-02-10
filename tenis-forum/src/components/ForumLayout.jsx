@@ -4,11 +4,14 @@ import { ToggleCollapsedButton } from './ToggleCollapsedButton';
 import { ToggleThemeButton } from './ToggleThemeButton';
 import { Logo } from './Logo';
 import { MenuComponent } from './MenuComponent';
+import { NavLink } from 'react-router-dom';
+import './ForumLayout.css'
+import { HeaderComponent } from './HeaderComponent/HeaderComponent';
 
-const { Content, Sider } = Layout;
+const { Content, Header, Sider } = Layout;
 
 function ForumLayout({ children }) {
-  if(localStorage.getItem('dark') === null) {
+  if (localStorage.getItem('dark') === null) {
     localStorage.getItem('dark', true)
   }
 
@@ -26,27 +29,24 @@ function ForumLayout({ children }) {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider collapsible
-        collapsed={collapsed}
-        trigger={
-          <>
-            <ToggleCollapsedButton collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
-            <ToggleThemeButton darkTheme={!darkTheme} toggleTheme={toggleTheme} />
-          </>}
-        theme={!darkTheme ? 'dark' : 'light'}
-        className="sidebar">
-        <Logo darkTheme={!darkTheme} collapsed={collapsed} />
-        <MenuComponent darkTheme={!darkTheme} />
-      </Sider>
-      <Content
-        style={{
-          padding: 24,
-          margin: 0,
-          minHeight: 280,
-        }}
-      >
-        {children}
-      </Content>
+        <HeaderComponent />
+      <Layout>
+        <Sider collapsible
+          collapsed={collapsed}
+          trigger={
+            <>
+              <ToggleCollapsedButton collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
+              <ToggleThemeButton darkTheme={!darkTheme} toggleTheme={toggleTheme} />
+            </>}
+          theme={!darkTheme ? 'dark' : 'light'}
+          className="sidebar">
+          <Logo darkTheme={!darkTheme} collapsed={collapsed} />
+          <MenuComponent darkTheme={!darkTheme} />
+        </Sider>
+        <Content>
+          {children}
+        </Content>
+      </Layout>
     </Layout>
   )
 }

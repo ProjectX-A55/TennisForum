@@ -1,7 +1,6 @@
 import { Menu } from 'antd';
 import { HomeOutlined, PlayCircleOutlined, HighlightOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons'
 
-
 export function MenuComponent({darkTheme, inlineCollapsed = false}) {
     return (
         <Menu
