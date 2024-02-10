@@ -14,13 +14,13 @@ export function HeaderComponent() {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
-
+    
     return (
         <header className="header">
             <NavLink to="/">Home</NavLink>
             {user ? (
                 <>
-                    {`Welcome, ${userData?.username}`}
+                    {`Welcome, ${userData?.user}`}
                     <Flex>
                         <Button onClick={logout} type="primary">Logout</Button>
                     </Flex>
