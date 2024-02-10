@@ -24,7 +24,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -65,4 +64,38 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.sidebar {
+  color: #fff;
+}
+
+.menu-bar {
+  height: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1rem;
+  text-align: left;
+  position: relative;
+}
+
+.logo {
+  align-content: left;
+  display: flex;
+  margin: 10px;
+  margin-left: 25px;
+}
+
+.menu-button {
+  margin: 5px;
+}
+
+.sider-logo {
+  display: flex;
+}
+
+.sider-logo .logo-text {
+  margin: 5px;
 }
