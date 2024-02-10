@@ -1,6 +1,5 @@
 import './App.css'
-import ForumLayout from './components/ForumLayout'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './views/Home'
 import Register from './views/Register'
 import LogIn from './views/Login'
