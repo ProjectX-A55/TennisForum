@@ -10,8 +10,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getUserData } from './services/user-service'
 import ForumLayout from './components/ForumLayout'
 import AllPosts from './views/AllPosts'
-import SinglePost from './views/SinglePost'
 import CreatePost from './views/CreatePost'
+import PostDetailsView from './views/PostDetailsView'
 
 function App() {
   const [context, setContext] = useState({
@@ -41,9 +41,8 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<LogIn />} />
             <Route path='/posts' element={<AllPosts />} />
-            <Route path='/posts/:id' element={<SinglePost />} />
+            <Route path='/posts/:id' element={<PostDetailsView />} />
             <Route path='/posts-create' element={<CreatePost />} />
-            
           </Routes>
         </ForumLayout>
       </AppContext.Provider>

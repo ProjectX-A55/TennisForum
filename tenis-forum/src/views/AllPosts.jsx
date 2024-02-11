@@ -18,14 +18,26 @@ const AllPosts = () => {
         getAllPosts(search).then(setPosts)
     }, [search])
 
+    const togglePostLike = (username, id) => {
+       setPosts(posts.map(post => {
+        if(post.id === id){
+            post.liked = post.liked.includes(username) ? post.liked.filter(u => u !== username) : [...post.liked, username];
+        }
+        return post;
+       }
+
+       )) 
+    }
+
     return (
         <div>
             <h1>All Posts</h1>
             <label htmlFor="search">Search</label>
             <input value={search} onChange={e => setSearch(e.target.value)} type="text" name="search" id="search" /> <br />
             {posts.map((post) => (
-                <Post key={post.id} post={post} />
+                <Post key={post.id} post={post} togglePostLike={togglePostLike}/>
             ))}
+            
         </div>
     );
 };
