@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getPostById } from "../services/post-service";
-import PostInfo from "../components/SinglePost/Post";
+import PostDetails from "../components/SinglePost/PostDetails";
 
-const SinglePost = () => {
+const PostDetailsView = () => {
     const [post, setPost] = useState(null);
     const { id } = useParams()
 
@@ -20,10 +20,10 @@ const SinglePost = () => {
 
     return (
         <div>
-            {post && <PostInfo post={post} togglePostLike={togglePostLike}/>}
+            {post && <PostDetails post={post} togglePostLike={togglePostLike}/>}
         </div>
     );
 };
 
 
-export default SinglePost;
+export default PostDetailsView;

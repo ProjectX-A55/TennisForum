@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/post-service";
 import { useSearchParams } from "react-router-dom";
-import Post from "../components/SinglePost/Post";
+import PostInfo from "../components/SinglePost/PostInfo";
+
 
 const AllPosts = () => {
 
@@ -35,7 +36,7 @@ const AllPosts = () => {
             <label htmlFor="search">Search</label>
             <input value={search} onChange={e => setSearch(e.target.value)} type="text" name="search" id="search" /> <br />
             {posts.map((post) => (
-                <Post key={post.id} post={post} togglePostLike={togglePostLike}/>
+                <PostInfo key={post.id} post={post} togglePostLike={togglePostLike}/>
             ))}
             
         </div>
