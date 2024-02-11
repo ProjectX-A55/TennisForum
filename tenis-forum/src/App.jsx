@@ -12,6 +12,7 @@ import ForumLayout from './components/ForumLayout'
 import AllPosts from './views/AllPosts'
 import CreatePost from './views/CreatePost'
 import PostDetailsView from './views/PostDetailsView'
+import Authenticated from './hoc/Authenticated'
 
 function App() {
   const [context, setContext] = useState({
@@ -40,9 +41,9 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<LogIn />} />
-            <Route path='/posts' element={<AllPosts />} />
-            <Route path='/posts/:id' element={<PostDetailsView />} />
-            <Route path='/posts-create' element={<CreatePost />} />
+            <Route path='/posts' element={<Authenticated><AllPosts /></Authenticated>} />
+            <Route path='/posts/:id' element={<Authenticated><PostDetailsView /></Authenticated>} />
+            <Route path='/posts-create' element={<Authenticated><CreatePost /></Authenticated>} />
           </Routes>
         </ForumLayout>
       </AppContext.Provider>
