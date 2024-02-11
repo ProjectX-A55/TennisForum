@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/AppContext';
-import { Button, Flex } from 'antd';
-import { dislikePost, likePost, deletePost, updatePost, getPostById } from '../../services/post-service';
+import { Button } from 'antd';
+import { dislikePost, likePost, deletePost, updatePost, getPostById, addComment } from '../../services/post-service';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
  * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string}, togglePostLike: function}} param0 
  * @returns 
  */
-const PostDetails = ({ post:initialPost, togglePostLike }) => {
+const PostDetails = ({ post: initialPost, togglePostLike }) => {
 
     const { userData } = useContext(AppContext);
     const navigate = useNavigate();
@@ -19,6 +19,7 @@ const PostDetails = ({ post:initialPost, togglePostLike }) => {
     const [post, setPost] = useState(initialPost);
     const [title, setTitle] = useState(initialPost.title);
     const [content, setContent] = useState(initialPost.content);
+    const [comment, setComment] = useState('');
 
     useEffect(() => {
         setTitle(post.title);
@@ -35,7 +36,6 @@ const PostDetails = ({ post:initialPost, togglePostLike }) => {
         togglePostLike(userData.username, post);
     };
 
-
     const handleEdit = async () => {
         if (isEditing) {
             try {
@@ -49,6 +49,15 @@ const PostDetails = ({ post:initialPost, togglePostLike }) => {
         setIsEditing(!isEditing);
     }
 
+    const handleAddComment = async (event) => { // Add this function
+        event.preventDefault();
+        try {
+            await addComment(post.id, userData.username, comment);
+            setComment(''); // Clear the textarea
+        } catch (error) {
+            console.error('Failed to add comment:', error);
+        }
+    };
 
     const handleDelete = async () => {
         try {
@@ -58,7 +67,7 @@ const PostDetails = ({ post:initialPost, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-
+    console.log(post.comments);
     return (
         <div className='post-info'>
             {isEditing ? (
@@ -77,16 +86,25 @@ const PostDetails = ({ post:initialPost, togglePostLike }) => {
             <p>{`Posted by: ${post.author}`}</p>
             <p>{`Posted on: ${post.createdOn}`}</p>
             <p>{`Liked by : ${post.liked.length} forum users`}</p>
-            <Flex>
-                <Button onClick={toggleLike} type="primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</Button>
-                {userData?.username === post.author && (
-                    <>
-                        <Button onClick={handleEdit} type="primary">{isEditing ? 'Save' : 'Edit'}</Button>
-                        <Button onClick={handleDelete} type="primary" danger>Delete</Button>
-                    </>
-                )}
-            </Flex>
+
+            <Button onClick={toggleLike} type="primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</Button>
+            {userData?.username === post.author && (
+                <>
+                    <Button onClick={handleEdit} type="primary">{isEditing ? 'Save' : 'Edit'}</Button>
+                    <Button onClick={handleDelete} type="primary" danger>Delete</Button>
+                </>
+            )}
+
+            <div className='add-comment'>
+                <h3>Add comment</h3>
+                <form onSubmit={handleAddComment}> 
+                    <textarea value={comment} onChange={e => setComment(e.target.value)} />
+                    <br />
+                    <Button type="primary" htmlType="submit">Add comment</Button> 
+                </form>
+            </div>
         </div>
+
     );
 };
 

@@ -8,8 +8,24 @@ export const addPost = async (author, title, content) => {
         title,
         content,
         createdOn: new Date().toString(),
+        comments: [],
     });
 }
+
+export const addComment = async (postId, author, content) => {
+    const postSnapshot = await get(ref(db, `posts/${postId}`));
+    if (!postSnapshot.exists()) {
+        throw new Error('Post does not exist');
+    }
+
+    const comment = {
+        author,
+        content,
+        createdOn: new Date().toString(),
+    };
+
+    return push(ref(db, `posts/${postId}/comments`), comment);
+};
 
 export const getAllPosts = async (search) => {
     const snapShot = await get(query(ref(db, 'posts'), orderByChild('createdOn')));
