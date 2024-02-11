@@ -76,6 +76,7 @@ const PostDetails = ({ post:initialPost, togglePostLike }) => {
             )}
             <p>{`Posted by: ${post.author}`}</p>
             <p>{`Posted on: ${post.createdOn}`}</p>
+            <p>{`Liked by : ${post.liked.length} forum users`}</p>
             <Flex>
                 <Button onClick={toggleLike} type="primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</Button>
                 {userData?.username === post.author && (
