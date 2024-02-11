@@ -15,7 +15,7 @@ export function HeaderComponent() {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
-    console.log(userData)
+    
     return (
         <header className="header">
             <NavLink to="/">Home</NavLink>

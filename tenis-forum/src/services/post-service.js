@@ -7,6 +7,23 @@ export const addPost = async (author, title, content) => {
         title,
         content,
         createdOn: new Date().toISOString(),
-        liked: false
     });
- }
+}
+
+
+export const getAllPosts = async (search) => {
+    const snapShot = await get(query(ref(db, 'posts'), orderByChild('createdOn')));
+    if (!snapShot.exists()) {
+        return [];
+    }
+
+    const posts = Object.keys(snapShot.val()).map(key => ({
+        id: key,
+        ...snapShot.val()[key],
+        createdOn: new Date(snapShot.val()[key].createdOn).toString(),
+        likedBy: snapShot.val()[key].likedBy ? Object.keys(snapShot.val()[key].likedBy) : [],
+    })).filter(post => post.title.toLowerCase().includes(search.toLowerCase()))
+
+    console.log(posts);
+    return posts;
+}
