@@ -12,30 +12,25 @@ const Register = () => {
     const [form, setForm] = useState({
         username: "",
         email: "",
-        password: ""
+        password: "",
     })
 
     const navigate = useNavigate()
 
     const updateForm = prop => e => {
-
-        setForm({
-            ...form,
-            [prop]: e.target.value
-        })
-
+        setForm({ ...form, [prop]: e.target.value });
     }
 
     const register = async () => {
-
+        // TODO: Validate inputs
         try {
-            const user = await getUserByUserName(form.handle);
+            const user = await getUserByUserName(form.username);
             if (user.exists()) {
                 alert("User name already in existence. Please choose another one.");
                 return
             }
             const credentials = await registerUser(form.email, form.password);
-            await createUserUserName(form.handle, credentials.user.uid, form.email);
+            await createUserUserName(form.username, credentials.user.uid, form.email);
 
             setContext({ user, userData: null });
             navigate('/');

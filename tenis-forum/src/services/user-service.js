@@ -8,7 +8,7 @@ export const getUserByUserName = (username) => {
 
 export const createUserUserName = (username, uid, email) => {
 
-  return set(ref(db, `users/${username}`), { username: username, uid, email, createdOn: new Date().toString(), likedPosts: {} })
+  return set(ref(db, `users/${username}`), {username, uid, email, createdOn: new Date().toString(), likedPosts: {} })
 };
 
 export const getUserData = (uid) => {

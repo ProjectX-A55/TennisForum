@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom"
 import "./HeaderComponent.css"
-import { useContext } from "react"
-import AppContext from "../../context/AppContext"
 import { logoutUser } from "../../services/auth-service"
 import { Button, Flex } from 'antd';
+import { useContext} from "react";
+import AppContext from "../../context/AppContext";
+
 
 
 export function HeaderComponent() {
@@ -14,13 +15,13 @@ export function HeaderComponent() {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
-    
+    console.log(userData)
     return (
         <header className="header">
             <NavLink to="/">Home</NavLink>
             {user ? (
                 <>
-                    {`Welcome, ${userData?.user}`}
+                    {`Welcome, ${userData?.username}`}
                     <Flex>
                         <Button onClick={logout} type="primary">Logout</Button>
                     </Flex>

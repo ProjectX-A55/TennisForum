@@ -35,7 +35,7 @@ function ForumLayout({ children }) {
 
 
   return (
-    <AppContext.Provider value={{ ...context, setContext }}>
+    
       <Layout style={{ minHeight: "100vh" }}>
         <HeaderComponent />
         <Layout>
@@ -56,7 +56,7 @@ function ForumLayout({ children }) {
           </Content>
         </Layout>
       </Layout>
-    </AppContext.Provider>
+    
   )
 }
 
