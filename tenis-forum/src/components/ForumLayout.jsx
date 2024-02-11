@@ -4,12 +4,9 @@ import { ToggleCollapsedButton } from './ToggleCollapsedButton';
 import { ToggleThemeButton } from './ToggleThemeButton';
 import { Logo } from './Logo';
 import { MenuComponent } from './MenuComponent';
-import { NavLink } from 'react-router-dom';
-
 import { HeaderComponent } from './HeaderComponent/HeaderComponent';
-import AppContext from '../context/AppContext';
 
-const { Content, Header, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 function ForumLayout({ children }) {
   if (localStorage.getItem('dark') === null) {
@@ -28,14 +25,7 @@ function ForumLayout({ children }) {
     setCollapsed(!collapsed);
   }
 
-  const [context, setContext] = useState({
-    user: null,
-    userData: null,
-  });
-
-
   return (
-    
       <Layout style={{ minHeight: "100vh" }}>
         <HeaderComponent />
         <Layout>
@@ -55,8 +45,7 @@ function ForumLayout({ children }) {
             {children}
           </Content>
         </Layout>
-      </Layout>
-    
+      </Layout> 
   )
 }
 

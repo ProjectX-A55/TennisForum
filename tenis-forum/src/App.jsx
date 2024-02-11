@@ -8,8 +8,10 @@ import { useEffect, useState } from 'react'
 import { auth } from './config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getUserData } from './services/user-service'
-import { HeaderComponent } from './components/HeaderComponent/HeaderComponent'
 import ForumLayout from './components/ForumLayout'
+import AllPosts from './views/AllPosts'
+import SinglePost from './views/SinglePost'
+import CreatePost from './views/CreatePost'
 
 function App() {
   const [context, setContext] = useState({
@@ -38,6 +40,10 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<LogIn />} />
+            <Route path='/posts' element={<AllPosts />} />
+            <Route path='/posts/:id' element={<SinglePost />} />
+            <Route path='/posts-create' element={<CreatePost />} />
+            
           </Routes>
         </ForumLayout>
       </AppContext.Provider>

@@ -1,5 +1,6 @@
 import { Menu } from 'antd';
-import { HomeOutlined, PlayCircleOutlined, HighlightOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons'
+import { HomeOutlined, PlayCircleOutlined, HighlightOutlined, ManOutlined, WomanOutlined, PlusOutlined } from '@ant-design/icons'
+import { NavLink } from 'react-router-dom';
 
 export function MenuComponent({darkTheme, inlineCollapsed = false}) {
     return (
@@ -14,10 +15,13 @@ export function MenuComponent({darkTheme, inlineCollapsed = false}) {
             }}>
            
             <Menu.Item key="home" icon={<HomeOutlined />}>
-                Home
+                <NavLink to="/">Home</NavLink>
+            </Menu.Item>
+            <Menu.Item key="createPost" icon={<PlusOutlined />}>
+                <NavLink to="/posts-create">Create post</NavLink>
             </Menu.Item>
             <Menu.Item key="general-discussions" icon={<HighlightOutlined />}>
-                General Discussions
+                <NavLink to="/posts">General Discussions</NavLink>
             </Menu.Item>
             <Menu.Item key="live-matches" icon={<PlayCircleOutlined />}>
                 Live Matches
