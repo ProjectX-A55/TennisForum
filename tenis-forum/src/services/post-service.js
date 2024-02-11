@@ -2,7 +2,7 @@ import { ref, push, get, query, equalTo, orderByChild, update, remove } from 'fi
 import { db } from '../config/firebase-config';
 
 export const addPost = async (author, title, content) => {
-    
+
     return push(ref(db, 'posts'), {
         author,
         title,
@@ -10,7 +10,6 @@ export const addPost = async (author, title, content) => {
         createdOn: new Date().toString(),
     });
 }
-
 
 export const getAllPosts = async (search) => {
     const snapShot = await get(query(ref(db, 'posts'), orderByChild('createdOn')));
@@ -43,6 +42,24 @@ export const getPostById = async (id) => {
     };
 
     return post;
+};
+
+
+export const updatePost = async (postId, title, content) => {
+    const postSnapshot = await get(ref(db, `posts/${postId}`));
+    if (!postSnapshot.exists()) {
+        throw new Error('Post does not exist');
+    }
+
+    const updates = {};
+    if (title) {
+        updates[`/posts/${postId}/title`] = title;
+    }
+    if (content) {
+        updates[`/posts/${postId}/content`] = content;
+    }
+
+    return update(ref(db), updates);
 };
 
 
