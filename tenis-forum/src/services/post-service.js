@@ -1,4 +1,4 @@
-import { ref, push, get, query, equalTo, orderByChild, update } from 'firebase/database';
+import { ref, push, get, query, equalTo, orderByChild, update, remove } from 'firebase/database';
 import { db } from '../config/firebase-config';
 
 export const addPost = async (author, title, content) => {
@@ -43,6 +43,21 @@ export const getPostById = async (id) => {
     };
 
     return post;
+};
+
+
+export const deletePost = async (username, postId) => {
+    const postSnapshot = await get(ref(db, `posts/${postId}`));
+    if (!postSnapshot.exists()) {
+        throw new Error('Post does not exist');
+    }
+
+    const post = postSnapshot.val();
+    if (post.author !== username) {
+        throw new Error('Only the author can delete this post');
+    }
+
+    return remove(ref(db, `posts/${postId}`));
 };
 
 

@@ -2,14 +2,16 @@ import { useContext, useState } from "react";
 import AppContext from "../context/AppContext";
 import { addPost } from "../services/post-service";
 import { Button, Flex } from 'antd';
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
-
     const { userData } = useContext(AppContext);
     const [post, setPost] = useState({
         title: '',
         content: '',
     });
+
+    const navigate = useNavigate();
 
     const updatePost = (value, key) => {
         setPost({ ...post, [key]: value });
@@ -31,7 +33,7 @@ const CreatePost = () => {
             title: '',
             content: ''
         });
-
+        navigate('/posts');
     };
 
     return (
