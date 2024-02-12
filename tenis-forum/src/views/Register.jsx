@@ -11,6 +11,8 @@ const Register = () => {
 
     const [form, setForm] = useState({
         username: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
     })
@@ -30,7 +32,7 @@ const Register = () => {
                 return
             }
             const credentials = await registerUser(form.email, form.password);
-            await createUserUserName(form.username, credentials.user.uid, form.email);
+            await createUserUserName(form.username, form.firstName, form.lastName, credentials.user.uid, form.email);
 
             setContext({ user, userData: null });
             navigate('/');
@@ -46,6 +48,8 @@ const Register = () => {
         <div>
             <h1>Register</h1>
             <label htmlFor="username">User Name: </label><input value={form.username} onChange={updateForm('username')} type="text" name="username" id="username" /><br />
+            <label htmlFor="firstName">First Name: </label><input value={form.firstName} onChange={updateForm('firstName')} type="text" name="firstName" id="firstName" /><br />
+            <label htmlFor="lastName">Last Name: </label><input value={form.lastName} onChange={updateForm('lastName')} type="text" name="lastName" id="lastName" /><br />
             <label htmlFor="email">Email: </label><input value={form.email} onChange={updateForm('email')} type="text" name="email" id="email" /><br />
             <label htmlFor="password">Password: </label><input value={form.password} onChange={updateForm('password')} type="password" name="password" id="password" /><br />
             <Flex gap="small" wrap="wrap">
