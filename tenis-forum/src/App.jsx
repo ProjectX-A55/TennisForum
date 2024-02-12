@@ -27,7 +27,7 @@ function App() {
         .then(snapshot => {
           if (snapshot.exists()) {
             console.log(snapshot.val());
-            setContext({ user, userData: snapshot.val()[Object.keys(snapshot.val())[0]] });
+            setContext({ ...context, user, userData: snapshot.val()[Object.keys(snapshot.val())[0]] });
           }
         })
     }

@@ -1,7 +1,6 @@
 import { Layout, Button } from 'antd'
 import { useState } from 'react';
 import { ToggleCollapsedButton } from './ToggleCollapsedButton';
-import { ToggleThemeButton } from './ToggleThemeButton';
 import { Logo } from './Logo';
 import { MenuComponent } from './MenuComponent';
 import { HeaderComponent } from './HeaderComponent/HeaderComponent';
@@ -9,17 +8,8 @@ import { HeaderComponent } from './HeaderComponent/HeaderComponent';
 const { Content, Sider } = Layout;
 
 function ForumLayout({ children }) {
-  if (localStorage.getItem('dark') === null) {
-    localStorage.getItem('dark', true)
-  }
-
-  const [darkTheme, setDarkTheme] = useState(localStorage.getItem('dark'));
   const [collapsed, setCollapsed] = useState(false);
 
-  const toggleTheme = () => {
-    setDarkTheme(!darkTheme);
-    localStorage.setItem('dark', !darkTheme);
-  };
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
@@ -30,18 +20,14 @@ function ForumLayout({ children }) {
         <HeaderComponent />
         <Layout>
           <Sider collapsible
+            theme='dark'
             collapsed={collapsed}
-            trigger={
-              <>
-                <ToggleCollapsedButton collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
-                <ToggleThemeButton darkTheme={!darkTheme} toggleTheme={toggleTheme} />
-              </>}
-            theme={!darkTheme ? 'dark' : 'light'}
+            trigger={<ToggleCollapsedButton collapsed={collapsed} toggleCollapsed={toggleCollapsed} />}
             className="sidebar">
-            <Logo darkTheme={!darkTheme} collapsed={collapsed} />
-            <MenuComponent darkTheme={!darkTheme} />
+            <Logo collapsed={collapsed} />
+            <MenuComponent/>
           </Sider>
-          <Content style={{ background: 'rgb(0, 21, 41)', margin: '5px' }}>
+          <Content style={{margin: '5px', backgroundColor: 'rgb(0, 21, 41)'}}>
             {children}
           </Content>
         </Layout>
