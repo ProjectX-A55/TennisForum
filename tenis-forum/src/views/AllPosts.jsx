@@ -3,6 +3,8 @@ import { getAllPosts } from "../services/post-service";
 import { useSearchParams } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
 import { Breadcrumb, Layout } from 'antd';
+import { Divider, List, Typography } from 'antd';
+import { PostList } from "../components/PostList/PostList";
 
 const { Content } = Layout;
 
@@ -44,15 +46,16 @@ const AllPosts = () => {
                     padding: 24,
                     margin: 0,
                     minHeight: 280,
-                    background: '#000',
-                    borderRadius: `10px`,
-                    border: `1px solid #fff`,
                 }}
             >
 
-                {posts.map((post) => (
+                {/* {posts.map((post) => (
                     <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
-                ))}
+                ))} */}
+
+                <PostList posts={posts} >
+
+                </PostList>
             </Content>
 
 

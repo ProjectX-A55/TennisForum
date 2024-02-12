@@ -33,7 +33,6 @@ export function HeaderComponent() {
     return (
         <header className="header">
             <p>Number of users: {users.length}</p>
-            <NavLink to="/">Home</NavLink>
             {user ? (
                 <>
                     {`Welcome, ${userData?.username}`}
