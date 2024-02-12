@@ -37,7 +37,8 @@ const CreatePost = () => {
     };
 
     return (
-        <div>
+        <div className="form">
+            <div className="form-box">
             <h1>Create Post</h1>
             <label htmlFor="input-title">Title</label>
             <input value={post.title} onChange={e => updatePost(e.target.value, 'title')} type="text" name="input-title" id="input-title" /><br />
@@ -50,9 +51,8 @@ const CreatePost = () => {
             </select> <br />
             <label htmlFor="input-content">Content:</label><br />
             <textarea value={post.content} onChange={e => updatePost(e.target.value, 'content')} name="input-content" id="input-content" cols="30" rows="10"></textarea><br /><br />
-            <Flex>
                 <Button onClick={createPost} type="primary">Create post</Button>
-            </Flex>
+            </div>
         </div>
     );
 };
