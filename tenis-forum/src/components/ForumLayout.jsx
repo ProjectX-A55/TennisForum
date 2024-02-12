@@ -1,7 +1,6 @@
 import { Layout, Button } from 'antd'
 import { useState } from 'react';
 import { ToggleCollapsedButton } from './ToggleCollapsedButton';
-import { Logo } from './Logo';
 import { MenuComponent } from './MenuComponent';
 import { HeaderComponent } from './HeaderComponent/HeaderComponent';
 
@@ -24,7 +23,6 @@ function ForumLayout({ children }) {
             collapsed={collapsed}
             trigger={<ToggleCollapsedButton collapsed={collapsed} toggleCollapsed={toggleCollapsed} />}
             className="sidebar">
-            <Logo collapsed={collapsed} />
             <MenuComponent/>
           </Sider>
           <Content style={{margin: '5px', backgroundColor: 'rgb(0, 21, 41)'}}>

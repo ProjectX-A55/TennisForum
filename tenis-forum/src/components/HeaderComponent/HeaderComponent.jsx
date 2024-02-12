@@ -5,7 +5,7 @@ import { Button, Flex } from 'antd';
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 import { getAllUsers } from "../../services/user-service";
-
+import { Logo } from "../Logo";
 
 
 export function HeaderComponent() {
@@ -31,21 +31,24 @@ export function HeaderComponent() {
     }
 
     return (
-        <header className="header">
-            <p>Number of users: {users.length}</p>
-            {user ? (
-                <>
-                    {`Welcome, ${userData?.username}`}
-                    <Flex>
-                        <Button onClick={logout} type="primary">Logout</Button>
-                    </Flex>
-                </>
-            ) : (
-                <>
-                    <NavLink to="/register">Register</NavLink>
-                    <NavLink to="/login">Login</NavLink>
-                </>
-            )}
+        <header className="header" >
+            <Logo />
+            <div style={{display: "inline"}}>
+                <p>Number of users: {users.length}</p>
+                {user ? (
+                    <>
+                        {`Welcome, ${userData?.username}`}
+                        <Flex>
+                            <Button onClick={logout} type="primary">Logout</Button>
+                        </Flex>
+                    </>
+                ) : (
+                    <>
+                        <NavLink to="/register">Register</NavLink>
+                        <NavLink to="/login">Login</NavLink>
+                    </>
+                )}
+            </div>
         </header>
     )
 }
