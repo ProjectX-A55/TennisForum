@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/AppContext';
 import { Button } from 'antd';
-import { dislikePost, likePost, deletePost, updatePost, getPostById, addComment } from '../../services/post-service';
+import { dislikePost, likePost, deletePost, updatePost, getPostById, addComment, getComments } from '../../services/post-service';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -20,11 +20,17 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     const [title, setTitle] = useState(initialPost.title);
     const [content, setContent] = useState(initialPost.content);
     const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([])
 
     useEffect(() => {
         setTitle(post.title);
         setContent(post.content);
     }, [post]);
+
+    useEffect(() => {
+        getComments().then(setComments)
+     }, [])
+
 
     const toggleLike = async () => {
         if (post.liked.includes(userData.username)) {
@@ -67,7 +73,8 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-    console.log(post.comments);
+    //TODO: Add the comments to the post
+    
     return (
         <div className='post-info'>
             {isEditing ? (
@@ -97,10 +104,10 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
 
             <div className='add-comment'>
                 <h3>Add comment</h3>
-                <form onSubmit={handleAddComment}> 
+                <form onSubmit={handleAddComment}>
                     <textarea value={comment} onChange={e => setComment(e.target.value)} />
                     <br />
-                    <Button type="primary" htmlType="submit">Add comment</Button> 
+                    <Button type="primary" htmlType="submit">Add comment</Button>
                 </form>
             </div>
         </div>

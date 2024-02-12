@@ -27,6 +27,24 @@ export const addComment = async (postId, author, content) => {
     return push(ref(db, `posts/${postId}/comments`), comment);
 };
 
+export const getComments = async (postId) => {
+    const commentsSnapshot = await get(ref(db, `posts/${postId}/comments`));
+    if (!commentsSnapshot.exists()) {
+        return [];
+    }
+
+    // Convert the snapshot to an array of comments
+    const comments = [];
+    commentsSnapshot.forEach((childSnapshot) => {
+        comments.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val(),
+        });
+    });
+    console.log(comments)
+    return comments;
+};
+
 export const getAllPosts = async (search) => {
     const snapShot = await get(query(ref(db, 'posts'), orderByChild('createdOn')));
     if (!snapShot.exists()) {
