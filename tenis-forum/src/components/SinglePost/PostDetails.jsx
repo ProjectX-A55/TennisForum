@@ -4,6 +4,7 @@ import AppContext from '../../context/AppContext';
 import { Button } from 'antd';
 import { dislikePost, likePost, deletePost, updatePost, getPostById, addComment, getComments } from '../../services/post-service';
 import { useNavigate } from 'react-router-dom';
+import Comment from '../Comments/Comment';
 
 /**
  * 
@@ -28,8 +29,8 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     }, [post]);
 
     useEffect(() => {
-        getComments().then(setComments)
-     }, [])
+        getComments(post.id).then(setComments)
+    }, [post.id])
 
 
     const toggleLike = async () => {
@@ -55,11 +56,11 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
         setIsEditing(!isEditing);
     }
 
-    const handleAddComment = async (event) => { // Add this function
+    const handleAddComment = async (event) => {
         event.preventDefault();
         try {
             await addComment(post.id, userData.username, comment);
-            setComment(''); // Clear the textarea
+            setComment('');
         } catch (error) {
             console.error('Failed to add comment:', error);
         }
@@ -73,7 +74,6 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-    //TODO: Add the comments to the post
     
     return (
         <div className='post-info'>
@@ -110,8 +110,12 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                     <Button type="primary" htmlType="submit">Add comment</Button>
                 </form>
             </div>
+            <div>
+                {Object.keys(comments).map((commentId) =>
+                <Comment key={commentId} comments={comments[commentId]}/>
+                )}
+            </div>
         </div>
-
     );
 };
 

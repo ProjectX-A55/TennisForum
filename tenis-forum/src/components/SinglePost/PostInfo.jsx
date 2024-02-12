@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
  * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string}, togglePostLike: function}} param0 
  * @returns 
  */
-const PostInfo = ({ post}) => {
+const PostInfo = ({ post }) => {
 
     const navigate = useNavigate();
 

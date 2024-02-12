@@ -28,21 +28,12 @@ export const addComment = async (postId, author, content) => {
 };
 
 export const getComments = async (postId) => {
-    const commentsSnapshot = await get(ref(db, `posts/${postId}/comments`));
-    if (!commentsSnapshot.exists()) {
-        return [];
-    }
 
-    // Convert the snapshot to an array of comments
-    const comments = [];
-    commentsSnapshot.forEach((childSnapshot) => {
-        comments.push({
-            id: childSnapshot.key,
-            ...childSnapshot.val(),
-        });
-    });
-    console.log(comments)
-    return comments;
+    const commentsSnapshot = await get(ref(db, `posts/${postId}/comments`));
+    const comments = commentsSnapshot.val()
+    
+    return comments
+    
 };
 
 export const getAllPosts = async (search) => {
@@ -58,7 +49,7 @@ export const getAllPosts = async (search) => {
         liked: snapShot.val()[key].liked ? Object.keys(snapShot.val()[key].liked) : [],
     })).filter(post => post.title.toLowerCase().includes(search.toLowerCase()))
 
-    console.log(posts);
+    
     return posts;
 }
 
