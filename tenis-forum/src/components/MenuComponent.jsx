@@ -2,13 +2,13 @@ import { Menu } from 'antd';
 import { HomeOutlined, PlayCircleOutlined, HighlightOutlined, ManOutlined, WomanOutlined, PlusOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom';
 
-export function MenuComponent({darkTheme, inlineCollapsed = false}) {
+export function MenuComponent({ inlineCollapsed = false }) {
     return (
         <Menu
-            theme={darkTheme ? "dark" : "light"}
             mode="inline"
             inlineCollapsed={inlineCollapsed}
             selectedKeys={["home"]}
+            theme={'dark'}
             style={{
                 borderRight: 0,
                 textAlign: 'left',
