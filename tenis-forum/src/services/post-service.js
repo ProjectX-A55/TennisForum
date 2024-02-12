@@ -28,12 +28,14 @@ export const addComment = async (postId, author, content) => {
 };
 
 export const getComments = async (postId) => {
-
     const commentsSnapshot = await get(ref(db, `posts/${postId}/comments`));
     const comments = commentsSnapshot.val()
     
-    return comments
+    if (!commentsSnapshot.exists()) {
+        return [];
+    }
     
+    return comments;
 };
 
 export const getAllPosts = async (search) => {

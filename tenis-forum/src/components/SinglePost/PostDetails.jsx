@@ -21,7 +21,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     const [title, setTitle] = useState(initialPost.title);
     const [content, setContent] = useState(initialPost.content);
     const [comment, setComment] = useState('');
-    const [comments, setComments] = useState([])
+    const [allComments, setAllComments] = useState({})
 
     useEffect(() => {
         setTitle(post.title);
@@ -29,9 +29,8 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     }, [post]);
 
     useEffect(() => {
-        getComments(post.id).then(setComments)
-    }, [post.id])
-
+        getComments(post.id).then(allComments => setAllComments(Object.values(allComments)))
+    }, [comment, post.id])
 
     const toggleLike = async () => {
         if (post.liked.includes(userData.username)) {
@@ -59,7 +58,8 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     const handleAddComment = async (event) => {
         event.preventDefault();
         try {
-            await addComment(post.id, userData.username, comment);
+            const newComment = await addComment(post.id, userData.username, comment);
+            setAllComments(prevComments => [...prevComments, newComment]);
             setComment('');
         } catch (error) {
             console.error('Failed to add comment:', error);
@@ -74,7 +74,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-    
+
     return (
         <div className='post-info'>
             {isEditing ? (
@@ -111,8 +111,8 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                 </form>
             </div>
             <div>
-                {Object.keys(comments).map((commentId) =>
-                <Comment key={commentId} comments={comments[commentId]}/>
+                {Object.keys(allComments).map((commentId) =>
+                <Comment key={commentId} comments={allComments[commentId]}/>
                 )}
             </div>
         </div>
