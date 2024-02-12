@@ -1,7 +1,7 @@
 import { ref, push, get, query, orderByChild, update, remove } from 'firebase/database';
 import { db } from '../config/firebase-config';
 
-export const addPost = async (author, title, content, theme = "General Discussions") => {
+export const addPost = async (author, title, content, topic = "General Discussions") => {
 
     return push(ref(db, 'posts'), {
         author,
@@ -9,7 +9,7 @@ export const addPost = async (author, title, content, theme = "General Discussio
         content,
         createdOn: new Date().toString(),
         comments: [],
-        theme,
+        topic,
     });
 }
 

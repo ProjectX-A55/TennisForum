@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { HighlightOutlined, PlayCircleOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons'
 
 export function PostListItem({ post }) {
-    const iconFunc = (theme) => {
-        switch(theme){
+    const iconFunc = (topic) => {
+        console.log(topic)
+        switch(topic){
         case "General Discussions":
             return <HighlightOutlined />
         case "Live Matches":
@@ -23,7 +24,7 @@ export function PostListItem({ post }) {
 
     return (
         <div className="post-list-item" onClick={() => navigate(`/posts/${post.id}`)}>
-            <div className="post-list-item-icon">{iconFunc(post.theme)}</div>
+            <div className="post-list-item-icon">{iconFunc(post.topic)}</div>
             <div className="post-list-item-main">
                 <h3 className="post-item-title">{post.title}</h3>
                 <h5 className="post-item-summary">{summary}</h5>

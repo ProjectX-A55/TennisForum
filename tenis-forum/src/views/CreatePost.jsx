@@ -27,7 +27,7 @@ const CreatePost = () => {
             return;
         }
 
-        await addPost(userData.username, post.title, post.content);
+        await addPost(userData.username, post.title, post.content, post.topic);
 
         setPost({
             title: '',
@@ -41,6 +41,13 @@ const CreatePost = () => {
             <h1>Create Post</h1>
             <label htmlFor="input-title">Title</label>
             <input value={post.title} onChange={e => updatePost(e.target.value, 'title')} type="text" name="input-title" id="input-title" /><br />
+            <label htmlFor="input-topic">Topic</label>
+            <select onChange={e => updatePost(e.target.value, 'topic')} name="input-topic" id="input-topic">
+                <option value="General Discussions" selected="selected">General Discussions</option>
+                <option value="Live Matches">Live Matches</option>
+                <option value="Men's Tennis">Men's Tennis</option>
+                <option value="Women's Tennis">Women's Tennis</option>
+            </select> <br />
             <label htmlFor="input-content">Content:</label><br />
             <textarea value={post.content} onChange={e => updatePost(e.target.value, 'content')} name="input-content" id="input-content" cols="30" rows="10"></textarea><br /><br />
             <Flex>
