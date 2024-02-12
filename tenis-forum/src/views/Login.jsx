@@ -35,18 +35,17 @@ const LogIn = () => {
     };
 
     return (
-        <div>
-            <h1>Login</h1>
-            <label htmlFor="email">Email: </label>
-            <input value={form.email} onChange={updateForm('email')} type="text" id="email" name="email" />
-            <br /><br />
-            <label htmlFor="password">Password: </label>
-            <input value={form.password} onChange={updateForm('password')} type="password" id="password" name="password" />
-            <br /><br />
-            <Flex gap="small" wrap="wrap">
-                <Button onClick={login} type="primary">Login</Button>
-            </Flex>
-
+        <div className="login-form">
+            <div className='login-box'>
+                <h1>Login</h1>
+                <label htmlFor="email">Email: </label>
+                <input value={form.email} onChange={updateForm('email')} type="text" id="email" name="email" />
+                <br /><br />
+                <label htmlFor="password">Password: </label>
+                <input value={form.password} onChange={updateForm('password')} type="password" id="password" name="password" />
+                <br /><br />
+                    <Button onClick={login} type="primary">Login</Button>
+            </div>
         </div>
     )
 }
