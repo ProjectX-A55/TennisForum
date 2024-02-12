@@ -12,31 +12,6 @@ export const addPost = async (author, title, content) => {
     });
 }
 
-export const addComment = async (postId, author, content) => {
-    const postSnapshot = await get(ref(db, `posts/${postId}`));
-    if (!postSnapshot.exists()) {
-        throw new Error('Post does not exist');
-    }
-
-    const comment = {
-        author,
-        content,
-        createdOn: new Date().toString(),
-    };
-
-    return push(ref(db, `posts/${postId}/comments`), comment);
-};
-
-export const getComments = async (postId) => {
-    const commentsSnapshot = await get(ref(db, `posts/${postId}/comments`));
-    const comments = commentsSnapshot.val()
-    
-    if (!commentsSnapshot.exists()) {
-        return [];
-    }
-    
-    return comments;
-};
 
 export const getAllPosts = async (search) => {
     const snapShot = await get(query(ref(db, 'posts'), orderByChild('createdOn')));

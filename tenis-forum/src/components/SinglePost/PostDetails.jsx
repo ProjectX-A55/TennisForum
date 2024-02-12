@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/AppContext';
 import { Button } from 'antd';
-import { dislikePost, likePost, deletePost, updatePost, getPostById, addComment, getComments } from '../../services/post-service';
+import { dislikePost, likePost, deletePost, updatePost, getPostById } from '../../services/post-service';
+import { addComment, deleteComment, getComments } from '../../services/comment-service'
 import { useNavigate } from 'react-router-dom';
 import Comment from '../Comments/Comment';
+
 
 /**
  * 
@@ -21,7 +23,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     const [title, setTitle] = useState(initialPost.title);
     const [content, setContent] = useState(initialPost.content);
     const [comment, setComment] = useState('');
-    const [allComments, setAllComments] = useState({})
+    const [allComments, setAllComments] = useState([]);
 
     useEffect(() => {
         setTitle(post.title);
@@ -29,15 +31,17 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     }, [post]);
 
     useEffect(() => {
-        getComments(post.id).then(allComments => setAllComments(Object.values(allComments)))
+        getComments(post.id).then(setAllComments)
     }, [comment, post.id])
 
     const toggleLike = async () => {
         if (post.liked.includes(userData.username)) {
             dislikePost(userData.username, post.id);
+            setPost(prevPost => ({ ...prevPost, liked: prevPost.liked.filter(user => user !== userData.username) }));
         }
         else {
             likePost(userData.username, post.id);
+            setPost(prevPost => ({ ...prevPost, liked: [...prevPost.liked, userData.username] }));
         }
         togglePostLike(userData.username, post);
     };
@@ -55,14 +59,24 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
         setIsEditing(!isEditing);
     }
 
+
     const handleAddComment = async (event) => {
         event.preventDefault();
         try {
-            const newComment = await addComment(post.id, userData.username, comment);
-            setAllComments(prevComments => [...prevComments, newComment]);
+            await addComment(post.id, userData.username, comment);
+            setAllComments(await getComments(post.id));
             setComment('');
         } catch (error) {
             console.error('Failed to add comment:', error);
+        }
+    };
+
+    const handleDeleteComment = async (commentId) => {
+        try {
+            await deleteComment(post.id, commentId);
+            setAllComments(await getComments(post.id));
+        } catch (error) {
+            console.error('Failed to delete comment:', error);
         }
     };
 
@@ -74,7 +88,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-
+    
     return (
         <div className='post-info'>
             {isEditing ? (
@@ -111,8 +125,8 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                 </form>
             </div>
             <div>
-                {Object.keys(allComments).map((commentId) =>
-                <Comment key={commentId} comments={allComments[commentId]}/>
+                {Object.keys(allComments).map((commentKey) =>
+                    <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                 )}
             </div>
         </div>
