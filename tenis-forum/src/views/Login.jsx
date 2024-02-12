@@ -35,8 +35,8 @@ const LogIn = () => {
     };
 
     return (
-        <div className="login-form">
-            <div className='login-box'>
+        <div className="form">
+            <div className='form-box'>
                 <h1>Login</h1>
                 <label htmlFor="email">Email: </label>
                 <input value={form.email} onChange={updateForm('email')} type="text" id="email" name="email" />

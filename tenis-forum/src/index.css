@@ -100,18 +100,18 @@ button:focus-visible {
   margin: 5px;
 }
 
-.login-form {
+.form-form {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login-box {  
+.form-box {  
   text-align: center;
   max-width: 420px;
 }
 
-.login-box input[type=text], input[type=password] {
+.form-box input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -119,8 +119,9 @@ button:focus-visible {
   border: 1px solid #ccc;
   box-sizing: border-box;
   background-color: white;
+  color: black;
 }
 
-.login-box label {
+.form-box label {
   text-align: left;
 }
