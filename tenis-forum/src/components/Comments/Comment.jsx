@@ -5,7 +5,7 @@ import { updateComment } from '../../services/comment-service';
 
 /**
  * 
- * @param {{comments: { id: string, author: string, content: string, createdOn: string}}} comments 
+ * @param {{comments: { id: string, author: string, content: string, createdOn: string}, commentId: string, postId: string, currentUser: string, handleDeleteComment: function}} comments 
  */
 
 const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment }) => {
@@ -47,6 +47,11 @@ Comment.propTypes = {
         author: PropTypes.string,
         content: PropTypes.string,
         createdOn: PropTypes.string,
-    }),
+    }
+    ),
+    commentId: PropTypes.string,
+    postId: PropTypes.string,
+    currentUser: PropTypes.string,
+    handleDeleteComment: PropTypes.func
 }
 export default Comment;

@@ -13,7 +13,7 @@ import CreatePost from './views/CreatePost'
 import PostDetailsView from './views/PostDetailsView'
 import Authenticated from './hoc/Authenticated'
 import { HeaderComponent } from './components/HeaderComponent/HeaderComponent'
-import Profile from './components/Profile/Profile'
+import UserProfile from './components/Profile/Profile'
 
 function App() {
   const [context, setContext] = useState({
@@ -42,11 +42,10 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<LogIn />} />
             <Route path='/posts' element={<Authenticated><AllPosts /></Authenticated>} />
-            <Route path='/profile' element={<Authenticated><Profile /></Authenticated>} />
+            <Route path='/profile' element={<Authenticated><UserProfile /></Authenticated>} />
             <Route path='/posts/:id' element={<Authenticated><PostDetailsView /></Authenticated>} />
             <Route path='/posts-create' element={<Authenticated><CreatePost /></Authenticated>} />
           </Routes>
-        
       </AppContext.Provider>
     </BrowserRouter>
   )

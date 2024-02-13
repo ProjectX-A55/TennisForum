@@ -3,7 +3,7 @@ import { createContext } from "react";
 const AppContext = createContext({
     user: null,
     userData: null,
-    setContext: () => { }
+    setContext: () => { },
 });
 
 

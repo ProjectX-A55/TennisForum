@@ -1,5 +1,6 @@
-import { get, set, ref, query, equalTo, orderByChild } from 'firebase/database';
+import { get, set, ref, query, equalTo, orderByChild, } from 'firebase/database';
 import { db } from '../config/firebase-config';
+
 
 export const getUserByUserName = (username) => {
 
@@ -8,7 +9,16 @@ export const getUserByUserName = (username) => {
 
 export const createUserUserName = (username, firstName, lastName, uid, email) => {
 
-  return set(ref(db, `users/${username}`), {username, firstName, lastName, uid, email, createdOn: new Date().toString(), likedPosts: {} })
+  return set(ref(db, `users/${username}`), {
+    username,
+    firstName,
+    lastName,
+    uid,
+    email,
+    createdOn: new Date().toString(),
+    likedPosts: {},
+    avatar: `https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg` //https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg
+  })
 };
 
 export const getUserData = (uid) => {
@@ -22,6 +32,12 @@ export const getUserPosts = (username) => {
 };
 
 export const getAllUsers = () => {
-  
-    return get(ref(db, 'users'));
+
+  return get(ref(db, 'users'));
 }
+
+export const updateUser = (username, userData) => {
+
+  return set(ref(db, `users/${username}`), userData);
+}
+

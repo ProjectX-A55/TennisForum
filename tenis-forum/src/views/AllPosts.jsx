@@ -27,30 +27,19 @@ const AllPosts = () => {
             }
             return post;
         }
-
         ))
     }
 
+    console.log(posts);
     return (
-        // <div>
-
-        //     <h1>All Posts</h1>
-        //     <label htmlFor="search">Search</label>
-        //     <input value={search} onChange={e => setSearch(e.target.value)} type="text" name="search" id="search" /> <br />
-        //     {posts.map((post) => (
-        //             <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
-        //         ))}
-        // </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="">
             {posts.map((post) => (
-                <div className="mb-4 w-full">
-                    <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
-                </div>
+                <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
             ))}
         </div>
-
     );
 };
 
 
+//<div className="mb-4 w-full">
 export default AllPosts;
