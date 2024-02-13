@@ -24,13 +24,14 @@ export function HeaderComponent() {
     }, []);
 
 
+
     const logout = async () => {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
 
     return (
-        <div className="navbar bg-base-100" style={{border: '1px solid white', marginBottom: '30px'}}>
+        <div className="navbar bg-base-100" style={{ border: '1px solid white', marginBottom: '30px' }}>
             <div className="flex-1">
                 <details className="dropdown">
                     <summary className="m-1 btn">open or close</summary>
@@ -58,7 +59,8 @@ export function HeaderComponent() {
                             </div>
                         </div>
                         <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                            <li><NavLink to="/register">Register</NavLink></li>
+                            
+                            <li><NavLink to="/profile">Profile</NavLink></li>
                             <li onClick={logout} role="button">Log Out</li>
                         </ul>
                     </div>
