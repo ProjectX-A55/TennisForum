@@ -21,11 +21,10 @@ const PostInfo = ({ post }) => {
 
     const navigate = useNavigate();
     console.log(author);
-    //TODO: trqbva da  se poqvi prysche kogato usera e lognat i da moje da likeva postove
-
+    
     return (
         <div className="flex justify-center items-center h-auto mb-4 ">
-            <div className="card w-3/4 h-auto bg-base-100 border border-white white-shadow-xl transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
+            <div className="card w-3/4 h-auto bg-base-100 border border-white shadow-lg shadow-white transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
                 <div className="card-body cursor-pointer" onClick={() => navigate(`/posts/${post.id}`)}>
                     <div className="title ">
                         <h2 className="text-center">{post.title}</h2>

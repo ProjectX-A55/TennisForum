@@ -80,7 +80,7 @@ const CreatePost = () => {
                 </div>
                 <br />
                 <div>
-                    <button className="btn btn-block bg-blue-500" onClick={createPost} type="primary">Create post</button>
+                    <button className="btn btn-primary w-full" onClick={createPost} type="primary">Create post</button>
                 </div>
             </div>
         </div>

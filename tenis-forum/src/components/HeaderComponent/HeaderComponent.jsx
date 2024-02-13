@@ -31,14 +31,14 @@ export function HeaderComponent() {
     }
 
     return (
-        <div className="navbar bg-base-100" style={{ border: '1px solid white', marginBottom: '30px' }}>
+        <div className="navbar bg-base-100 mb-10 shadow-lg shadow-white border rounded">
             <div className="flex-1">
 
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li><NavLink to="/posts-create">Create post</NavLink></li>
-                        <li><a>Item 2</a></li>
+                        <li><NavLink to="/posts">All post</NavLink></li>
                     </ul>
                 </div>
             </div>
@@ -66,6 +66,7 @@ export function HeaderComponent() {
                         <div>
                             <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
                                 <li><NavLink to="/register">Register</NavLink></li>
+                                <div className="divider divider-horizontal"></div>
                                 <li><NavLink to="/login">Login</NavLink></li>
                             </ul>
                         </div>

@@ -46,7 +46,7 @@ const Register = () => {
 
     return (
         <div className="relative flex flex-col justify-center h-screen overflow-hidden">
-            <div className="w-full p-6 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+            <div className="w-full p-6 m-auto bg-gray rounded-md shadow-lg shad ring-2 ring-white lg:max-w-xl">
                 <h1 className="text-3xl font-semibold text-center text-gray-700">Sign Up</h1>
                 <div>
                     <label htmlFor="username">User Name: </label>
@@ -70,8 +70,8 @@ const Register = () => {
                     <input className="w-full input input-bordered" value={form.password} onChange={updateForm('password')} type="password" name="password" id="password" />
                 </div>
                 <br />
-                <div>
-                    <button className="btn btn-block" onClick={register} type="primary">Register</button>
+                <div >
+                    <button className="btn btn-primary w-full" onClick={register} type="primary">Register</button>
                 </div>
                 <br />
                 <span>Already have an account ?
