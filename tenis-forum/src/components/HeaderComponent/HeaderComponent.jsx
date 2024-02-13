@@ -30,24 +30,8 @@ export function HeaderComponent() {
     }
 
     return (
-        // <header className="header" >
-        //     <div style={{display: "inline"}}>
-        //         <p>Number of users: {users.length}</p>
-        //         {user ? (
-        //             <>
-        //                 {`Welcome, ${userData?.username}`}
-        //                     <button onClick={logout} type="primary">Logout</button>
-        //             </>
-        //         ) : (
-        //             <>
-        //                 <NavLink to="/register">Register</NavLink>
-        //                 <NavLink to="/login">Login</NavLink>
-        //             </>
-        //         )}
-        //     </div>
-        // </header>
-        <div class="navbar bg-base-100">
-            <div class="flex-1">
+        <div className="navbar bg-base-100" style={{border: '1px solid white', marginBottom: '30px'}}>
+            <div className="flex-1">
                 <details className="dropdown">
                     <summary className="m-1 btn">open or close</summary>
                     <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
@@ -56,24 +40,24 @@ export function HeaderComponent() {
                         <li><a>Live Score</a></li>
                     </ul>
                 </details>
-                <label class="flex cursor-pointer gap-2">
-                    <span class="label-text">Current</span>
-                    <input type="checkbox" value="synthwave" class="toggle theme-controller" />
-                    <span class="label-text">Synthwave</span>
+                <label className="flex cursor-pointer gap-2">
+                    <span className="label-text">Current</span>
+                    <input type="checkbox" value="synthwave" className="toggle theme-controller" />
+                    <span className="label-text">Synthwave</span>
                 </label>
             </div>
-            <div class="flex-none gap-2">
-                <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+            <div className="flex-none gap-2">
+                <div className="form-control">
+                    <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
                 </div>
                 {user ? (
-                    <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                            <div class="w-10 rounded-full">
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
                                 <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                        <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                             <li><NavLink to="/register">Register</NavLink></li>
                             <li onClick={logout} role="button">Log Out</li>
                         </ul>
@@ -82,16 +66,14 @@ export function HeaderComponent() {
                     :
                     (
                         <div>
-                            <ul class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+                            <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
                                 <li><NavLink to="/register">Register</NavLink></li>
                                 <li><NavLink to="/login">Login</NavLink></li>
                             </ul>
                         </div>
                     )
                 }
-
-
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }

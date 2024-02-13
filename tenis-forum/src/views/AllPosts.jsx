@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
 
 
+
 const AllPosts = () => {
 
     const [posts, setPosts] = useState([])
@@ -31,15 +32,23 @@ const AllPosts = () => {
     }
 
     return (
-        <div>
+        // <div>
 
-            <h1>All Posts</h1>
-            <label htmlFor="search">Search</label>
-            <input value={search} onChange={e => setSearch(e.target.value)} type="text" name="search" id="search" /> <br />
+        //     <h1>All Posts</h1>
+        //     <label htmlFor="search">Search</label>
+        //     <input value={search} onChange={e => setSearch(e.target.value)} type="text" name="search" id="search" /> <br />
+        //     {posts.map((post) => (
+        //             <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
+        //         ))}
+        // </div>
+        <div className="flex flex-col items-center justify-center">
             {posts.map((post) => (
+                <div className="mb-4 w-full">
                     <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
-                ))}
+                </div>
+            ))}
         </div>
+
     );
 };
 
