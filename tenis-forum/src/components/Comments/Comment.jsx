@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { updateComment } from '../../services/comment-service';
-import { Button } from 'antd';
+
 
 /**
  * 
@@ -37,7 +37,7 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
             )}
             <p>{comments.createdOn}</p>
             {currentUser === comments.author && !isEditing && <button onClick={handleEdit}>Edit</button>}
-            {currentUser === comments.author && !isEditing && <Button onClick={() => handleDeleteComment(commentId)} type="primary" danger>Delete</Button>}
+            {currentUser === comments.author && !isEditing && <button onClick={() => handleDeleteComment(commentId)} type="primary">Delete</button>}
         </div>
     )
 }

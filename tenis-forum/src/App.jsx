@@ -8,11 +8,11 @@ import { useEffect, useState } from 'react'
 import { auth } from './config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getUserData } from './services/user-service'
-import ForumLayout from './components/ForumLayout'
 import AllPosts from './views/AllPosts'
 import CreatePost from './views/CreatePost'
 import PostDetailsView from './views/PostDetailsView'
 import Authenticated from './hoc/Authenticated'
+import { HeaderComponent } from './components/HeaderComponent/HeaderComponent'
 
 function App() {
   const [context, setContext] = useState({
@@ -35,7 +35,7 @@ function App() {
   return (
     <BrowserRouter>
       <AppContext.Provider value={{ ...context, setContext }}>
-        <ForumLayout>
+        <HeaderComponent />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/register' element={<Register />} />
@@ -44,7 +44,7 @@ function App() {
             <Route path='/posts/:id' element={<Authenticated><PostDetailsView /></Authenticated>} />
             <Route path='/posts-create' element={<Authenticated><CreatePost /></Authenticated>} />
           </Routes>
-        </ForumLayout>
+        
       </AppContext.Provider>
     </BrowserRouter>
   )

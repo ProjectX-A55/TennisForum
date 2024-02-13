@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Button, Flex } from 'antd';
+
 import { useNavigate } from 'react-router-dom';
 
 // import { dislikePost, likePost } from '../../services/post-service';
@@ -18,9 +18,7 @@ const PostInfo = ({ post }) => {
             <p>{post.content}</p>
             <p>{`Posted by: ${post.author}`}</p>
             <p>{`Posted on: ${post.createdOn}`}</p>
-            <Flex>
-                <Button onClick={() => navigate(`/posts/${post.id}`)} type="primary">See full post</Button>
-            </Flex>
+                <button onClick={() => navigate(`/posts/${post.id}`)} type="primary">See full post</button>
         </div>
     );
 };

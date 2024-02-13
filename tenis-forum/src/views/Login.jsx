@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/auth-service";
-import { Button, Flex } from 'antd';
 
 const LogIn = () => {
     const { user, setContext } = useContext(AppContext);
@@ -44,7 +43,7 @@ const LogIn = () => {
                 <label htmlFor="password">Password: </label>
                 <input value={form.password} onChange={updateForm('password')} type="password" id="password" name="password" />
                 <br /><br />
-                    <Button onClick={login} type="primary">Login</Button>
+                    <button onClick={login} type="primary">Login</button>
             </div>
         </div>
     )

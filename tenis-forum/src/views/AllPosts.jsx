@@ -2,11 +2,6 @@ import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/post-service";
 import { useSearchParams } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
-import { Breadcrumb, Layout } from 'antd';
-import { Divider, List, Typography } from 'antd';
-import { PostList } from "../components/PostList/PostList";
-
-const { Content } = Layout;
 
 
 const AllPosts = () => {
@@ -41,24 +36,9 @@ const AllPosts = () => {
             <h1>All Posts</h1>
             <label htmlFor="search">Search</label>
             <input value={search} onChange={e => setSearch(e.target.value)} type="text" name="search" id="search" /> <br />
-            <Content
-                style={{
-                    padding: 24,
-                    margin: 0,
-                    minHeight: 280,
-                }}
-            >
-
-                {/* {posts.map((post) => (
+            {posts.map((post) => (
                     <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
-                ))} */}
-
-                <PostList posts={posts} >
-
-                </PostList>
-            </Content>
-
-
+                ))}
         </div>
     );
 };

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/AppContext';
-import { Button } from 'antd';
 import { dislikePost, likePost, deletePost, updatePost, getPostById } from '../../services/post-service';
 import { addComment, deleteComment, getComments } from '../../services/comment-service'
 import { useNavigate } from 'react-router-dom';
@@ -108,11 +107,11 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             <p>{`Posted on: ${post.createdOn}`}</p>
             <p>{`Liked by : ${post.liked.length} forum users`}</p>
 
-            <Button onClick={toggleLike} type="primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</Button>
+            <button onClick={toggleLike} type="primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</button>
             {userData?.username === post.author && (
                 <>
-                    <Button onClick={handleEdit} type="primary">{isEditing ? 'Save' : 'Edit'}</Button>
-                    <Button onClick={handleDelete} type="primary" danger>Delete</Button>
+                    <button onClick={handleEdit} type="primary">{isEditing ? 'Save' : 'Edit'}</button>
+                    <button onClick={handleDelete} type="primary" >Delete</button>
                 </>
             )}
 
@@ -121,7 +120,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                 <form onSubmit={handleAddComment}>
                     <textarea value={comment} onChange={e => setComment(e.target.value)} />
                     <br />
-                    <Button type="primary" htmlType="submit">Add comment</Button>
+                    <button type="submit">Add comment</button>
                 </form>
             </div>
             <div>

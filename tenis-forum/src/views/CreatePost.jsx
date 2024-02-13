@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import AppContext from "../context/AppContext";
 import { addPost } from "../services/post-service";
-import { Button, Flex } from 'antd';
 import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
@@ -51,7 +50,7 @@ const CreatePost = () => {
             </select> <br />
             <label htmlFor="input-content">Content:</label><br />
             <textarea value={post.content} onChange={e => updatePost(e.target.value, 'content')} name="input-content" id="input-content" cols="30" rows="10"></textarea><br /><br />
-                <Button onClick={createPost} type="primary">Create post</Button>
+                <button onClick={createPost} type="primary">Create post</button>
             </div>
         </div>
     );

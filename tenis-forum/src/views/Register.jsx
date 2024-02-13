@@ -3,7 +3,7 @@ import AppContext from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { createUserUserName, getUserByUserName } from "../services/user-service";
 import { registerUser } from "../services/auth-service";
-import { Button, Flex } from 'antd';
+
 
 const Register = () => {
 
@@ -52,9 +52,8 @@ const Register = () => {
             <label htmlFor="lastName">Last Name: </label><input value={form.lastName} onChange={updateForm('lastName')} type="text" name="lastName" id="lastName" /><br />
             <label htmlFor="email">Email: </label><input value={form.email} onChange={updateForm('email')} type="text" name="email" id="email" /><br />
             <label htmlFor="password">Password: </label><input value={form.password} onChange={updateForm('password')} type="password" name="password" id="password" /><br />
-            <Flex gap="small" wrap="wrap">
-                <Button onClick={register} type="primary">Register</Button>
-            </Flex>
+            <button onClick={register} type="primary">Register</button>
+
         </div>
     )
 }
