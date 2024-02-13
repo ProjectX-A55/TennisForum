@@ -3,8 +3,6 @@ import { getAllPosts } from "../services/post-service";
 import { useSearchParams } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
 
-
-
 const AllPosts = () => {
 
     const [posts, setPosts] = useState([])
@@ -30,9 +28,8 @@ const AllPosts = () => {
         ))
     }
 
-    console.log(posts);
     return (
-        <div className="">
+        <div className="w-auto">
             {posts.map((post) => (
                 <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
             ))}
@@ -41,5 +38,5 @@ const AllPosts = () => {
 };
 
 
-//<div className="mb-4 w-full">
+
 export default AllPosts;

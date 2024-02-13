@@ -25,7 +25,7 @@ const LogIn = () => {
     }, [user, location.state?.from.pathname, navigate]);
 
     const login = async () => {
-        
+
         try {
             const credentials = await loginUser(form.email, form.password);
             setContext({ user: credentials.user, userData: null });
@@ -35,16 +35,36 @@ const LogIn = () => {
     };
 
     return (
-        <div className="form">
-            <div className='form-box'>
-                <h1>Login</h1>
-                <label htmlFor="email">Email: </label>
-                <input value={form.email} onChange={updateForm('email')} type="text" id="email" name="email" />
-                <br /><br />
-                <label htmlFor="password">Password: </label>
-                <input value={form.password} onChange={updateForm('password')} type="password" id="password" name="password" />
-                <br /><br />
-                    <button onClick={login} type="primary">Login</button>
+        <div className="hero min-h-screen ">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="text-center lg:text-left">
+                    <h1 className="text-5xl font-bold">Login now!</h1>
+                    <p className="py-6">Need to add here some really really long text so it can look good like this but i have time will work on it just don't forget</p>
+                </div>
+                <div className="card shrink-0 w-full max-w-sm shadow-lg bg-base-100 border  shadow-white">
+                    <div className="card-body">
+                        <div className="form-control">
+                            <label htmlFor="email">Email: </label>
+                            <input className="input input-bordered" 
+                            value={form.email} onChange={updateForm('email')} 
+                            type="text" placeholder="email" 
+                            name="email" />
+                        </div>
+                        <div className="form-control">
+                            <label htmlFor="password">Password: </label>
+                            <input className="input input-bordered" 
+                            value={form.password} onChange={updateForm('password')} 
+                            type="password" placeholder="password" 
+                            name="password" />
+                            <label className="label">
+                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            </label>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button className="btn btn-primary" onClick={login}>Login</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
