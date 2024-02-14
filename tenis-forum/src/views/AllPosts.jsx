@@ -45,8 +45,6 @@ const AllPosts = () => {
         }
     }
 
-    console.log(...posts)
-
     return (
         <div className="posts w-auto w-full mt-7 mb-5">
             <div className="my-nav flex justify-center items-center h-auto mb-4 ">
