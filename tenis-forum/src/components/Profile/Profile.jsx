@@ -80,13 +80,14 @@ const Profile = () => {
 
                 // </div>
 
-                    <div className="max-w-md mx-auto bg-gray-200 text-black rounded-lg shadow-md overflow-hidden mb-8 lg:max-w-md lg:flex lg:items-center lg:justify-center m-4">
-                        <img src={formData.avatar} className="w-24 h-24 lg:w-32 lg:h-32 rounded-full shadow-md m-4" alt="User Avatar" />
+<div className="relative w-full flex flex-col justify-center ">
+            <div className="w-full p-6 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                        <div className="flex justify-center"><img src={formData.avatar} className="w-24 h-24 lg:w-32 lg:h-32 rounded-full shadow-md m-4" alt="User Avatar" /></div>
                         <div className="p-4 lg:p-6">
                             <div className="mb-4">
                                 <label className="block mb-2">Username:</label>
-                                <div className="bg-white px-4 py-2 rounded-md shadow-md">
-                                    <input type="text" name="username" value={formData.username} onChange={handleInputChange} className="block w-full px-2 py-1 bg-white border border-gray-300 focus:outline-none focus:border-gray-500" />
+                                <div className="w-full p-2 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                                    <input type="text" name="username" value={formData.username} onChange={handleInputChange} className="block w-full px-2 py-1 bg-gray border border-gray-300 focus:outline-none focus:border-gray-500" />
                                 </div>
                             </div>
                             <div className="mb-4">
@@ -105,9 +106,10 @@ const Profile = () => {
                         </div>
                     </div>
 
-
+                </div>
             )}
         </div>
+        
     );
 };
 
