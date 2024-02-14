@@ -30,6 +30,10 @@ export function HeaderComponent() {
         setContext({ user: null, userData: null })
     }
 
+    const toProfile = () => {
+        <NavLink to="/profile">Profile</NavLink>
+    }
+
     return (
         <div className="navbar bg-base-100 mb-10 shadow-lg shadow-white border rounded">
             <div className="flex-1">
@@ -39,10 +43,11 @@ export function HeaderComponent() {
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li><NavLink to="/posts-create">Create post</NavLink></li>
                         <li><NavLink to="/posts">All post</NavLink></li>
+                        <li>Men Tenis</li>
                     </ul>
                 </div>
             </div>
-            
+
             <div className="flex-none gap-2">
                 <div className="form-control">
                     <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />

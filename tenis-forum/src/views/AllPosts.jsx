@@ -29,7 +29,7 @@ const AllPosts = () => {
     }
 
     return (
-        <div className="w-auto">
+        <div className="w-auto w-full">
             {posts.map((post) => (
                 <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
             ))}
