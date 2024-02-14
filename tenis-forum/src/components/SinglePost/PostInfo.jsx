@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-import './PostInfo.css';
-
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getUserByUserName } from '../../services/user-service';
@@ -36,13 +34,25 @@ const PostInfo = ({ post }) => {
                             <p >{`Posted on: ${post.createdOn}`}</p>
                         </div>
                     </div>
-                    <div className='w-3/4'>
+                    <div className='w-2/4'>
                         <div className="title ">
                             <h1 className="text-start">{post.title}</h1>
                         </div>
                         <div className="content text-start mt-4">
                             <p>Random text to test hasdjkashdkjashdkjashdkjashdka;hsjdoil;ahjsdoi;ujasoid;jas;lkdja;lskdja;lksdjasd</p>
                         </div>
+                    </div>
+                    <div className='w-1/4 flex flex-col'>
+                        <div className='flex-grow'>
+                            {/* Content for first row */}
+                        </div>
+                        <div className='flex-grow'>
+                            {/* Content for second row */}
+                        </div>
+                        <div className='flex flex-col mb-3'>
+                            {post.liked.length}
+                        </div>
+
                     </div>
                 </div>
             </div>
