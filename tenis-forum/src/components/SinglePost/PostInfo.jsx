@@ -39,7 +39,7 @@ const PostInfo = ({ post }) => {
                             <h1 className="text-start">{post.title}</h1>
                         </div>
                         <div className="content text-start mt-4">
-                            <p>Random text to test hasdjkashdkjashdkjashdkjashdka;hsjdoil;ahjsdoi;ujasoid;jas;lkdja;lskdja;lksdjasd</p>
+                            <p>{post.content}</p>
                         </div>
                     </div>
                     <div className='w-1/4 flex flex-col'>
