@@ -49,9 +49,6 @@ export function HeaderComponent() {
             </div>
 
             <div className="flex-none gap-2">
-                <div className="form-control">
-                    <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-                </div>
                 {user ? (
                     <div className="dropdown dropdown-end">
                         <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">
@@ -60,7 +57,6 @@ export function HeaderComponent() {
                             </div>
                         </div>
                         <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-
                             <li><NavLink to="/profile">Profile</NavLink></li>
                             <li onClick={logout} role="button">Log Out</li>
                         </ul>

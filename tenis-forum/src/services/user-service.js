@@ -17,7 +17,7 @@ export const createUserUserName = (username, firstName, lastName, uid, email) =>
     email,
     createdOn: new Date().toString(),
     likedPosts: {},
-    avatar: `https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg` //https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg
+    avatar: `https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg` // https://i.stack.imgur.com/l60Hf.png
   })
 };
 
