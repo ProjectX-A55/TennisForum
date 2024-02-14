@@ -1,8 +1,7 @@
 import { ref, push, get, query, orderByChild, update, remove } from 'firebase/database';
 import { db } from '../config/firebase-config';
 
-export const addPost = async (author, title, content, topic = "General Discussions") => {
-
+export const addPost = async (author, title, content, topic = "General Discussions", tags = []) => {
     return push(ref(db, 'posts'), {
         author,
         title,
@@ -11,8 +10,7 @@ export const addPost = async (author, title, content, topic = "General Discussio
         comments: [],
         topic,
         views: 0,
-        tags: [],
-
+        tags, // Add this line
     });
 }
 

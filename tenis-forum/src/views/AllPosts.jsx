@@ -46,7 +46,8 @@ const AllPosts = () => {
     }
     console.log(posts)
     return (
-        <div className="posts w-auto w-full mt-7 mb-5">
+         posts.length > 0 ? (
+            <div className="posts w-auto w-full mt-7 mb-5">
             <div className="my-nav flex justify-center items-center h-auto mb-4 ">
                 <div className="card w-3/4 flex flex-row justify-between">
                     <div className="search">
@@ -73,6 +74,10 @@ const AllPosts = () => {
                 ))}
             </div>
         </div>
+        ): (
+            <h1 style={{ fontSize: '2em' }}>No posts found</h1 >
+        ) 
+        
     );
 };
 

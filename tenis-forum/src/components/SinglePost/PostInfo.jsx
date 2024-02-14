@@ -6,7 +6,6 @@ import { getPostById, updatePost } from '../../services/post-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
 
-
 /**
  * 
  * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string}, togglePostLike: function}} props
@@ -48,6 +47,10 @@ const PostInfo = ({ post }) => {
     }
 
     const navigate = useNavigate();
+
+    // const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink']; 
+
+
     //TODO: Trqbva da se slojat tagovete i v samiqt post syshto
     return (
         <div className="flex justify-center items-center h-auto mb-4 ">
@@ -64,11 +67,11 @@ const PostInfo = ({ post }) => {
                         <div className="title mt-3">
                             <h1 className="text-start">{post.title}</h1>
                         </div>
-                        <div className='mt-5'>
-                            <p>tuk shte ima tagove</p>
+                        <div className='mt-10'>
+                            {postInfo.tags.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}
                         </div>
                         <div className='postInfo flex flex-row justify-between'>
-                            <div className='user-info text-sm mt-10'>
+                            <div className='user-info text-sm mt-5'>
                                 <div>
                                     <p >{`Posted by: ${post.author}`}</p>
                                     <p >{`Posted on: ${post.createdOn}`}</p>
