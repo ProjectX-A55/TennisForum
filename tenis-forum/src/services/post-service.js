@@ -10,6 +10,7 @@ export const addPost = async (author, title, content, topic = "General Discussio
         createdOn: new Date().toString(),
         comments: [],
         topic,
+        views: 0,
     });
 }
 
@@ -27,7 +28,7 @@ export const getAllPosts = async (search) => {
         liked: snapShot.val()[key].liked ? Object.keys(snapShot.val()[key].liked) : [],
     })).filter(post => post.title.toLowerCase().includes(search.toLowerCase()))
 
-    
+
     return posts;
 }
 
@@ -48,7 +49,7 @@ export const getPostById = async (id) => {
 };
 
 
-export const updatePost = async (postId, title, content) => {
+export const updatePost = async (postId, title, content, views) => {
     const postSnapshot = await get(ref(db, `posts/${postId}`));
     if (!postSnapshot.exists()) {
         throw new Error('Post does not exist');
@@ -60,6 +61,10 @@ export const updatePost = async (postId, title, content) => {
     }
     if (content) {
         updates[`/posts/${postId}/content`] = content;
+    }
+
+    if (views || views === 0) {
+        updates[`/posts/${postId}/views`] = views;
     }
 
     return update(ref(db), updates);
