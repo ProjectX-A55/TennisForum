@@ -11,6 +11,8 @@ export const addPost = async (author, title, content, topic = "General Discussio
         comments: [],
         topic,
         views: 0,
+        tags: [],
+
     });
 }
 
