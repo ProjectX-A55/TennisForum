@@ -64,7 +64,7 @@ const Profile = () => {
                             <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="block w-full px-2 py-1 bg-white border border-gray-300 focus:outline-none focus:border-gray-500" />
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary mt-2 bg-gray-700 hover:bg-gray-900 text-white px-2 py-1.5 rounded">Save</button>
+                    <button type="submit" className="btn btn-primary w-1/4">Save</button>
                 </form>
                     </div>
 
@@ -101,7 +101,7 @@ const Profile = () => {
                                     <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="block w-full px-2 py-1 bg-white border border-gray-300 focus:outline-none focus:border-gray-500" />
                                 </div>
                             </div>
-                            <button className="btn btn-primary mt-4 bg-gray-700 hover:bg-gray-900 text-white px-2 rounded" onClick={() => setIsEditing(true)}>Edit Profile</button>
+                            <button className="btn btn-primary w-full" onClick={() => setIsEditing(true)}>Edit Profile</button>
                         </div>
                     </div>
 
