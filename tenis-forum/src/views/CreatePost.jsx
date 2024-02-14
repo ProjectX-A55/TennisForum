@@ -75,10 +75,10 @@ const CreatePost = () => {
                 <div>
                     <label htmlFor="input-topic">Topic</label>
                     <select className="select select-bordered w-full" value={post.topic} onChange={e => updatePost(e.target.value, 'topic')}>
-                        <option value="General Discussions">General Discussions</option>
-                        <option value="Live Matches">Live Matches</option>
-                        <option value="Men's Tennis">Men's Tennis</option>
-                        <option value="Women's Tennis">Women's Tennis</option>
+                        <option value="General Discussions">{`General Discussions`}</option>
+                        <option value="Live Matches">{`Live Matches`}</option>
+                        <option value="Men's Tennis">{`Men's Tennis`}</option>
+                        <option value="Women's Tennis">{`Women's Tennis`}</option>
                     </select>
                 </div><br />
                 <div>

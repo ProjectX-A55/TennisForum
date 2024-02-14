@@ -40,6 +40,8 @@ const AllPosts = () => {
                 return [...posts].sort((a, b) => b.liked.length - a.liked.length);
             case 'mostCommented':
                 return [...posts].sort((a, b) => (b.comments ? b.comments.length : 0) - (a.comments ? a.comments.length : 0));
+            case 'mostViews':
+                return [...posts].sort((a, b) => (b.views ? b.views : 0) - (a.views ? a.views : 0));
             default:
                 return posts;
         }
@@ -63,6 +65,7 @@ const AllPosts = () => {
                                 <li><a onClick={() => setSortType('oldest')}>Oldest</a></li>
                                 <li><a onClick={() => setSortType('mostLiked')}>Most Liked</a></li>
                                 <li><a onClick={() => setSortType('mostCommented')}>Most Commented</a></li>
+                                <li><a onClick={() => setSortType('mostViews')}>Most Views</a></li>
                             </ul>
                         </div>
                     </div>
