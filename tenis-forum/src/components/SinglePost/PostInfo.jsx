@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getUserByUserName } from '../../services/user-service';
 import { getPostById, updatePost } from '../../services/post-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
 
 
 /**
@@ -46,46 +48,57 @@ const PostInfo = ({ post }) => {
     }
 
     const navigate = useNavigate();
-
+    //TODO: Trqbva da se slojat tagovete i v samiqt post syshto
     return (
         <div className="flex justify-center items-center h-auto mb-4 ">
             <div className="card w-3/4 h-auto bg-base-100 border border-white shadow-lg shadow-white transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
                 <div className="card-normal cursor-pointer flex" onClick={handleClick}>
                     <div className='w-1/4'>
-                        <div className="avatar ml-4 mb-4 mt-4">
-                            <div className="w-24 mask mask-squircle">
+                        <div className="avatar ml-12 mb-4 mt-4">
+                            <div className="w-36 mask mask-squircle">
                                 <img src={author?.avatar} />
                             </div>
                         </div>
-                        <div className='user-info text-sm ml-4 mb-4'>
-                            <p >{`Posted by: ${post.author}`}</p>
-                            <p >{`Posted on: ${post.createdOn}`}</p>
-                        </div>
                     </div>
-                    <div className='w-2/4'>
-                        <div className="title ">
+                    <div className='w-3/4'>
+                        <div className="title mt-3">
                             <h1 className="text-start">{post.title}</h1>
                         </div>
-                        <div className="content text-start mt-4">
-                            <p>{post.content}</p>
+                        <div className='mt-5'>
+                            <p>tuk shte ima tagove</p>
                         </div>
-                    </div>
-                    <div className='w-1/4 flex flex-col'>
-                        <div className='flex-grow'>
-                            {/* Content for first row */}
-                        </div>
-                        <div className='flex-grow'>
-                            {/* Content for second row */}
-                        </div>
-                        <div className='flex mb-4'>
-                            <div className='flex-grow'>
-                                Views: {postInfo?.views}
+                        <div className='postInfo flex flex-row justify-between'>
+                            <div className='user-info text-sm mt-10'>
+                                <div>
+                                    <p >{`Posted by: ${post.author}`}</p>
+                                    <p >{`Posted on: ${post.createdOn}`}</p>
+                                </div>
                             </div>
-                            <div className='flex-grow'>
-                                Likes {post.liked?.length}
-                            </div>
-                            <div className='flex-grow '>
-                                Comments: {postCommentsCount}
+                            <div className='w-1/4 flex flex-col mr-6'>
+                                <div className='flex-grow'>
+                                </div>
+                                <div className='flex-grow'>
+                                </div>
+                                <div className='flex mb-1 justify-between'>
+                                    <div className='views flex flex-row mr-5'>
+                                        <span className='mr-2'>{postInfo?.views}</span>
+                                        <div>
+                                            <FontAwesomeIcon icon={faEye} />
+                                        </div>
+                                    </div>
+                                    <div className='views flex flex-row mx-5'>
+                                        <span className='mr-2'>{post.liked?.length}</span>
+                                        <div>
+                                            <FontAwesomeIcon icon={faHeart} />
+                                        </div>
+                                    </div>
+                                    <div className='views flex flex-row ml-5 '>
+                                        <span className='mr-2'>{postCommentsCount}</span>
+                                        <div>
+                                            <FontAwesomeIcon icon={faComment} />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

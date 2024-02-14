@@ -1,0 +1,19 @@
+<div className='w-1/4 flex flex-col'>
+                        <div className='flex-grow'>
+                            {/* Content for first row */}
+                        </div>
+                        <div className='flex-grow'>
+                            {/* Content for second row */}
+                        </div>
+                        <div className='flex mb-4'>
+                            <div className='flex-grow'>
+                                Views: {postInfo?.views}
+                            </div>
+                            <div className='flex-grow'>
+                                Likes {post.liked?.length}
+                            </div>
+                            <div className='flex-grow '>
+                                Comments: {postCommentsCount}
+                            </div>
+                        </div>
+                    </div>
