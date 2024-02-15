@@ -48,8 +48,6 @@ const PostInfo = ({ post }) => {
 
     const navigate = useNavigate();
 
-    // const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink']; 
-
     return (
         <div className="flex justify-center items-center h-auto mb-4 ">
             <div className="card w-3/4 h-auto bg-base-100 border border-white shadow-lg shadow-white transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
