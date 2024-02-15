@@ -10,12 +10,12 @@ export const addPost = async (author, title, content, topic = "General Discussio
         comments: [],
         topic,
         views: 0,
-        tags, // Add this line
+        tags,
     });
 }
 
 
-export const getAllPosts = async (search) => {
+export const getAllPosts = async (search = '') => {
     const snapShot = await get(query(ref(db, 'posts'), orderByChild('createdOn')));
     if (!snapShot.exists()) {
         return [];
