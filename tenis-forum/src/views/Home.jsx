@@ -3,6 +3,7 @@ import { getAllUsers } from "../services/user-service";
 import { getAllPosts } from "../services/post-service";
 import PostInfo from "../components/SinglePost/PostInfo";
 import { getAllComments } from "../services/comment-service";
+import { formatDate } from "../services/date-format";
 
 const Home = () => {
 
@@ -37,22 +38,11 @@ const Home = () => {
         }
     }
 
-    const formatDate = (date) => {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const day = date.getDate();
-        const monthIndex = date.getMonth();
-        const year = date.getFullYear();
-
-        return `${months[monthIndex]}/${day < 10 ? '0' : ''}${day}/${year}`;
-    }
-
-    console.log(allComments)
     return (
 
-        <div className="posts w-auto w-full mt-7 mb-5 justify-center">
+        <div className="posts w-auto w-full  mb-5 justify-center">
 
-            <div className="stats shadow flex mb-5 w-2/4 mx-auto border">
-
+            <div className="stats shadow flex mb-10 w-2/4 mx-auto border">
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -82,7 +72,7 @@ const Home = () => {
                 </div>
 
             </div>
-            <div className="all-posts  ">
+            <div className="all-posts">
                 <div className="flex mb-5 w-3/4 mx-auto">
                     <div onClick={() => setSortType('mostViews')} className="cursor-pointer grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">TOP 10 MOST POPULAR</div>
                     <div className="divider divider-horizontal">OR</div>

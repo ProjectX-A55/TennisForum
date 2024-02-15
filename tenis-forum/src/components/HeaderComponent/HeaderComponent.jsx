@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import "./HeaderComponent.css"
+
 import { logoutUser } from "../../services/auth-service"
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
@@ -9,11 +9,12 @@ import { getAllUsers } from "../../services/user-service";
 
 export function HeaderComponent() {
 
-    const { user, userData, setContext } = useContext(AppContext)
-
+    const { user, setContext } = useContext(AppContext)
+    const { userData } = useContext(AppContext)
     const [users, setUsers] = useState([])
 
     useEffect(() => {
+
         const fetchUsers = async () => {
             const usersSnapshot = await getAllUsers();
             const users = usersSnapshot.val();
@@ -30,10 +31,8 @@ export function HeaderComponent() {
         setContext({ user: null, userData: null })
     }
 
-    const toProfile = () => {
-        <NavLink to="/profile">Profile</NavLink>
-    }
-
+    
+   
     return (
         <div className="navbar bg-base-100 mb-10 shadow-lg shadow-white border rounded">
             <div className="flex-1">
@@ -53,12 +52,12 @@ export function HeaderComponent() {
                     <div className="dropdown dropdown-end">
                         <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img alt="Tailwind CSS Navbar component" src={userData?.avatar} />
                             </div>
                         </div>
                         <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                             <li><NavLink to="/profile">Profile</NavLink></li>
-                            <li onClick={logout} role="button">Log Out</li>
+                            <li onClick={logout} role="button"><NavLink to="/">Log out</NavLink></li>
                         </ul>
                     </div>
                 )

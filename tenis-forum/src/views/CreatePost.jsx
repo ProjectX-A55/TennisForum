@@ -28,9 +28,12 @@ const CreatePost = () => {
             return;
         }
 
-        let tags = post.tags.length > 0 ? post.tags.map(tag => tag.value) : [];
+        if (post.tags.length === 0) {
+            alert('You must select at least one tag');
+            return;
+        }
 
-        console.log(tags)
+        let tags = post.tags.length > 0 ? post.tags.map(tag => tag.value) : [];
 
         await addPost(userData.username, post.title, post.content, post.topic, tags);
 

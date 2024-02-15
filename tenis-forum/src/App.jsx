@@ -37,8 +37,8 @@ function App() {
     <BrowserRouter>
       <AppContext.Provider value={{ ...context, setContext }}>
         <HeaderComponent />
-        <div className='min-h-screen flex flex-col flex-wrap content-center'>
-          <div className='flex flex-col flex-wrap content-center justify-center max-w-screen-2xl w-full h-auto'>
+        <div className='min-h-screen place-content-center flex flex-row flex-wrap content-center shrink'>
+          <div className='flex-wrap content-center justify-center max-w-screen-2xl w-full h-auto'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/register' element={<Register />} />

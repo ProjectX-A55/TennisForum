@@ -6,7 +6,7 @@ export const addPost = async (author, title, content, topic = "General Discussio
         author,
         title,
         content,
-        createdOn: new Date().toString(),
+        createdOn: new Date().toISOString(),
         comments: [],
         topic,
         views: 0,
@@ -41,7 +41,7 @@ export const getPostById = async (id) => {
     const post = {
         id,
         ...snapShot.val(),
-        createdOn: new Date(snapShot.val().createdOn).toString(),
+        createdOn: new Date(snapShot.val().createdOn).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
         liked: snapShot.val().liked ? Object.keys(snapShot.val().liked) : [],
     };
 

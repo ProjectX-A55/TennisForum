@@ -25,8 +25,13 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
 
 
     return (
-        <div className='comments'>
-            <h5>{comments.author}</h5>
+        //TODO: TOVA TRQBVA DA SE OPRAVI 
+        
+        <div className='box rounded-md border text-wrap mr-5 mt-10' style={{ overflowWrap: 'break-word' }}>
+            <div className='flex flex-row justify-between items-center'>
+                <h5 className='text-2xl'>{comments.author}</h5>
+                <p>{comments.createdOn}</p>
+            </div>
             {isEditing ? (
                 <div>
                     <input type="text" value={newContent} onChange={e => setNewContent(e.target.value)} />
@@ -35,9 +40,10 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
             ) : (
                 <p>{comments.content}</p>
             )}
-            <p>{comments.createdOn}</p>
-            {currentUser === comments.author && !isEditing && <button onClick={handleEdit}>Edit</button>}
-            {currentUser === comments.author && !isEditing && <button onClick={() => handleDeleteComment(commentId)} type="primary">Delete</button>}
+            <div className='flex flex-row justify-between items-center'>
+                {currentUser === comments.author && !isEditing && <button onClick={handleEdit}>Edit</button>}
+                {currentUser === comments.author && !isEditing && <button onClick={() => handleDeleteComment(commentId)} type="primary">Delete</button>}
+            </div>
         </div>
     )
 }

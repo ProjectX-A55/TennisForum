@@ -15,13 +15,13 @@ const PostInfo = ({ post }) => {
 
     const [author, setAuthor] = useState(null);
     const [postInfo, setPostInfo] = useState(post);
-    const [postCommentsCount, setPostViewsCount] = useState(0);
+    const [postCommentsCount, setPostViewsComments] = useState(0);
 
     useEffect(() => {
         if (postInfo && postInfo.comments) {
-            setPostViewsCount(Object.keys(postInfo.comments).length);
+            setPostViewsComments(Object.keys(postInfo.comments).length);
         } else {
-            setPostViewsCount(0);
+            setPostViewsComments(0);
         }
     }, [postInfo])
 
@@ -48,13 +48,15 @@ const PostInfo = ({ post }) => {
 
     const navigate = useNavigate();
 
+    
+
     return (
-        <div className="flex justify-center items-center h-auto mb-4 ">
-            <div className="card w-3/4 h-auto bg-base-100 border border-white shadow-lg shadow-white transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
+        <div className="flex flex-row justify-center items-center h-auto mb-4">
+            <div className="card w-3/4  bg-base-100 border border-white shadow-lg shadow-white transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
                 <div className="card-normal cursor-pointer flex" onClick={handleClick}>
                     <div className='w-1/4'>
                         <div className="avatar ml-12 mb-4 mt-4">
-                            <div className="w-36 mask mask-squircle">
+                            <div className="w-36 rounded-md">
                                 <img src={author?.avatar} />
                             </div>
                         </div>

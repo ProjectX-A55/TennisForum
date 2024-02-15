@@ -3,7 +3,9 @@ import { db } from '../config/firebase-config';
 
 
 export const addComment = async (postId, author, content) => {
+
     const postSnapshot = await get(ref(db, `posts/${postId}`));
+    
     if (!postSnapshot.exists()) {
         throw new Error('Post does not exist');
     }
@@ -65,6 +67,17 @@ export const getAllComments = async () => {
         return total + postComments;
     }, 0);
 
-    
+
     return totalComments;
 };
+
+export const getCommentsCount = async (postId) => {
+    const commentsSnapshot = await get(ref(db, `posts/${postId}/comments`));
+    const comments = commentsSnapshot.val()
+
+    if (!commentsSnapshot.exists()) {
+        return 0;
+    }
+
+    return Object.values(comments).length;
+}

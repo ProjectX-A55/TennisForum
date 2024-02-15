@@ -19,9 +19,9 @@ const PostDetailsView = () => {
     };
 
     return (
-        <div>
-            {post && <PostDetails post={post} togglePostLike={togglePostLike}/>}
-        </div>
+        <>
+            {post && <PostDetails post={post} togglePostLike={togglePostLike} />}
+        </>
     );
 };
 

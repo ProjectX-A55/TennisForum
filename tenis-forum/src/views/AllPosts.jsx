@@ -46,11 +46,10 @@ const AllPosts = () => {
                 return posts;
         }
     }
-    // console.log(Object.values(posts[2].comments).length);
-    console.log(...posts);
+
     return (
         posts.length > 0 ? (
-            <div className="posts w-auto w-full mt-7 mb-5">
+            <div className="posts w-full mt-7 mb-5">
                 <div className="my-nav flex justify-center items-center h-auto mb-4 ">
                     <div className="card w-3/4 flex flex-row justify-between">
                         <div className="search">
