@@ -3,7 +3,7 @@ import AppContext from "../../context/AppContext";
 import { updateUser } from "../../services/user-service";
 // import ChangePasswordForm from "../Comments/ChangePassword/ChangePassword";
 // import Authenticated from "../../hoc/Authenticated";
-
+import ProfilePhotoUpload from "../ProfilePhotoUpload/ProfilePhotoUpload";
 
 const Profile = () => {
 
@@ -52,7 +52,7 @@ const Profile = () => {
                                 <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
                             </div>
                         </div>
-
+                        <ProfilePhotoUpload></ProfilePhotoUpload>
                         {/* <ChangePasswordForm><Authenticated></Authenticated></ChangePasswordForm> */}
 
                         <button type="submit" className="btn btn-primary w-full">Save</button>
