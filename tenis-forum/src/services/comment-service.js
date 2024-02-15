@@ -20,7 +20,7 @@ export const addComment = async (postId, author, content) => {
 export const getComments = async (postId) => {
     const commentsSnapshot = await get(ref(db, `posts/${postId}/comments`));
     const comments = commentsSnapshot.val()
-    
+
     if (!commentsSnapshot.exists()) {
         return [];
     }
@@ -42,7 +42,7 @@ export const updateComment = async (postId, commentId, content) => {
 }
 
 
-export const deleteComment = async (postId, commentId) => { 
+export const deleteComment = async (postId, commentId) => {
     const commentSnapshot = await get(ref(db, `posts/${postId}/comments/${commentId}`));
 
     if (!commentSnapshot.exists()) {
@@ -51,3 +51,20 @@ export const deleteComment = async (postId, commentId) => {
 
     return remove(ref(db, `posts/${postId}/comments/${commentId}`));
 }
+
+export const getAllComments = async () => {
+    const commentsSnapshot = await get(ref(db, `posts`));
+    const comments = commentsSnapshot.val()
+
+    if (!commentsSnapshot.exists()) {
+        return 0;
+    }
+
+    const totalComments = Object.values(comments).reduce((total, post) => {
+        const postComments = post.comments ? Object.values(post.comments).length : 0;
+        return total + postComments;
+    }, 0);
+
+    
+    return totalComments;
+};
