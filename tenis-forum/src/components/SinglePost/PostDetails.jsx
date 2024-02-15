@@ -89,7 +89,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     }
     
     return (
-        <div className='post-info'>
+        <div className="posts w-auto w-full mt-7 mb-5 justify-center">
             {isEditing ? (
                 <>
                     <input value={title} onChange={e => setTitle(e.target.value)} />
