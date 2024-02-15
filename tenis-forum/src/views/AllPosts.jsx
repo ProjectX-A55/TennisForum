@@ -39,14 +39,15 @@ const AllPosts = () => {
             case 'mostLiked':
                 return [...posts].sort((a, b) => b.liked.length - a.liked.length);
             case 'mostCommented':
-                return [...posts].sort((a, b) => (b.comments ? b.comments.length : 0) - (a.comments ? a.comments.length : 0));
+                return [...posts].sort((a, b) => (b.comments ? Object.values(b.comments).length : 0) - (a.comments ? Object.values(a.comments).length : 0));
             case 'mostViews':
                 return [...posts].sort((a, b) => (b.views ? b.views : 0) - (a.views ? a.views : 0));
             default:
                 return posts;
         }
     }
-    console.log(posts)
+    // console.log(Object.values(posts[2].comments).length);
+    console.log(...posts);
     return (
          posts.length > 0 ? (
             <div className="posts w-auto w-full mt-7 mb-5">
