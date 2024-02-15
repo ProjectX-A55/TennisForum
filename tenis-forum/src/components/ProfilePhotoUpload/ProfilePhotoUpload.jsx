@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { auth, storage } from '../../config/firebase-config';
 import { ref, uploadBytes } from "firebase/storage";
+import { updateUser } from '../../services/user-service';
 
 const ProfilePhotoUpload = () => {
     const [image, setImage] = useState(null);
