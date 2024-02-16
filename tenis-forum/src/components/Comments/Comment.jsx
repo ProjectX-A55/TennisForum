@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { updateComment } from '../../services/comment-service';
+import { formatDistanceToNow } from 'date-fns';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 /**
@@ -25,12 +28,11 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
 
 
     return (
-        //TODO: TOVA TRQBVA DA SE OPRAVI 
-        
-        <div className='box rounded-md border text-wrap mr-5 mt-10' style={{ overflowWrap: 'break-word' }}>
-            <div className='flex flex-row justify-between items-center'>
-                <h5 className='text-2xl'>{comments.author}</h5>
-                <p>{comments.createdOn}</p>
+
+        <div className='box rounded-md border text-wrap ml-7 mr-7 mt-10' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
+            <div className='flex flex-row items-center'>
+                <p className='text-2xl'>{comments.author}</p>
+                <p>commented {formatDistanceToNow(new Date(comments.createdOn))} ago</p>
             </div>
             {isEditing ? (
                 <div>
@@ -38,11 +40,22 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
                     <button onClick={handleSaveComment}>Save</button>
                 </div>
             ) : (
-                <p>{comments.content}</p>
+
+                <div className='comment-content'>
+                    <p>{comments.content}</p>
+                </div>
             )}
-            <div className='flex flex-row justify-between items-center'>
-                {currentUser === comments.author && !isEditing && <button onClick={handleEdit}>Edit</button>}
-                {currentUser === comments.author && !isEditing && <button onClick={() => handleDeleteComment(commentId)} type="primary">Delete</button>}
+            <div className='flex flex-row items-center'>
+                {currentUser === comments.author && !isEditing &&
+                    <button className='mr-3' onClick={handleEdit}>
+                        <FontAwesomeIcon icon={faEdit} />
+                    </button>
+                }
+                {currentUser === comments.author && !isEditing &&
+                    <button onClick={() => handleDeleteComment(commentId)} type="primary">
+                        <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                }
             </div>
         </div>
     )
