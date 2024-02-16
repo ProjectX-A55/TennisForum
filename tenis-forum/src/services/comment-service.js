@@ -11,7 +11,8 @@ export const addComment = async (postId, author, content) => {
     }
 
     const comment = {
-        author,
+        author: author.username,
+        authorId: author.uid,
         content,
         createdOn: new Date().toString(),
     };

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { updateComment } from '../../services/comment-service';
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { getUserData } from '../../services/user-service';
 
 
 /**
@@ -15,6 +16,20 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
 
     const [isEditing, setIsEditing] = useState(false);
     const [newContent, setNewContent] = useState(comments.content);
+    const [authorData, setAuthorData] = useState(null);
+
+    useEffect(() => {
+         (async () => {
+            if (comments?.authorId) {
+                const snapshot = await getUserData(comments.authorId);
+                if(snapshot.exists()){
+                    setAuthorData(snapshot.val()[Object.keys(snapshot.val())[0]]);
+                }
+                
+                
+            }
+        })();
+    }, [])
 
     const handleEdit = () => {
         setIsEditing(true);
@@ -36,12 +51,12 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
         <div className='box rounded-md flex flex-row border text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
-                    <div className="w-32 rounded-md ">
-                        <p>{comments.author}</p>
+                    <div className="w-32 rounded-md">
+                        <img className='w-20 h-20 rounded-full' src={authorData ? authorData.avatarURL : "https://static.thenounproject.com/png/989418-200.png"} alt="Comment's author avatar" />
                     </div>
                     <div className='flex flex-col w-full h-full relative'>
                         <div className='comment-author-date w-full flex'>
-                            <p className='comment-author mr-2'>{comments.author}</p>
+                            <p className='comment-author mr-2 font-bold'>{comments.author}</p>
                             <p>commented {formatDistanceToNow(new Date(comments.createdOn))} ago</p>
                         </div>
                         <div className='content flex items-stretch w-full mt-3 mb-2'>
@@ -52,7 +67,6 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
                                         value={newContent}
                                         onChange={e => setNewContent(e.target.value)}
                                         className="textarea textarea-bordered w-full mr-2"
-                                        
                                         placeholder="Edit"
                                     />
                                 </div>
