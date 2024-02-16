@@ -29,8 +29,10 @@ export function HeaderComponent() {
     }
 
     return (
-        <div className="navbar bg-base-100 mb-10 shadow-lg shadow-white border rounded">
-            <div className="flex-1">
+        <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center">
+            
+            <div className="flex-none">
+                
             <div onClick={() => navigate('/')} role="button" className="btn m-1">Home</div>
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>
@@ -44,6 +46,9 @@ export function HeaderComponent() {
                     </ul>
                 </div>
             </div>
+
+            <div className="flex-none text-center font-bold text-5xl pb-10" style={{ color: '#8e4162' }}>Project-X Tennis Forum</div>
+
             <div className="flex-none gap-2">
                 {user ? (
                     <div className="dropdown dropdown-end">
