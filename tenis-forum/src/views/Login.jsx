@@ -38,8 +38,8 @@ const LogIn = () => {
         <div className="hero min-h-screen ">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Need to add here some really really long text so it can look good like this but i have time will work on it just don't forget</p>
+                    <h1 className="text-5xl font-bold">Log in</h1>
+                    <p className="py-6">You need to be logged in to view this topic. Log in or create a new account now.</p>
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-lg bg-base-100 border shadow-white">
                     <div className="card-body">
@@ -58,7 +58,7 @@ const LogIn = () => {
                             name="password" />
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary" onClick={login}>Login</button>
+                            <button className="btn btn-primary" onClick={login}>Log in</button>
                         </div>
                     </div>
                 </div>
