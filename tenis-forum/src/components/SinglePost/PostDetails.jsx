@@ -104,14 +104,13 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     }
 
     console.log(userData);
-
+   //TODO: TRQBVA DA SE OPRAVI EDITA
     return (
         <div className="place-content-center flex flex-col w-auto">
             {isEditing ? (
                 <div className='edit-content'>
                     <label htmlFor="input">Edit title </label>
                     <input value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-
                     <br />
                     <br />
                     <label htmlFor="textarea">Edit content </label>
@@ -127,14 +126,14 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                             <span>{`Created on: ${post.createdOn} By: ${post.author}`}</span>
                         </div>
                     </div>
-                    <div className="content ">
+                    <div className="content-title">
                         <div className="post-title-info">
                             <div className='post-title text-center mb-10 mt-5'>
-                                <h1 className="text-5xl font-bold">{post.title}</h1>
+                                <p className="text-5xl font-bold">{post.title}</p>
                             </div>
                         </div>
                     </div>
-                    <div className='card content border ml-10 mr-10 mb-5'>
+                    <div className='card content shadow shadow-white ml-10 mr-10 mb-5'>
                         <p className='ml-5 mr-5 mb-5 mt-5'>
                             {post.content}
                         </p>
@@ -186,22 +185,29 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             <div className='add-comment w-3/4 mt-10 ml-20'>
                 <form onSubmit={handleAddComment}>
                     <div className='comment-area flex'>
-                        <div className="w-32 rounded-md mr-3">
+                        <div className="w-32 1/6 rounded-md mr-3">
                             <img className='rounded-md' src={userData.avatar} alt="" />
                         </div>
-                        <div className='w-full h-full relative'>
-                            <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full" value={comment} onChange={e => setComment(e.target.value)} />
-                            <div className='add-comment-button mt-3 absolute bottom-5 right-3'>
-                                <button className="btn btn-outline btn-primary" type="submit">Add comment</button>
+                        <div className='flex w-full h-full relative 4/6'>
+                            <div className='w-full flex'>
+                                <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full" value={comment} onChange={e => setComment(e.target.value)} />
+                                <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch'>
+                                    <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-            <div className='mt-10'>
-                {Object.keys(allComments).map((commentKey) =>
-                    <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
-                )}
+            <div className='shadow shadow-white rounded-md text-wrap mr-5 ml-5 mt-10' style={{ overflowWrap: 'break-word' }}>
+                <div className='text-center mt-3'>
+                    <h1>Comments</h1>
+                </div>
+                <div className="flex-shrink-0 " >
+                    {Object.keys(allComments).map((commentKey) =>
+                        <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
+                    )}
+                </div>
             </div>
         </div>
     );
