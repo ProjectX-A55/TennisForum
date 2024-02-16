@@ -3,7 +3,7 @@ import { getAllPosts } from "../services/post-service";
 import { useSearchParams } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
 
-const AllPosts = () => {
+const AllPosts = ({ postsFromProps}) => {
 
     const [posts, setPosts] = useState([])
     const [searchParams, setSearchParams] = useSearchParams();
@@ -11,13 +11,17 @@ const AllPosts = () => {
 
     const search = searchParams.get('search') || '';
 
-
     const setSearch = (value) => {
         setSearchParams({ search: value });
     };
 
     useEffect(() => {
-        getAllPosts(search).then(setPosts)
+        setPosts(postsFromProps)
+        return (() => setPosts(null))
+    }, [postsFromProps.length]) 
+
+    useEffect(() => {
+       setPosts(posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())))
     }, [search])
 
     const togglePostLike = (username, id) => {

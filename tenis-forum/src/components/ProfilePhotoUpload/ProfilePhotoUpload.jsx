@@ -2,10 +2,10 @@ import { useEffect, useState, useContext } from "react";
 import { uploadAvatar, updateUser, getUserByUserName } from "../../services/user-service";
 import AppContext from "../../context/AppContext";
 
-export default function Profile() {
+export default function ProfilePhotoUpload() {
     const { userData } = useContext(AppContext)
     const [avatar, setAvatar] = useState(null);
-    const [avatarURL, setAvatarURL] = useState("static.thenounproject.com/png/989418-200.png");
+    const [avatarURL, setAvatarURL] = useState("https://static.thenounproject.com/png/989418-200.png");
 
     function handleChange(e) {
         if (e.target.files[0]) {
@@ -44,7 +44,7 @@ export default function Profile() {
         <div className="fields">
             <input type="file" onChange={handleChange} />
             <button disabled={!avatar} onClick={handleClick}>Upload</button>
-            <img src={avatarURL} alt="Avatar" className="avatar" />
+            {!userData.avatarURL && <img src={avatarURL} alt="Avatar" className="avatar" />}
         </div>
     );
 }

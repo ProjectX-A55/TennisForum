@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { logoutUser } from "../../services/auth-service"
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
@@ -9,6 +9,7 @@ export function HeaderComponent() {
     const { user, setContext } = useContext(AppContext)
     const { userData } = useContext(AppContext)
     const [users, setUsers] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -30,6 +31,7 @@ export function HeaderComponent() {
     return (
         <div className="navbar bg-base-100 mb-10 shadow-lg shadow-white border rounded">
             <div className="flex-1">
+            <div onClick={() => navigate('/')} role="button" className="btn m-1">Home</div>
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -47,7 +49,7 @@ export function HeaderComponent() {
                     <div className="dropdown dropdown-end">
                         <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src={userData?.avatar} />
+                                <img alt="Tailwind CSS Navbar component" src={userData?.avatarURL} />
                             </div>
                         </div>
                         <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

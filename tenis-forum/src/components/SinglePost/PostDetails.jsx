@@ -103,7 +103,6 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
         }
     }
 
-    console.log(userData);
     //TODO: TRQBVA DA SE OPRAVI EDITA
     return (
         <div className="place-content-center flex flex-col w-auto">
@@ -186,7 +185,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                 <form onSubmit={handleAddComment}>
                     <div className='comment-area flex'>
                         <div className="w-32 rounded-md mr-0">
-                            <img className='w-20 h-20 rounded-full mr-4' src={userData.avatar} alt="" />
+                            <img className='w-20 h-20 rounded-full mr-4' src={userData.avatarURL} alt="" />
                         </div>
                         <div className='flex w-full h-full relative'>
                             <div className='w-full flex'>
@@ -221,7 +220,7 @@ PostDetails.propTypes = {
         createdOn: PropTypes.string,
         author: PropTypes.string,
         liked: PropTypes.array,
-        tags: PropTypes.string,
+        tags: PropTypes.array,
         topic: PropTypes.string
 
     }),
