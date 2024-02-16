@@ -1,5 +1,6 @@
 import { get, set, ref, query, equalTo, orderByChild, } from 'firebase/database';
-import { db } from '../config/firebase-config';
+import { db, storage } from '../config/firebase-config';
+import { getDownloadURL, uploadBytes, ref as Sref } from 'firebase/storage'
 
 
 export const getUserByUserName = (username) => {
@@ -7,7 +8,7 @@ export const getUserByUserName = (username) => {
   return get(ref(db, `users/${username}`));
 };
 
-export const createUserUserName = (username, firstName, lastName, uid, email) => {
+export const createUserUserName = (username, firstName, lastName, uid, email, avatar = "https://static.thenounproject.com/png/989418-200.png") => {
 
   return set(ref(db, `users/${username}`), {
     username,
@@ -17,7 +18,7 @@ export const createUserUserName = (username, firstName, lastName, uid, email) =>
     email,
     createdOn: new Date().toString(),
     likedPosts: {},
-    avatar: 'https://i.stack.imgur.com/l60Hf.png'
+    avatar
   })
 };
 
@@ -41,3 +42,13 @@ export const updateUser = (username, userData) => {
   return set(ref(db, `users/${username}`), userData);
 }
 
+export async function uploadAvatar(file, userData) {
+  const fileRef = Sref(storage, userData.uid);
+  
+  await uploadBytes(fileRef, file);
+  const avatarURL = await getDownloadURL(fileRef)
+
+  await updateUser(userData.userName, {...userData, avatarURL});
+  debugger
+  console.log(1)
+}

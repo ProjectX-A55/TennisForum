@@ -1,13 +1,10 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import {getDatabase} from 'firebase/database';
-import { getStorage } from "firebase/storage";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDatabase } from 'firebase/database';
+import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useState, useEffect } from "react";
 
 
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAPsq4gobElVQBs3pA0MVXNzRnaPNhBewk",
   authDomain: "tennis-forum-12fa0.firebaseapp.com",
@@ -19,8 +16,20 @@ const firebaseConfig = {
 };
 
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+export function useAuth() {
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, user => setCurrentUser(user));
+    return unsub;
+  }, [])
+
+  return currentUser;
+}
+
+
 
 export const auth = getAuth(app);
 export const db = getDatabase(app);
