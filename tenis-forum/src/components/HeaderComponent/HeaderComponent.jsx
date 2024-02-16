@@ -29,7 +29,7 @@ export function HeaderComponent() {
     }
 
     return (
-        <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center">
+        <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center fixed top-0 w-full z-10">
             
             <div className="flex-none">
                 
