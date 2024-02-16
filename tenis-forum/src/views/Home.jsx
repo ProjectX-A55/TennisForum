@@ -41,7 +41,8 @@ const Home = () => {
     return (
 
         <div className="posts w-auto w-full  mb-5 justify-center">
-
+            <div className="text-center font-bold text-3xl pb-10 shadow-lg shadow-white " style={{ color: '#8e4162' }}>Project-X Tennis Forum</div>
+            <div className='pt-6'></div>
             <div className="stats shadow flex mb-10 w-2/4 mx-auto border">
                 <div className="stat">
                     <div className="stat-figure text-secondary">
