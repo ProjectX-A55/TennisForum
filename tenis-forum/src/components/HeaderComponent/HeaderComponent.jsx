@@ -26,9 +26,9 @@ export function HeaderComponent() {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
-
+    //TODO: MOJE DA SLOJIM NQKAKYV NADPIS DO AVATARA OT SORTA NA WELCOME
     return (
-        <div className="navbar bg-base-100 mb-10 shadow-lg shadow-white border rounded">
+        <div className="navbar bg-base-100 mb-10 shadow-lg shadow-3xl  rounded-lg">
             <div className="flex-1">
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>

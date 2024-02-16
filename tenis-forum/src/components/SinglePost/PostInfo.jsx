@@ -52,7 +52,7 @@ const PostInfo = ({ post }) => {
 
     return (
         <div className="flex flex-row justify-center items-center h-auto mb-4">
-            <div className="card w-3/4  bg-base-100 border border-white shadow-lg shadow-white transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
+            <div className=" border border-amber-950 rounded-lg w-3/4 shadow-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
                 <div className="card-normal cursor-pointer flex" onClick={handleClick}>
                     <div className='w-1/4'>
                         <div className="avatar ml-12 mb-4 mt-4">

@@ -33,11 +33,11 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
 
     return (
 
-        <div className='box rounded-md flex flex-row border text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
+        <div className='shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
                     <div className="w-32 rounded-md ">
-                        <p>{comments.author}</p>
+                        <p>TUKA TRQBWA DA E SNIMKA</p>
                     </div>
                     <div className='flex flex-col w-full h-full relative'>
                         <div className='comment-author-date w-full flex'>

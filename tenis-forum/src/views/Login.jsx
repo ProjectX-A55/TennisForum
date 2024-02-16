@@ -41,7 +41,7 @@ const LogIn = () => {
                     <h1 className="text-5xl font-bold">Log in</h1>
                     <p className="py-6">You need to be logged in to view this topic. Log in or create a new account now.</p>
                 </div>
-                <div className="card shrink-0 w-full max-w-sm shadow-lg bg-base-100 border shadow-white">
+                <div className="card shrink-0 w-full max-w-sm shadow-lg bg-base-100  border border-amber-950 shadow-2xl">
                     <div className="card-body">
                         <div className="form-control">
                             <label htmlFor="email">Email: </label>

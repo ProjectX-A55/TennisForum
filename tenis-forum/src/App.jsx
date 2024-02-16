@@ -14,6 +14,7 @@ import PostDetailsView from './views/PostDetailsView'
 import Authenticated from './hoc/Authenticated'
 import { HeaderComponent } from './components/HeaderComponent/HeaderComponent'
 import UserProfile from './components/Profile/Profile'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const [context, setContext] = useState({
@@ -50,6 +51,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        <Footer />
       </AppContext.Provider>
     </BrowserRouter>
   )

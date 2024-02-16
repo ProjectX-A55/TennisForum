@@ -117,7 +117,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                     <textarea value={content} onChange={e => setContent(e.target.value)} className="textarea textarea-bordered" placeholder="Edit"></textarea>
                 </div>
             ) : (
-                <div className='card border text-wrap mr-5 ml-5' style={{ overflowWrap: 'break-word' }}>
+                <div className='card shadow shadow-2xl border border-amber-950 text-wrap mr-5 ml-5' style={{ overflowWrap: 'break-word' }}>
                     <div className='post-info w-full justify-between h-1/6 flex flex-row mt-2 mr-2 ml-2'>
                         <div className='topic ml-3'>
                             <span>{post.topic}</span>
@@ -133,7 +133,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='card content shadow shadow-white ml-10 mr-10 mb-5'>
+                    <div className='card content shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
                         <p className='ml-5 mr-5 mb-5 mt-5'>
                             {post.content}
                         </p>
@@ -182,16 +182,16 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                     )}
                 </div>
             </div>
-            <div className='add-comment w-3/4 mt-10 ml-20'>
+            <div className='add-comment w-3/4 mt-10 ml-20 '>
                 <form onSubmit={handleAddComment}>
                     <div className='comment-area flex'>
-                        <div className="w-32 rounded-md mr-3">
+                        <div className="w-32 rounded-md mr-3 shadow shadow-2xl">
                             <img className='rounded-md' src={userData.avatar} alt="" />
                         </div>
                         <div className='flex w-full h-full relative'>
                             <div className='w-full flex'>
-                                <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full" value={comment} onChange={e => setComment(e.target.value)} />
-                                <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch'>
+                                <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full shadow shadow-2xl " value={comment} onChange={e => setComment(e.target.value)} />
+                                <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch '>
                                     <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
                                 </div>
                             </div>
@@ -199,11 +199,11 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                     </div>
                 </form>
             </div>
-            <div className='shadow shadow-white rounded-md text-wrap mr-5 ml-5 mt-10' style={{ overflowWrap: 'break-word' }}>
+            <div className='shadow shadow-2xl border border-amber-950 rounded-md text-wrap mr-5 ml-5 mt-10' style={{ overflowWrap: 'break-word' }}>
                 <div className='text-center mt-3'>
                     <h1>Comments</h1>
                 </div>
-                <div className="flex-shrink-0 " >
+                <div className="flex-shrink-0" >
                     {Object.keys(allComments).map((commentKey) =>
                         <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                     )}

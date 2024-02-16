@@ -37,18 +37,18 @@ const Profile = () => {
             {isEditing ? (
                 <div className="relative w-full flex flex-col justify-center">
                     
-                    <form onSubmit={handleSubmit} className="w-full p-6 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                    <form onSubmit={handleSubmit} className="w-full p-6 m-auto bg-gray rounded-lg shadow-2xl ring-2 ring-white lg:max-w-xl border border-amber-950">
                         
                         <div className="mb-4">
                             <label className="block mb-2">Edit First Name:</label>
-                            <div className="w-full p-2 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                            <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-md ring-2 ring-white lg:max-w-xl border border-amber-950">
                                 <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
                             </div>
                         </div>
                         
                         <div className="mb-4">
                             <label className="block mb-2">Edit Last Name:</label>
-                            <div className="w-full p-2 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                            <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-md ring-2 ring-white lg:max-w-xl border border-amber-950">
                                 <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
                             </div>
                         </div>
@@ -62,15 +62,15 @@ const Profile = () => {
 
 
             ) : (
-                <div className="relative w-full flex flex-col justify-center">
-                    <div className="w-full p-6 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
-                        <div className="flex justify-center"><img src={formData.avatar} className="w-24 h-24 lg:w-32 lg:h-32 rounded-full shadow-md m-4" alt="User Avatar" /></div>
+                <div className="relative w-full flex flex-col justify-center border">
+                    <div className="w-full p-6 m-auto bg-gray rounded-lg border border-amber-950 shadow-2xl ring-2 ring-white lg:max-w-xl">
+                        <div className="flex justify-center"><img src={formData.avatar} className="w-24 h-24 lg:w-32 lg:h-32 rounded-full shadow-lg m-4" alt="User Avatar" /></div>
 
                         <div className="p-4 lg:p-6">
                             
-                            <div className="mb-4">
+                            <div className="mb-4 " >
                                 <label className="block mb-2">Username:</label>
-                                <div className="w-full p-2 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
                                     <input type="text" name="username" value={formData.username} onChange={handleInputChange} className="w-full input input-bordered" />
                                 </div>
                             </div>
@@ -78,21 +78,21 @@ const Profile = () => {
 
                             <div className="mb-4">
                                 <label className="block mb-2">Email:</label>
-                                <div className="w-full p-2 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
                                     <input type="text" name="email" value={formData.email} onChange={handleInputChange} className="w-full input input-bordered" /> 
                                 </div>
                             </div>
 
                             <div className="mb-4">
                                 <label className="block mb-2">First Name:</label>
-                                <div className="w-full p-2 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
                                     <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
                                 </div>
                             </div>
 
                             <div className="mb-4">
                                 <label className="block mb-2">Last Name:</label>
-                                <div className="w-full p-2 m-auto bg-gray rounded-md shadow-md ring-2 ring-white lg:max-w-xl">
+                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
                                     <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
                                 </div>
                             </div>

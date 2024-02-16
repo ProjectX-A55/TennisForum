@@ -42,7 +42,7 @@ const Home = () => {
 
         <div className="posts w-auto w-full  mb-5 justify-center">
 
-            <div className="stats shadow flex mb-10 w-2/4 mx-auto border">
+            <div className="stats shadow shadow-2xl flex mb-10 w-2/4 mx-auto border border-amber-950">
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
