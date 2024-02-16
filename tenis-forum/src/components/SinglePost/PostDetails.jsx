@@ -185,10 +185,10 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             <div className='add-comment w-3/4 mt-10 ml-20'>
                 <form onSubmit={handleAddComment}>
                     <div className='comment-area flex'>
-                        <div className="w-32 1/6 rounded-md mr-3">
+                        <div className="w-32 rounded-md mr-3">
                             <img className='rounded-md' src={userData.avatar} alt="" />
                         </div>
-                        <div className='flex w-full h-full relative 4/6'>
+                        <div className='flex w-full h-full relative'>
                             <div className='w-full flex'>
                                 <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full" value={comment} onChange={e => setComment(e.target.value)} />
                                 <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch'>

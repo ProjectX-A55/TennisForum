@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { updateComment } from '../../services/comment-service';
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
 /**
@@ -12,6 +12,7 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
  */
 
 const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment }) => {
+
     const [isEditing, setIsEditing] = useState(false);
     const [newContent, setNewContent] = useState(comments.content);
 
@@ -19,40 +20,69 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
         setIsEditing(true);
     };
 
-
     const handleSaveComment = async () => {
         await updateComment(postId, commentId, newContent);
         comments.content = newContent;
         setIsEditing(false);
     };
 
+    const handleCancelEdit = () => {
+        setNewContent(comments.content);
+        setIsEditing(false);
+    };
 
     return (
 
-        <div className='box rounded-md border text-wrap ml-7 mr-7 mt-10' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
-            <div className='flex flex-row items-center'>
-                <p className='text-2xl'>{comments.author}</p>
-                <p>commented {formatDistanceToNow(new Date(comments.createdOn))} ago</p>
+        <div className='box rounded-md flex flex-row border text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
+            <div className='add-comment w-full '>
+                <div className='comment-area flex'>
+                    <div className="w-32 rounded-md ">
+                        <p>{comments.author}</p>
+                    </div>
+                    <div className='flex flex-col w-full h-full relative'>
+                        <div className='comment-author-date w-full flex'>
+                            <p className='comment-author mr-2'>{comments.author}</p>
+                            <p>commented {formatDistanceToNow(new Date(comments.createdOn))} ago</p>
+                        </div>
+                        <div className='content flex items-stretch w-full mt-3 mb-2'>
+                            {isEditing ? (
+                                <div className='w-full'>
+                                    <textarea
+                                        type="text"
+                                        value={newContent}
+                                        onChange={e => setNewContent(e.target.value)}
+                                        className="textarea textarea-bordered w-full mr-2"
+                                        
+                                        placeholder="Edit"
+                                    />
+                                </div>
+                            ) : (
+                                <div className='comment-content'>
+                                    <p>{comments.content}</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
-            {isEditing ? (
-                <div>
-                    <input type="text" value={newContent} onChange={e => setNewContent(e.target.value)} />
-                    <button onClick={handleSaveComment}>Save</button>
-                </div>
-            ) : (
-
-                <div className='comment-content'>
-                    <p>{comments.content}</p>
-                </div>
-            )}
-            <div className='flex flex-row items-center'>
+            <div className='comment-buttons flex flex-row items-center justify-end mb-3 ml-auto'>
+                {currentUser === comments.author && isEditing &&
+                    <button className='mr-3' onClick={handleSaveComment}>
+                        <FontAwesomeIcon icon={faSave} />
+                    </button>
+                }
+                {currentUser === comments.author && isEditing &&
+                    <button className='mr-5' onClick={handleCancelEdit}>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
+                }
                 {currentUser === comments.author && !isEditing &&
-                    <button className='mr-3' onClick={handleEdit}>
+                    <button className='mr-3' onClick={handleEdit} >
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
                 }
                 {currentUser === comments.author && !isEditing &&
-                    <button onClick={() => handleDeleteComment(commentId)} type="primary">
+                    <button className='mr-5' onClick={() => handleDeleteComment(commentId)} type="primary">
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
                 }

@@ -1,11 +1,8 @@
 import { NavLink } from "react-router-dom"
-
 import { logoutUser } from "../../services/auth-service"
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 import { getAllUsers } from "../../services/user-service";
-
-
 
 export function HeaderComponent() {
 
@@ -25,18 +22,14 @@ export function HeaderComponent() {
     }, []);
 
 
-
     const logout = async () => {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
 
-    
-   
     return (
         <div className="navbar bg-base-100 mb-10 shadow-lg shadow-white border rounded">
             <div className="flex-1">
-
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -46,7 +39,6 @@ export function HeaderComponent() {
                     </ul>
                 </div>
             </div>
-
             <div className="flex-none gap-2">
                 {user ? (
                     <div className="dropdown dropdown-end">
