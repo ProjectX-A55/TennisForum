@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
 
-const AllPosts = ({ postsFromProps}) => {
+const AllPosts = ({ postsFromProps }) => {
 
     const [posts, setPosts] = useState([])
     const [searchParams, setSearchParams] = useSearchParams();
     const [sortType, setSortType] = useState('newest');
+
+    const navigate = useNavigate()
 
     const search = searchParams.get('search') || '';
 
@@ -17,10 +19,10 @@ const AllPosts = ({ postsFromProps}) => {
     useEffect(() => {
         setPosts(postsFromProps)
         return (() => setPosts(null))
-    }, [postsFromProps.length]) 
+    }, [postsFromProps.length])
 
     useEffect(() => {
-       setPosts(posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())))
+        setPosts(posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())))
     }, [search])
 
     const togglePostLike = (username, id) => {
@@ -60,6 +62,10 @@ const AllPosts = ({ postsFromProps}) => {
                                 <input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
                             </div>
                         </div>
+                        <div className="flex">
+                        <div className="create-post">
+                            <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
+                        </div>
                         <div className="sort">
                             <div className="dropdown dropdown-bottom">
                                 <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
@@ -72,6 +78,7 @@ const AllPosts = ({ postsFromProps}) => {
                                 </ul>
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
                 <div className="all-posts">
@@ -81,7 +88,12 @@ const AllPosts = ({ postsFromProps}) => {
                 </div>
             </div>
         ) : (
-            <h1 style={{ fontSize: '2em' }}>No posts found</h1 >
+            <div>
+                <h1 style={{ fontSize: '2em' }}>No posts found. Do you want to create one? You will get a treat, promise.</h1 >
+                <div className="create-post">
+                    <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
+                </div>
+            </div>
         )
 
     );
