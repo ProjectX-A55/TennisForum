@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getAllPosts } from "../services/post-service";
 import { useSearchParams } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
 

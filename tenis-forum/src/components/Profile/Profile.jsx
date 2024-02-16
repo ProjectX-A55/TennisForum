@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
 import { updateUser } from "../../services/user-service";
-// import ChangePasswordForm from "../Comments/ChangePassword/ChangePassword";
-// import Authenticated from "../../hoc/Authenticated";
 import ProfilePhotoUpload from "../ProfilePhotoUpload/ProfilePhotoUpload";
 import FieldsContainer from "./FieldsContainer";
 

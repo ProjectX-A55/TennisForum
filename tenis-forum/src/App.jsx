@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react'
 import { auth } from './config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getUserData } from './services/user-service'
-import AllPosts from './views/AllPosts'
 import CreatePost from './views/CreatePost'
 import PostDetailsView from './views/PostDetailsView'
 import Authenticated from './hoc/Authenticated'
