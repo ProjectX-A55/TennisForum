@@ -62,7 +62,7 @@ export function HeaderComponent() {
                             <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
                                 <li><NavLink to="/register">Register</NavLink></li>
                                 <div className="divider divider-horizontal"></div>
-                                <li><NavLink to="/login">Login</NavLink></li>
+                                <li><NavLink to="/login">Log in</NavLink></li>
                             </ul>
                         </div>
                     )

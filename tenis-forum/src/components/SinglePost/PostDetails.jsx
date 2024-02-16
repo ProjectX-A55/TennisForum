@@ -104,7 +104,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     }
 
     console.log(userData);
-   //TODO: TRQBVA DA SE OPRAVI EDITA
+    //TODO: TRQBVA DA SE OPRAVI EDITA
     return (
         <div className="place-content-center flex flex-col w-auto">
             {isEditing ? (
@@ -185,12 +185,12 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
             <div className='add-comment w-3/4 mt-10 ml-20'>
                 <form onSubmit={handleAddComment}>
                     <div className='comment-area flex'>
-                        <div className="w-32 rounded-md mr-3">
-                            <img className='rounded-md' src={userData.avatar} alt="" />
+                        <div className="w-32 rounded-md mr-0">
+                            <img className='w-20 h-20 rounded-full mr-4' src={userData.avatar} alt="" />
                         </div>
                         <div className='flex w-full h-full relative'>
                             <div className='w-full flex'>
-                                <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full" value={comment} onChange={e => setComment(e.target.value)} />
+                                <textarea placeholder="Add your comment here..." className="textarea textarea-bordered w-full ml-0 self-stretch" value={comment} onChange={e => setComment(e.target.value)} />
                                 <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch'>
                                     <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
                                 </div>
