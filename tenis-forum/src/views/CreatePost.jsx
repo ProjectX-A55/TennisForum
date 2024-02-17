@@ -69,7 +69,7 @@ const CreatePost = () => {
 
         <div className="relative w-full flex flex-col  justify-center ">
             <div className="w-full p-6 m-auto bg-gray rounded-md shadow-2xl ring-2 ring-white lg:max-w-xl" style={{ borderColor: '#654321' }}>
-                <h1 className="text-3xl font-semibold text-center text-white">Create a post</h1>
+                <h1 className="text-3xl font-semibold text-center">Create a post</h1>
                 <div>
                     <label htmlFor="input-title">Title: </label>
                     <input placeholder="Title" className="w-full input input-bordered" value={post.title} onChange={e => updatePost(e.target.value, 'title')} type="text" name="input-title" id="username" />

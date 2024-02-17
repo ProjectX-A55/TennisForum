@@ -49,6 +49,6 @@ export async function uploadAvatar(file, userData) {
   const avatarURL = await getDownloadURL(fileRef)
 
   await updateUser(userData.userName, {...userData, avatarURL});
-  debugger
+  
   console.log(1)
 }

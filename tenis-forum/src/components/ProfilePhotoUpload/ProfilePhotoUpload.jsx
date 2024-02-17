@@ -49,12 +49,12 @@
 // export default ProfilePhotoUpload;
 
 import { useEffect, useState, useContext } from "react";
-import { useAuth } from "../../config/firebase-config";
+
 import { uploadAvatar } from "../../services/user-service";
 import AppContext from "../../context/AppContext";
 
 export default function Profile() {
-  const currentUser = useAuth();
+  
   const { userData } = useContext(AppContext)
   const [avatar, setAvatar] = useState(null);
   const [avatarURL, setAvatarURL] = useState("");
@@ -76,10 +76,12 @@ export default function Profile() {
   }, [userData])
 
   return (
-    <div className="fields">
-      <input type="file" onChange={handleChange} />
-      <button disabled={!avatar} onClick={handleClick}>Upload</button>
-      <img src={avatarURL} alt="Avatar" className="avatar" />
-    </div>
+    // <div className="fields">
+    //   <input type="file" onChange={handleChange} />
+    //   <button disabled={!avatar} onClick={handleClick}>Upload</button>
+    //   <img src={avatarURL} alt="Avatar" className="avatar" />
+    // </div>
+    <>
+    </>
   );
 }
