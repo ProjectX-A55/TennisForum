@@ -28,9 +28,7 @@ const Profile = () => {
         }
 
         setIsEditing(false);
-
     };
-
 
     return (
         <div>
@@ -73,7 +71,6 @@ const Profile = () => {
                                     <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
                                     </FieldsContainer>
                             </div>
-
                             <div className="mb-4">
                                 <label className="block mb-2">Last Name:</label>
                                 <FieldsContainer>
