@@ -29,11 +29,10 @@ export function HeaderComponent() {
     }
     //TODO: MOJE DA SLOJIM NQKAKYV NADPIS DO AVATARA OT SORTA NA WELCOME
     return (
-        <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center fixed top-0 w-full z-10">
-            
+        <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center fixed top-0 w-full z-10 shadow shadow-xl">
+
             <div className="flex-none">
-                
-            <div onClick={() => navigate('/')} role="button" className="btn m-1">Home</div>
+                <div onClick={() => navigate('/')} role="button" className="btn m-1">Home</div>
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -47,14 +46,16 @@ export function HeaderComponent() {
                 </div>
             </div>
 
-            <div className="flex-none text-center font-bold text-5xl pb-10" style={{ color: '#8e4162' }}>Project-X Tennis Forum</div>
+            <div className="flex-none text-center font-bold  pb-10" style={{ color: '#8e4162' }}>
+                <p className="text-3xl"> Project-X Tennis Forum</p>
+            </div>
 
             <div className="flex-none gap-2">
                 {user ? (
                     <div className="dropdown dropdown-end">
                         <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src={userData?.avatarURL} />
+                                <img alt="Tailwind CSS Navbar component" src={userData?.avatarUrl} />
                             </div>
                         </div>
                         <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

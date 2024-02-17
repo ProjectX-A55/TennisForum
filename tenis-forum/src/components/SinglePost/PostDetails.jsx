@@ -106,66 +106,77 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     //TODO: TRQBVA DA SE OPRAVI EDITA
     return (
         <div className="place-content-center flex flex-col w-auto">
-            {isEditing ? (
-                <div className='edit-content'>
-                    <label htmlFor="input">Edit title </label>
-                    <input value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-                    <br />
-                    <br />
-                    <label htmlFor="textarea">Edit content </label>
-                    <textarea value={content} onChange={e => setContent(e.target.value)} className="textarea textarea-bordered" placeholder="Edit"></textarea>
+
+            <div className='card shadow shadow-2xl border border-amber-950 text-wrap mr-5 ml-5' style={{ overflowWrap: 'break-word' }}>
+                <div className='post-info w-full justify-between h-1/6 flex flex-row mt-2 mr-2 ml-2'>
+                    <div className='topic ml-3'>
+                        <span>{post.topic}</span>
+                    </div>
+                    <div className='author-date mr-5'>
+                        <span>{`Created on: ${post.createdOn} By: ${post.author}`}</span>
+                    </div>
                 </div>
-            ) : (
-                <div className='card shadow shadow-2xl border border-amber-950 text-wrap mr-5 ml-5' style={{ overflowWrap: 'break-word' }}>
-                    <div className='post-info w-full justify-between h-1/6 flex flex-row mt-2 mr-2 ml-2'>
-                        <div className='topic ml-3'>
-                            <span>{post.topic}</span>
+                {isEditing ? (
+                    <>
+
+                        <div className='mr-5 ml-5 mt-5 mb-5'>
+                            <label htmlFor="input" className="label">
+                                <span className="text-base label-text">Title</span>
+                            </label>
+                            <input value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Title" className="w-full input input-bordered" />
                         </div>
-                        <div className='author-date mr-5'>
-                            <span>{`Created on: ${post.createdOn} By: ${post.author}`}</span>
+                        <div className='mr-5 ml-5 mt-5 mb-5'>
+                            <label htmlFor="textarea" className="label">
+                                <span className="text-base label-text">Content</span>
+                            </label>
+                            <textarea value={content} onChange={e => setContent(e.target.value)} type="text" placeholder="Edit content" className="textarea textarea-bordered w-full shadow shadow-2xl" />
                         </div>
-                    </div>
-                    <div className="content-title">
-                        <div className="post-title-info">
-                            <div className='post-title text-center mb-10 mt-5'>
-                                <p className="text-5xl font-bold">{post.title}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='card content shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
-                        <p className='ml-5 mr-5 mb-5 mt-5'>
-                            {post.content}
-                        </p>
-                    </div>
-                    <div className='post-info w-full justify-between h-1/6 flex flex-row ml-2'>
-                        <div className='topic ml-3 mb-5'>
-                            <span>{post.tags.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}</span>
-                        </div>
-                        <div className='author-date mr-3'>
-                            <div className='flex mb-1 justify-between mr-3'>
-                                <div className='views flex flex-row mr-5'>
-                                    <span className='mr-2'>{post?.views}</span>
-                                    <div>
-                                        <FontAwesomeIcon icon={faEye} />
-                                    </div>
-                                </div>
-                                <div className='views flex flex-row mx-5'>
-                                    <span className='mr-2'>{post.liked?.length}</span>
-                                    <div>
-                                        <FontAwesomeIcon icon={faHeart} />
-                                    </div>
-                                </div>
-                                <div className='views flex flex-row ml-5 '>
-                                    <span className='mr-2'>{postCommentsCount}</span>
-                                    <div>
-                                        <FontAwesomeIcon icon={faComment} />
+                    </>
+                )
+                    :
+                    (
+                        <>
+                            <div className="content-title">
+                                <div className="post-title-info">
+                                    <div className='post-title text-center mb-10 mt-5'>
+                                        <p className="text-3xl font-bold">{post.title}</p>
                                     </div>
                                 </div>
                             </div>
+                            <div className='card content shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
+                                <p className='ml-5 mr-5 mb-5 mt-5'>
+                                    {post.content}
+                                </p>
+                            </div>
+                        </>)}
+                <div className='post-info w-full justify-between h-1/6 flex flex-row ml-2'>
+                    <div className='topic ml-3 mb-5'>
+                        <span>{post.tags.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}</span>
+                    </div>
+                    <div className='author-date mr-3'>
+                        <div className='flex mb-1 justify-between mr-3'>
+                            <div className='views flex flex-row mr-5'>
+                                <span className='mr-2'>{post?.views}</span>
+                                <div>
+                                    <FontAwesomeIcon icon={faEye} />
+                                </div>
+                            </div>
+                            <div className='views flex flex-row mx-5'>
+                                <span className='mr-2'>{post.liked?.length}</span>
+                                <div>
+                                    <FontAwesomeIcon icon={faHeart} />
+                                </div>
+                            </div>
+                            <div className='views flex flex-row ml-5 '>
+                                <span className='mr-2'>{postCommentsCount}</span>
+                                <div>
+                                    <FontAwesomeIcon icon={faComment} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            )}
+            </div>
             <div className='buttons mt-4 flex items-center justify-between'>
                 <div className='like-dislike-button ml-5'>
                     <button onClick={toggleLike} className="btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike post' : 'Like post'}</button>
@@ -185,7 +196,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                 <form onSubmit={handleAddComment}>
                     <div className='comment-area flex'>
                         <div className="w-32 rounded-md mr-3 shadow shadow-2xl">
-                            <img className='rounded-md' src={userData.avatar} alt="" />
+                            <img className='rounded-md' src={userData.avatarUrl} alt="" />
                         </div>
                         <div className='flex w-full h-full relative'>
                             <div className='w-full flex'>

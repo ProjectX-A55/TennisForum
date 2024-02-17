@@ -52,7 +52,7 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
                     <div className="w-32 rounded-md">
-                        <img className='w-20 h-20 rounded-full' src={authorData ? authorData.avatarURL : "https://static.thenounproject.com/png/989418-200.png"} alt="Comment's author avatar" />
+                        <img className='w-20 h-20 rounded-full' src={authorData?.avatarUrl}/>
                     </div>
                     <div className='flex flex-col w-full h-full relative'>
                         <div className='comment-author-date w-full flex'>

@@ -1,4 +1,3 @@
-import React from "react";
 import AllPosts from "./AllPosts";
 import { useState, useEffect } from "react";
 import { getAllPosts } from "../services/post-service";

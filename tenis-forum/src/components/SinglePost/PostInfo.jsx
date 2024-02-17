@@ -57,7 +57,7 @@ const PostInfo = ({ post }) => {
                     <div className='w-1/4'>
                         <div className="avatar ml-12 mb-4 mt-4">
                             <div className="w-36 h-36 btn btn-ghost btn-circle avatar">
-                                <img src={author?.avatarURL} />
+                                <img src={author?.avatarUrl} />
                             </div>
                         </div>
                     </div>

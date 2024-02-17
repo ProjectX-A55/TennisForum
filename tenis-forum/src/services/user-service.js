@@ -8,7 +8,7 @@ export const getUserByUserName = async (username) => {
   return get(ref(db, `users/${username}`));
 };
 
-export const createUserUserName = (username, firstName, lastName, uid, email) => {
+export const createUserUserName = (username, firstName, lastName, uid, email, ) => {
 
   return set(ref(db, `users/${username}`), {
     username,
@@ -18,7 +18,9 @@ export const createUserUserName = (username, firstName, lastName, uid, email) =>
     email,
     createdOn: new Date().toString(),
     likedPosts: {},
+    avatarUrl: "https://static.thenounproject.com/png/989418-200.png"
   })
+
 };
 
 export const getUserData = (uid) => {

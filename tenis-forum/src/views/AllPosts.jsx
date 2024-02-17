@@ -19,7 +19,7 @@ const AllPosts = ({ postsFromProps }) => {
     useEffect(() => {
         setPosts(postsFromProps)
         return (() => setPosts(null))
-    }, [postsFromProps.length])
+    }, [postsFromProps])
 
     useEffect(() => {
         setPosts(posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())))
