@@ -1,15 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-
-import { uploadAvatar } from "../../services/user-service";
-import AppContext from "../../context/AppContext";
-
-export default function Profile() {
-  
-  const { userData } = useContext(AppContext)
-  const [avatar, setAvatar] = useState(null);
-  const [avatarURL, setAvatarURL] = useState("");
 import { uploadAvatar, updateUser, getUserByUserName } from "../../services/user-service";
 import AppContext from "../../context/AppContext";
+
 
 export default function ProfilePhotoUpload() {
     const { userData } = useContext(AppContext)
@@ -34,15 +26,6 @@ export default function ProfilePhotoUpload() {
         }
     }
 
-  return (
-    // <div className="fields">
-    //   <input type="file" onChange={handleChange} />
-    //   <button disabled={!avatar} onClick={handleClick}>Upload</button>
-    //   <img src={avatarURL} alt="Avatar" className="avatar" />
-    // </div>
-    <>
-    </>
-  );
     useEffect(() => {
         const fetchData = async () => {
 
