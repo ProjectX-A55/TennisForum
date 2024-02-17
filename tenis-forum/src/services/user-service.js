@@ -1,14 +1,14 @@
-import { get, set, ref, query, equalTo, orderByChild, } from 'firebase/database';
+import { get, set, ref, query, equalTo, orderByChild, update } from 'firebase/database';
 import { db, storage } from '../config/firebase-config';
 import { getDownloadURL, uploadBytes, ref as Sref } from 'firebase/storage'
 
 
-export const getUserByUserName = (username) => {
+export const getUserByUserName = async (username) => {
 
   return get(ref(db, `users/${username}`));
 };
 
-export const createUserUserName = (username, firstName, lastName, uid, email, avatar = "https://static.thenounproject.com/png/989418-200.png") => {
+export const createUserUserName = (username, firstName, lastName, uid, email) => {
 
   return set(ref(db, `users/${username}`), {
     username,
@@ -18,7 +18,6 @@ export const createUserUserName = (username, firstName, lastName, uid, email, av
     email,
     createdOn: new Date().toString(),
     likedPosts: {},
-    avatar
   })
 };
 
@@ -37,18 +36,25 @@ export const getAllUsers = () => {
   return get(ref(db, 'users'));
 }
 
-export const updateUser = (username, userData) => {
+export const updateUser = async (username, userData) => {
 
-  return set(ref(db, `users/${username}`), userData);
+  const userRef = ref(db, `users/${username}`)
+  await update(userRef, userData)
 }
 
-export async function uploadAvatar(file, userData) {
-  const fileRef = Sref(storage, userData.uid);
-  
-  await uploadBytes(fileRef, file);
-  const avatarURL = await getDownloadURL(fileRef)
+export async function uploadAvatar(userData, file) {
+  if (!file) return;
 
-  await updateUser(userData.userName, {...userData, avatarURL});
+  const fileRef = Sref(storage, `avatars/${userData}/${file.name}`);
   
-  console.log(1)
+  const snapshot = await uploadBytes(fileRef, file);
+
+  alert('file uploaded')
+  return getDownloadURL(snapshot.ref);
 }
+
+export const updateUserDetails  = async (username, userInfo) => {
+    const userRef = ref(db, `users/${username}`);
+    await update(userRef, userInfo);
+}
+ 

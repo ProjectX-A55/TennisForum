@@ -74,7 +74,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
     const handleAddComment = async (event) => {
         event.preventDefault();
         try {
-            await addComment(post.id, userData.username, comment);
+            await addComment(post.id, userData, comment);
             setAllComments(await getComments(post.id));
             setPostCommentsCount(await getCommentsCount(post.id));
             setComment('');
@@ -103,8 +103,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
         }
     }
 
-    console.log(userData);
-   //TODO: TRQBVA DA SE OPRAVI EDITA
+    //TODO: TRQBVA DA SE OPRAVI EDITA
     return (
         <div className="place-content-center flex flex-col w-auto">
             {isEditing ? (
@@ -221,7 +220,7 @@ PostDetails.propTypes = {
         createdOn: PropTypes.string,
         author: PropTypes.string,
         liked: PropTypes.array,
-        tags: PropTypes.string,
+        tags: PropTypes.array,
         topic: PropTypes.string
 
     }),

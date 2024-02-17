@@ -33,4 +33,4 @@ export function useAuth() {
 
 export const auth = getAuth(app);
 export const db = getDatabase(app);
-export const storage = getStorage();
+export const storage = getStorage(app);

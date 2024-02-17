@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
 import { updateUser } from "../../services/user-service";
 import ProfilePhotoUpload from "../ProfilePhotoUpload/ProfilePhotoUpload";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import FieldsContainer from "./FieldsContainer";
 
 const Profile = () => {
 
@@ -100,16 +100,16 @@ const Profile = () => {
 
                             <div className="mb-4">
                                 <label className="block mb-2">First Name:</label>
-                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
-                                    {formData.firstName}
-                                </div>
+                                <FieldsContainer>
+                                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
+                                    </FieldsContainer>
                             </div>
 
                             <div className="mb-4">
                                 <label className="block mb-2">Last Name:</label>
-                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
-                                    {formData.lastName}
-                                </div>
+                                <FieldsContainer>
+                                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
+                                    </FieldsContainer>
                             </div>
                             <button className="btn btn-primary w-full mt-7" onClick={() => setIsEditing(true)}>Edit Profile</button>
                         </div>

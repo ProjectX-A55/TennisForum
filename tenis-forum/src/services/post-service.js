@@ -14,7 +14,6 @@ export const addPost = async (author, title, content, topic = "General Discussio
     });
 }
 
-
 export const getAllPosts = async (search = '') => {
     const snapShot = await get(query(ref(db, 'posts'), orderByChild('createdOn')));
     if (!snapShot.exists()) {
@@ -26,8 +25,7 @@ export const getAllPosts = async (search = '') => {
         ...snapShot.val()[key],
         createdOn: new Date(snapShot.val()[key].createdOn).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
         liked: snapShot.val()[key].liked ? Object.keys(snapShot.val()[key].liked) : [],
-    })).filter(post => post.title.toLowerCase().includes(search.toLowerCase()))
-
+    }))
 
     return posts;
 }
