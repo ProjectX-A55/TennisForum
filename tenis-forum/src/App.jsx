@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/HeaderComponent/HeaderComponent'
 import UserProfile from './components/Profile/Profile'
 import ManagePosts from './views/ManagePosts'
 import Footer from './components/Footer/Footer'
+import NotFound from './views/404'
 
 function App() {
   const [context, setContext] = useState({
@@ -44,14 +45,15 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/register' element={<Register />} />
               <Route path='/login' element={<LogIn />} />
-              <Route path='/posts' element={<Authenticated><ManagePosts filter={null}/></Authenticated>} />
+              <Route path='/posts' element={<Authenticated><ManagePosts filter={null} /></Authenticated>} />
               <Route path='/profile' element={<Authenticated><UserProfile /></Authenticated>} />
               <Route path='/posts/:id' element={<Authenticated><PostDetailsView /></Authenticated>} />
               <Route path='/posts-create' element={<Authenticated><CreatePost /></Authenticated>} />
               <Route path='/general-discussions' element={<Authenticated><ManagePosts filter={'General Discussions'} /></Authenticated>} />
-              <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} />
+              {/* <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} /> */}
               <Route path='/men-s-tennis' element={<Authenticated><ManagePosts filter={`Men's Tennis`} /></Authenticated>} />
               <Route path='/women-s-tennis' element={<Authenticated><ManagePosts filter={`Women's Tennis`} /></Authenticated>} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
         </div>

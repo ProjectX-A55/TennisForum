@@ -92,7 +92,9 @@ const AllPosts = ({ postsFromProps }) => {
                 <h1 style={{ fontSize: '2em' }}>No posts found. Do you want to create one? You will get a treat, promise.</h1 >
                 <div className="create-post">
                     <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
+                    
                 </div>
+                <div onClick={() => navigate('/posts')} role="button" className="btn m-1">Back</div>
             </div>
         )
     );

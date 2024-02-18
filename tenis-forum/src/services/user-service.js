@@ -53,10 +53,4 @@ export async function uploadAvatar(userData, file) {
 
   alert('file uploaded')
   return getDownloadURL(snapshot.ref);
-}
-
-export const updateUserDetails  = async (username, userInfo) => {
-    const userRef = ref(db, `users/${username}`);
-    await update(userRef, userInfo);
-}
- 
+} 

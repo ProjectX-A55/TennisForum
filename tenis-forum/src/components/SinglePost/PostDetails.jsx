@@ -6,9 +6,7 @@ import { addComment, deleteComment, getComments, getCommentsCount } from '../../
 import { useNavigate } from 'react-router-dom';
 import Comment from '../Comments/Comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
-
-
+import { faEye, faHeart, faComment, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 
 /**
  * 
@@ -123,7 +121,6 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                 </div>
                 {isEditing ? (
                     <>
-
                         <div className='mr-5 ml-5 mt-5 mb-5'>
                             <label htmlFor="input" className="label">
                                 <span className="text-base label-text">Title</span>

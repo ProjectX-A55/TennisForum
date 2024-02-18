@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
 import { updateUser } from "../../services/user-service";
-import FieldsContainer from "./FieldsContainer";
-
 import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
 import { storage } from "../../config/firebase-config";
 
@@ -11,15 +9,11 @@ const Profile = () => {
     const { userData, setContext } = useContext(AppContext)
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState(userData)
-
     const [file, setFile] = useState(null);
-
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
-
-
 
     const handleInputChange = (event) => {
         setFormData({
@@ -30,7 +24,7 @@ const Profile = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+
         if (isEditing) {
             try {
                 let avatarUrl = userData.avatarUrl;
@@ -39,15 +33,14 @@ const Profile = () => {
                     await uploadBytes(storageReference, file);
                     avatarUrl = await getDownloadURL(storageReference);
                 }
-    
+
                 const updatedUserData = {
                     ...formData,
                     avatarUrl
                 };
-    
+
                 await updateUser(userData.username, updatedUserData);
-    
-                // Update userData in context
+
                 setContext(prevContext => ({
                     ...prevContext,
                     userData: updatedUserData
@@ -56,11 +49,11 @@ const Profile = () => {
                 console.error('Failed to update user:', error);
             }
         }
-    
+
         setIsEditing(false);
     };
-   
-
+    
+    
     return (
         <div>
             {isEditing ? (
@@ -100,18 +93,17 @@ const Profile = () => {
                                     {userData.email}
                                 </div>
                             </div>
-
                             <div className="mb-4">
                                 <label className="block mb-2">First Name:</label>
-                                <FieldsContainer>
-                                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
-                                </FieldsContainer>
+                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
+                                    {userData?.firstName}
+                                </div>
                             </div>
                             <div className="mb-4">
-                                <label className="block mb-2">Last Name:</label>
-                                <FieldsContainer>
-                                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
-                                </FieldsContainer>
+                                <label className="block mb-2">First Name:</label>
+                                <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
+                                    {userData?.lastName}
+                                </div>
                             </div>
                             <button className="btn btn-primary w-full mt-7" onClick={() => setIsEditing(true)}>Edit Profile</button>
                         </div>

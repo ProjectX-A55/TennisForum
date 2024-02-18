@@ -49,7 +49,6 @@ const PostInfo = ({ post }) => {
     const navigate = useNavigate();
 
     
-
     return (
         <div className="flex flex-row justify-center items-center h-auto mb-4">
             <div className=" border border-amber-950 rounded-lg w-3/4 shadow-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
