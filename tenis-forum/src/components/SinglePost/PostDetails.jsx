@@ -144,7 +144,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                             <div className="content-title">
                                 <div className="post-title-info">
                                     <div className='post-title text-center mb-10 mt-5'>
-                                        <p className="text-3xl font-bold">{post.title}</p>
+                                        <p className="text-2xl font-bold">{post.title}</p>
                                     </div>
                                 </div>
                             </div>
