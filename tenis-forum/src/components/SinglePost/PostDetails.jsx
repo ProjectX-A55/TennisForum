@@ -203,12 +203,12 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             <div className='add-comment w-3/4 mt-10 ml-20 '>
                 <form onSubmit={handleAddComment}>
                     <div className='comment-area flex'>
-                        <div className="w-32 rounded-md mr-3 shadow shadow-2xl">
+                        <div className="avatar w-32 h-24 rounded-md mr-3 shadow shadow-2xl">
                             <img className='rounded-md' src={userData.avatarUrl} alt="" />
                         </div>
                         <div className='flex w-full h-full relative'>
                             <div className='w-full flex'>
-                                <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full shadow shadow-2xl " value={comment} onChange={e => setComment(e.target.value)} />
+                                <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
                                 <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch '>
                                     <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
                                 </div>
@@ -221,7 +221,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                 <div className='text-center mt-3 mb-3'>
                     <h1>Comments</h1>
                 </div>
-                <div className="flex-shrink-0" >
+                <div className="flex-shrink-0 mb-3" >
+                    {Object.keys(allComments).length === 0 && <div className="text-center">No comments yet</div>}
                     {Object.keys(allComments).map((commentKey) =>
                         <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                     ).reverse()}

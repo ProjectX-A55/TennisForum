@@ -56,7 +56,7 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
                         <img className='w-20 h-20 ' src={authorData?.avatarUrl} />
                     </div>
                     <div className='flex flex-col w-full h-full relative'>
-                        <div className='comment-author-date w-full flex'>
+                        <div className='comment-author-date w-full flex mt-3'>
                             <p className='comment-author mr-2 font-bold'>{comments.author}</p>
                             <p>commented {formatDistanceToNow(new Date(comments.createdOn))} ago</p>
                         </div>
