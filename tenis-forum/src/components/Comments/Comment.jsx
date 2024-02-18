@@ -9,24 +9,22 @@ import { getUserData } from '../../services/user-service';
 
 /**
  * 
- * @param {{comments: { id: string, author: string, content: string, createdOn: string}, commentId: string, postId: string, currentUser: string, handleDeleteComment: function}} comments 
+ * @param {{comments: { id: string, author: string, content: string, createdOn: string, authorId: string,},  commentId: string, postId: string, currentUser: string, handleDeleteComment: function}} comments 
  */
 
 const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment }) => {
 
     const [isEditing, setIsEditing] = useState(false);
-    const [newContent, setNewContent] = useState(comments.content);
+    const [newComment, setNewComment] = useState(comments.content);
     const [authorData, setAuthorData] = useState(null);
 
     useEffect(() => {
-         (async () => {
+        (async () => {
             if (comments?.authorId) {
                 const snapshot = await getUserData(comments.authorId);
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     setAuthorData(snapshot.val()[Object.keys(snapshot.val())[0]]);
                 }
-                
-                
             }
         })();
     }, [])
@@ -36,23 +34,26 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
     };
 
     const handleSaveComment = async () => {
-        await updateComment(postId, commentId, newContent);
-        comments.content = newContent;
+        if (newComment.length < 1) return alert('Comment cannot be empty!');
+        try {
+            await updateComment(postId, commentId, newComment);
+            comments.content = newComment;
+        } 
+        catch (error) { console.log(error); }
         setIsEditing(false);
     };
 
     const handleCancelEdit = () => {
-        setNewContent(comments.content);
+        setNewComment(comments.content);
         setIsEditing(false);
     };
 
     return (
-
         <div className='shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
-                    <div className="w-32 rounded-md">
-                        <img className='w-20 h-20 rounded-full' src={authorData?.avatarUrl}/>
+                    <div className="w-32 rounded-ls">
+                        <img className='w-20 h-20 ' src={authorData?.avatarUrl} />
                     </div>
                     <div className='flex flex-col w-full h-full relative'>
                         <div className='comment-author-date w-full flex'>
@@ -64,8 +65,8 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
                                 <div className='w-full'>
                                     <textarea
                                         type="text"
-                                        value={newContent}
-                                        onChange={e => setNewContent(e.target.value)}
+                                        value={newComment}
+                                        onChange={e => setNewComment(e.target.value)}
                                         className="textarea textarea-bordered w-full mr-2"
                                         placeholder="Edit"
                                     />
@@ -110,11 +111,13 @@ Comment.propTypes = {
         author: PropTypes.string,
         content: PropTypes.string,
         createdOn: PropTypes.string,
+        authorId: PropTypes.string
     }
     ),
     commentId: PropTypes.string,
     postId: PropTypes.string,
     currentUser: PropTypes.string,
-    handleDeleteComment: PropTypes.func
+    handleDeleteComment: PropTypes.func,
+
 }
 export default Comment;

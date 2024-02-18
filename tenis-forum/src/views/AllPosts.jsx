@@ -95,7 +95,6 @@ const AllPosts = ({ postsFromProps }) => {
                 </div>
             </div>
         )
-
     );
 };
 

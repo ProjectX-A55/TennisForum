@@ -15,18 +15,19 @@ import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
  * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string, tags: string, topic: string}, togglePostLike: function}} param0 
  * @returns 
  */
-const PostDetails = ({ post: initialPost, togglePostLike }) => {
+const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const { userData } = useContext(AppContext);
     const navigate = useNavigate();
 
     const [isEditing, setIsEditing] = useState(false);
-    const [post, setPost] = useState(initialPost);
-    const [title, setTitle] = useState(initialPost.title);
-    const [content, setContent] = useState(initialPost.content);
+    const [post, setPost] = useState(postProp);
+    const [title, setTitle] = useState(postProp.title);
+    const [content, setContent] = useState(postProp.content);
     const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState([]);
     const [postCommentsCount, setPostCommentsCount] = useState(0);
+    const [initialPost, setInitialPost] = useState(post);
 
     useEffect(() => {
         if (post && post.comments) {
@@ -73,6 +74,10 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
 
     const handleAddComment = async (event) => {
         event.preventDefault();
+        if (comment.length <= 0) {
+            alert('Comment cannot be empty');
+            return;
+        }
         try {
             await addComment(post.id, userData, comment);
             setAllComments(await getComments(post.id));
@@ -103,7 +108,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
         }
     }
 
-    //TODO: TRQBVA DA SE OPRAVI EDITA
+
     return (
         <div className="place-content-center flex flex-col w-auto">
 
@@ -185,7 +190,10 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                     {userData?.username === post.author && (
                         <>
                             <div className='edit-button mr-5'>
-                                <button onClick={handleEdit} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
+                                {isEditing && (
+                                    <button onClick={() => { setPost(postProp); setIsEditing(false); }} className="btn btn-outline btn-error mr-3">Cancel</button>
+                                )}
+                                <button onClick={() => { handleEdit(); setInitialPost(post); }} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
                                 <button onClick={handleDelete} className="btn btn-outline btn-error">Delete</button>
                             </div>
                         </>
@@ -210,7 +218,7 @@ const PostDetails = ({ post: initialPost, togglePostLike }) => {
                 </form>
             </div>
             <div className='shadow shadow-2xl border border-amber-950 rounded-md text-wrap mr-5 ml-5 mt-10' style={{ overflowWrap: 'break-word' }}>
-                <div className='text-center mt-3'>
+                <div className='text-center mt-3 mb-3'>
                     <h1>Comments</h1>
                 </div>
                 <div className="flex-shrink-0" >
