@@ -9,7 +9,13 @@ export function HeaderComponent() {
     const { user, setContext } = useContext(AppContext)
     const { userData } = useContext(AppContext)
     const [users, setUsers] = useState([])
-    const navigate = useNavigate()
+    const [avatarUrl, setAvatarUrl] = useState(userData?.avatarUrl);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setAvatarUrl(userData?.avatarUrl);
+    }, [userData]);
 
     useEffect(() => {
 
@@ -27,7 +33,7 @@ export function HeaderComponent() {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
-    //TODO: MOJE DA SLOJIM NQKAKYV NADPIS DO AVATARA OT SORTA NA WELCOME
+
     return (
         <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center fixed top-0 w-full z-10 shadow shadow-xl">
 
@@ -55,7 +61,7 @@ export function HeaderComponent() {
                     <div className="dropdown dropdown-end">
                         <div tabIndex="0" role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src={userData?.avatarUrl} />
+                                <img alt="Tailwind CSS Navbar component" src={avatarUrl} />
                             </div>
                         </div>
                         <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

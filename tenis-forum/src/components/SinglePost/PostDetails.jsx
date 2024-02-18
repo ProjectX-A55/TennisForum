@@ -224,7 +224,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                 <div className="flex-shrink-0" >
                     {Object.keys(allComments).map((commentKey) =>
                         <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
-                    )}
+                    ).reverse()}
                 </div>
             </div>
         </div>
