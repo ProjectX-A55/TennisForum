@@ -52,8 +52,8 @@ const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDele
         <div className='shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
-                    <div className="w-32 rounded-ls">
-                        <img className='w-20 h-20 ' src={authorData?.avatarUrl} />
+                    <div className="flex justify-center">
+                        <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4' src={authorData?.avatarUrl} />
                     </div>
                     <div className='flex flex-col w-full h-full'>
                         <div className='comment-author-date w-full flex mt-3'>
