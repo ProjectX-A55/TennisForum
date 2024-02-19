@@ -52,7 +52,7 @@ export function HeaderComponent() {
                 </div>
             </div>
 
-            <div className="flex-none text-center font-bold  pb-10" style={{ color: '#8e4162' }}>
+            <div className="flex-none text-center font-bold pt-6 pb-6" style={{ color: '#8e4162' }}>
                 <p className="text-3xl"> Project-X Tennis Forum</p>
             </div>
 
