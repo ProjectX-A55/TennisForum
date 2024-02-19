@@ -24,7 +24,24 @@ const Register = () => {
     }
 
     const register = async () => {
-        // TODO: Validate inputs
+
+        if (form.username.length < 4) {
+            alert("Username must be at least 4 characters long.");
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(form.email)) {
+            alert("Please enter a valid email.");
+            return;
+        }
+        //TODO: Add password validation
+        // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+        // if (!passwordRegex.test(form.password)) {
+        //     alert("Password must be at least 8 characters long, contain at least one letter, one number and one special character.");
+        //     return;
+        // }
+
         try {
             const user = await getUserByUserName(form.username);
             if (user.exists()) {
@@ -75,7 +92,7 @@ const Register = () => {
                 </div>
                 <br />
                 <span>Already have an account?
-                        <NavLink to="/login" className="text-blue-600 hover:text-blue-800 hover:underline">Log in</NavLink></span>
+                    <NavLink to="/login" className="text-blue-600 hover:text-blue-800 hover:underline">Log in</NavLink></span>
             </div>
         </div>
     )
