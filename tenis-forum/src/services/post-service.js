@@ -81,7 +81,7 @@ export const deletePost = async (username, postId) => {
     }
 
     const post = postSnapshot.val();
-    if (post.author !== username) {
+    if (post.author !== username | userData.isAdmin === true ) {
         throw new Error('Only the author can delete this post');
     }
 
