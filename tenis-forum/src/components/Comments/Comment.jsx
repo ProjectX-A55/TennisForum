@@ -73,7 +73,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDele
                                 </div>
                             ) : (
                                 <div className='comment-content'>
-                                    <p>{comments.content}</p>
+                                    <p>{comments.content.trim().split('\n').map((paragraph) => <p>{paragraph}<br/></p>)}</p>
                                 </div>
                             )}
                         </div>
