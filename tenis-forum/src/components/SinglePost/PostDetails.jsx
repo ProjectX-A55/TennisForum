@@ -233,30 +233,30 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         )}
                     </div>
                 </div>
-                <div className='add-comment w-3/4 mt-10 ml-20 '>
-                    <form onSubmit={handleAddComment}>
-                        <div className='flex justify-center'>
-                            <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3' src={userData.avatarUrl} alt="User Avatar" />
-                            <div className='flex w-full h-full relative'>
-                                <div className='w-full flex'>
-                                    <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
-                                    <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch '>
-                                        <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
                 <div className='shadow shadow-2xl border border-amber-950 rounded-md text-wrap mr-5 ml-5 mt-10' style={{ overflowWrap: 'break-word' }}>
                     <div className='text-center mt-3 mb-3'>
-                        <h1>Comments</h1>
+                        <h1><b>Comments</b></h1>
                     </div>
                     <div className="flex-shrink-0 mb-3" >
                         {Object.keys(allComments).length === 0 && <div className="text-center">No comments yet</div>}
                         {Object.keys(allComments).map((commentKey) =>
                             <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} isAdmin={userData.isAdmin} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                         )}
+                        <div className='add-comment w-3/4 mt-10 ml-20 '>
+                            <form onSubmit={handleAddComment}>
+                                <div className='flex justify-center'>
+                                    <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData.avatarUrl} alt="User Avatar" />
+                                    <div className='flex w-full h-full relative'>
+                                        <div className='w-full flex'>
+                                            <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
+                                            <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch '>
+                                                <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
