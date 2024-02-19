@@ -65,7 +65,7 @@ const PostInfo = ({ post }) => {
                             <h1 className="text-start">{post.title}</h1>
                         </div>
                         <div className='mt-10'>
-                            {postInfo.tags.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}
+                            {postInfo.tags?.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}
                         </div>
                         <div className='postInfo flex flex-row justify-between'>
                             <div className='user-info text-sm mt-5'>
