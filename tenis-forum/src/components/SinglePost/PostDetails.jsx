@@ -93,8 +93,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const handleAddComment = async (event) => {
         event.preventDefault();
-        if (comment.length <= 0) {
-            alert('Comment cannot be empty');
+        if (comment.length < 4 || comment.length > 1024) {
+            alert('Comment must be between 4 and 1024 characters.');
             return;
         }
         try {
