@@ -93,8 +93,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const handleAddComment = async (event) => {
         event.preventDefault();
-        if (comment.length < 4 || comment.length > 1024) {
-            alert('Comment must be between 4 and 1024 characters.');
+        if (comment.length < 4 || comment.length > 5000) {
+            alert('Comment must be between 4 and 5000 characters.');
             return;
         }
         try {

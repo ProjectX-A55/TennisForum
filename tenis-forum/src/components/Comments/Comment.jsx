@@ -34,7 +34,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDele
     };
 
     const handleSaveComment = async () => {
-        if (newComment.length < 4 || newComment.length > 1024) return alert('Comment must be between 4 and 1024 characters.');
+        if (newComment.length < 4 || newComment.length > 5000) return alert('Comment must be between 4 and 5000 characters.');
         try {
             await updateComment(postId, commentId, newComment);
             comments.content = newComment;
