@@ -101,8 +101,8 @@ const Register = () => {
                     <button className="btn btn-ghost btn-circle avatar bg-base-200 w-full" onClick={register} type="primary">Register</button>
                 </div>
                 <br />
-                <span>Already have an account?
-                    <NavLink to="/login" className="text-blue-600 hover:text-blue-800 hover:underline">Log in</NavLink></span>
+                <span className="mr-2">Already have an account?</span>
+                    <NavLink to="/login" className="text-blue-600 hover:text-blue-800 hover:underline">Log in</NavLink>
             </div>
         </div>
     )
