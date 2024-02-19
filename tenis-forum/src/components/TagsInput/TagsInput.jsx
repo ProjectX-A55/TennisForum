@@ -28,7 +28,8 @@ export const mapTags = (tags) => {
 
 const TagsInput = ({ updateTags, alreadySelectedTags = [] }) => {
     return (
-    <><label htmlFor="input-tags">Tags</label>
+    <>
+    <label htmlFor="input-tags">Tags</label>
     <ReactSelect
         isMulti
         options={options}

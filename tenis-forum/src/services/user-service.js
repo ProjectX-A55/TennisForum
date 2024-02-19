@@ -18,7 +18,9 @@ export const createUserUserName = (username, firstName, lastName, uid, email, ) 
     email,
     createdOn: new Date().toString(),
     likedPosts: {},
-    avatarUrl: "https://static.thenounproject.com/png/989418-200.png"
+    avatarUrl: "https://static.thenounproject.com/png/989418-200.png",
+    isAdmin: false,
+    isBlocked: false,
   })
 
 };
