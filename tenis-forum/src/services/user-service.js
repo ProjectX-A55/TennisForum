@@ -35,7 +35,7 @@ export const getUserPosts = (username) => {
   return get(query(ref(db, 'posts'), orderByChild('author'), equalTo(username)));
 };
 
-export const getAllUsers = () => {
+export const getAllUsers = async () => {
 
   return get(ref(db, 'users'));
 }
@@ -44,15 +44,4 @@ export const updateUser = async (username, userData) => {
 
   const userRef = ref(db, `users/${username}`)
   await update(userRef, userData)
-}
-
-export async function uploadAvatar(userData, file) {
-  if (!file) return;
-
-  const fileRef = Sref(storage, `avatars/${userData}/${file.name}`);
-  
-  const snapshot = await uploadBytes(fileRef, file);
-
-  alert('file uploaded')
-  return getDownloadURL(snapshot.ref);
 }

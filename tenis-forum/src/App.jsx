@@ -16,6 +16,7 @@ import UserProfile from './components/Profile/Profile'
 import ManagePosts from './views/ManagePosts'
 import Footer from './components/Footer/Footer'
 import NotFound from './views/404'
+import AdminPanelView from './views/AdminPanelView'
 
 function App() {
   const [context, setContext] = useState({
@@ -53,6 +54,7 @@ function App() {
               <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} />
               <Route path='/men-s-tennis' element={<Authenticated><ManagePosts filter={`Men's Tennis`} /></Authenticated>} />
               <Route path='/women-s-tennis' element={<Authenticated><ManagePosts filter={`Women's Tennis`} /></Authenticated>} />
+              <Route path='/admin' element={<AdminPanelView />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
