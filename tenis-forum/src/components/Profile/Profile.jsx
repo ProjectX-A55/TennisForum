@@ -71,7 +71,7 @@ const Profile = () => {
                 <div className="relative w-full flex flex-col justify-center">
                     <form onSubmit={handleSubmit} className="w-full p-6 m-auto bg-gray rounded-lg shadow-2xl ring-2 ring-white lg:max-w-xl border border-amber-950">
                         <div className="flex justify-center">
-                            <img src={userData.avatarUrl} className="w-24 h-24 lg:w-32 lg:h-32 rounded-full shadow-lg m-4" alt="User Avatar" />
+                            <img src={userData.avatarUrl} className="w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4" alt="User Avatar" />
                         </div>
                         <div className="mb-4">
                             <label className="block mb-2">Edit Avatar:</label>
@@ -85,14 +85,15 @@ const Profile = () => {
                             <label className="block mb-2">Edit Last Name:</label>
                             <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
                         </div>
-                        <button type="submit" className="btn btn-primary w-full">Save</button>
+                        <button type="submit" className="btn btn-primary w-1/2">Save</button>
+                        <button type="submit" className="btn btn-primary w-1/2">Back</button>
                     </form>
                 </div>
             ) : (
                 <div className="relative w-full flex flex-col justify-center border">
                     <div className="w-full p-6 m-auto bg-gray rounded-lg border border-amber-950 shadow-2xl ring-2 ring-white lg:max-w-xl">
                         <div className="flex justify-center">
-                            <img src={userData.avatarUrl} className="w-24 h-24 lg:w-32 lg:h-32 rounded-full shadow-lg m-4" alt="User Avatar" />
+                            <img src={userData.avatarUrl} className="w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4" alt="User Avatar" />
                         </div>
                         <div className="p-4 lg:p-6">
                             <div className="mb-4 " >

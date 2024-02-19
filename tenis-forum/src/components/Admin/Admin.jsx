@@ -55,7 +55,7 @@ const Admin = () => {
                                 <div className="flex items-center gap-3">
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
-                                            <img src={user.avatarUrl} alt="Avatar Tailwind CSS Component" />
+                                            <img src={user.avatarUrl} alt="User Avatar" />
                                         </div>
                                     </div>
                                     <div>

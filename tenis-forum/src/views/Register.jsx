@@ -55,7 +55,7 @@ const Register = () => {
         try {
             const user = await getUserByUserName(form.username);
             if (user.exists()) {
-                alert("User name already in existence. Please choose another one.");
+                alert("Username already in existence. Please choose another one.");
                 return
             }
             const credentials = await registerUser(form.email, form.password);
@@ -76,7 +76,7 @@ const Register = () => {
             <div className="w-full p-6 m-auto bg-gray border border-amber-950 rounded-md shadow-2xl shad ring-2 ring-white lg:max-w-xl">
                 <h1 className="text-3xl font-semibold text-center text-gray-700">Sign Up</h1>
                 <div>
-                    <label htmlFor="username">User Name: </label>
+                    <label htmlFor="username">Username: </label>
                     <input className="w-full input input-bordered" value={form.username} onChange={updateForm('username')} type="text" name="username" id="username" />
                 </div>
                 <div>
@@ -101,8 +101,8 @@ const Register = () => {
                     <button className="btn btn-ghost btn-circle avatar bg-base-200 w-full" onClick={register} type="primary">Register</button>
                 </div>
                 <br />
-                <span>Already have an account?
-                    <NavLink to="/login" className="text-blue-600 hover:text-blue-800 hover:underline">Log in</NavLink></span>
+                <span className="mr-2">Already have an account?</span>
+                    <NavLink to="/login" className="text-blue-600 hover:text-blue-800 hover:underline">Log in</NavLink>
             </div>
         </div>
     )
