@@ -45,3 +45,4 @@ export const updateUser = async (username, userData) => {
   const userRef = ref(db, `users/${username}`)
   await update(userRef, userData)
 }
+
