@@ -23,9 +23,21 @@ const Profile = () => {
     };
 
     const handleSubmit = async (event) => {
+        debugger
         event.preventDefault();
 
         if (isEditing) {
+            
+            if (formData.firstName.length < 4 || formData.firstName.length > 32) {
+                alert('First name must be between 4 and 32 characters.');
+                return;
+            }
+
+            if (formData.lastName.length < 4 || formData.lastName.length > 32) {
+                alert('Last name must be between 4 and 32 characters.');
+                return;
+            }
+
             try {
                 let avatarUrl = userData.avatarUrl;
                 if (file) {
@@ -103,7 +115,7 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className="mb-4">
-                                <label className="block mb-2">First Name:</label>
+                                <label className="block mb-2">Last Name:</label>
                                 <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
                                     {userData?.lastName}
                                 </div>
