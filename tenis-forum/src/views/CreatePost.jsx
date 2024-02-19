@@ -3,6 +3,7 @@ import AppContext from "../context/AppContext";
 import { addPost } from "../services/post-service";
 import { useNavigate } from "react-router-dom";
 import ReactSelect from 'react-select';
+import TagsInput from "../components/TagsInput/TagsInput";
 
 const CreatePost = () => {
     const { userData } = useContext(AppContext);
@@ -17,6 +18,11 @@ const CreatePost = () => {
     const updatePost = (value, key) => {
         setPost({ ...post, [key]: value });
     }
+
+    const updateTags = (selectedOptions) => {
+        updatePost(selectedOptions || [], 'tags');
+    }
+
     //TODO: Fix the condition for the title and content
     const createPost = async () => {
         if (post.title.length < 16 || post.title.length > 64) {
@@ -44,26 +50,26 @@ const CreatePost = () => {
         navigate('/posts');
     };
 
-    const options = [
-        { value: 'Players', label: 'Players' },
-        { value: 'Tournaments', label: 'Tournaments' },
-        { value: 'Techniques', label: 'Techniques' },
-        { value: 'Gear', label: 'Gear' },
-        { value: 'Matches', label: 'Matches' },
-        { value: 'Strategy', label: 'Strategy' },
-        { value: 'Training', label: 'Training' },
-        { value: 'Fitness', label: 'Fitness' },
-        { value: 'News', label: 'News' },
-        { value: 'Discussion', label: 'Discussion' },
-        { value: 'Tips', label: 'Tips' },
-        { value: 'Equipment', label: 'Equipment' },
-        { value: 'Coaching', label: 'Coaching' },
-        { value: 'Events', label: 'Events' },
-        { value: 'Community', label: 'Community' },
-    ];
+    // const options = [
+    //     { value: 'Players', label: 'Players' },
+    //     { value: 'Tournaments', label: 'Tournaments' },
+    //     { value: 'Techniques', label: 'Techniques' },
+    //     { value: 'Gear', label: 'Gear' },
+    //     { value: 'Matches', label: 'Matches' },
+    //     { value: 'Strategy', label: 'Strategy' },
+    //     { value: 'Training', label: 'Training' },
+    //     { value: 'Fitness', label: 'Fitness' },
+    //     { value: 'News', label: 'News' },
+    //     { value: 'Discussion', label: 'Discussion' },
+    //     { value: 'Tips', label: 'Tips' },
+    //     { value: 'Equipment', label: 'Equipment' },
+    //     { value: 'Coaching', label: 'Coaching' },
+    //     { value: 'Events', label: 'Events' },
+    //     { value: 'Community', label: 'Community' },
+    // ];
 
-    const themeColor1 = getComputedStyle(document.documentElement).getPropertyValue('--theme-color-1');
-    const themeColor2 = getComputedStyle(document.documentElement).getPropertyValue('--theme-color-2');
+    // const themeColor1 = getComputedStyle(document.documentElement).getPropertyValue('--theme-color-1');
+    // const themeColor2 = getComputedStyle(document.documentElement).getPropertyValue('--theme-color-2');
 
     return (
 
@@ -85,7 +91,8 @@ const CreatePost = () => {
                     </select>
                 </div><br />
                 <div>
-                    <label htmlFor="input-tags">Tags</label>
+                    <TagsInput updateTags={updateTags} alreadySelectedTags={post.tags}/>
+                    {/* <label htmlFor="input-tags">Tags</label>
                     <ReactSelect
                         isMulti
                         options={options}
@@ -98,7 +105,7 @@ const CreatePost = () => {
                             multiValueLabel: (provided) => ({ ...provided, color: themeColor2 }),
                             multiValueRemove: (provided) => ({ ...provided, color: themeColor2 }),
                         }}
-                    />
+                    /> */}
                 </div>
                 <br />
                 <div>

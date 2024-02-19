@@ -47,7 +47,7 @@ export const getPostById = async (id) => {
 };
 
 
-export const updatePost = async (postId, title, content, views) => {
+export const updatePost = async (postId, title, content, views, tags) => {
     const postSnapshot = await get(ref(db, `posts/${postId}`));
     if (!postSnapshot.exists()) {
         throw new Error('Post does not exist');
@@ -57,12 +57,17 @@ export const updatePost = async (postId, title, content, views) => {
     if (title) {
         updates[`/posts/${postId}/title`] = title;
     }
+
     if (content) {
         updates[`/posts/${postId}/content`] = content;
     }
 
     if (views || views === 0) {
         updates[`/posts/${postId}/views`] = views;
+    }
+
+    if (tags) {
+        updates[`/posts/${postId}/tags`] = tags
     }
 
     return update(ref(db), updates);
