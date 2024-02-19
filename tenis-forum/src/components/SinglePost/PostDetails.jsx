@@ -208,7 +208,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                     <button onClick={toggleLike} className="btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</button>
                 </div>
                 <div className='user-buttons'>
-                    {userData?.username === post.author || userData?.isAdmin === true && (
+                    {(userData?.username === post.author || userData?.isAdmin === true )&& (
                         <>
                             <div className='edit-button mr-5'>
                                 {isEditing && (
