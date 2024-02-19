@@ -251,7 +251,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                             <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData.avatarUrl} alt="User Avatar" />
                             <div className='flex w-full h-full relative'>
                                 <div className='w-full flex'>
-                                    <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
+                                    <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
                                     <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch '>
                                         <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
                                     </div>
