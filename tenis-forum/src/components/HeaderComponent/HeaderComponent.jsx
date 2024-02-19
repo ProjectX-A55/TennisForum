@@ -45,7 +45,7 @@ export function HeaderComponent() {
                         <li><NavLink to="/posts-create">Create post</NavLink></li>
                         <li><NavLink to="/posts">All post</NavLink></li>
                         <li><NavLink to="/general-discussions">General Discussions</NavLink></li>
-                        {/* <li><NavLink to="/live-matches">Live Matches</NavLink></li> */}
+                        <li><NavLink to="/live-matches">Live Matches</NavLink></li>
                         <li><NavLink to="/women-s-tennis">Women's Tennis</NavLink></li>
                         <li><NavLink to="/men-s-tennis">Men's Tennis</NavLink></li>
                     </ul>
