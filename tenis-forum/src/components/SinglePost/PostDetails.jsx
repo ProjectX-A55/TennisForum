@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/AppContext';
 import { dislikePost, likePost, deletePost, updatePost, getPostById } from '../../services/post-service';
-import { addComment, deleteComment, getComments, getCommentsCount } from '../../services/comment-service'
+import { addComment, deleteComment, getComments, getCommentsCount } from '../../services/comment-service';
+import { getUserByUserName } from '../../services/user-service';
 import { useNavigate } from 'react-router-dom';
 import Comment from '../Comments/Comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,6 +30,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
     const [allComments, setAllComments] = useState([]);
     const [postCommentsCount, setPostCommentsCount] = useState(0);
     const [initialPost, setInitialPost] = useState(post);
+    const [authorAvatar, setAuthorAvatar] = useState(null);
 
     useEffect(() => {
         if (post && post.comments) {
@@ -38,10 +40,15 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
         }
     }, [post])
 
+
     useEffect(() => {
-        setTitle(post.title);
-        setContent(post.content);
-        setTags(mapTags(post.tags));
+        (async () => {
+            const authorSnapshot = (await getUserByUserName(post.author));
+            setTitle(post.title);
+            setContent(post.content);
+            setTags(mapTags(post.tags));
+            setAuthorAvatar(authorSnapshot.val()[Object.keys(authorSnapshot.val())[0]]);
+        })()
     }, [post]);
 
     useEffect(() => {
@@ -126,8 +133,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-
-
+    debugger
     return (
         <div>
             <div className="place-content-center flex flex-col w-auto">
@@ -142,7 +148,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                 <span>{`On: ${post.createdOn}`}</span>
                             </div>
                             <div>
-                                <img src={userData.avatarUrl} className="w-12 h-12 lg:w-12 lg:h-12 rounded-full shadow-lg mr-4" alt="User Avatar" />
+                                <img src={authorAvatar} className="w-12 h-12 lg:w-12 lg:h-12 rounded-full shadow-lg mr-4 ml-4" alt="User Avatar" />
                             </div>
                         </div>
                     </div>
