@@ -45,7 +45,8 @@ const CreatePost = () => {
 
         setPost({
             title: '',
-            content: ''
+            content: '',
+            tags: []
         });
         navigate('/posts');
     };
