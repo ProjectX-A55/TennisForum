@@ -244,7 +244,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                     {Object.keys(allComments).length === 0 && <div className="text-center">No comments yet</div>}
                     {Object.keys(allComments).map((commentKey) =>
                         <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} isAdmin={userData.isAdmin} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
-                    ).reverse()}
+                    )}
                 </div>
             </div>
         </div>
