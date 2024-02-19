@@ -12,7 +12,7 @@ import { getUserData } from '../../services/user-service';
  * @param {{comments: { id: string, author: string, content: string, createdOn: string, authorId: string,},  commentId: string, postId: string, currentUser: string, handleDeleteComment: function}} comments 
  */
 
-const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment }) => {
+const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDeleteComment }) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [newComment, setNewComment] = useState(comments.content);
@@ -34,7 +34,7 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
     };
 
     const handleSaveComment = async () => {
-        if (newComment.length < 1) return alert('Comment cannot be empty!');
+        if (newComment.length < 4 || newComment.length > 1024) return alert('Comment must be between 4 and 1024 characters.');
         try {
             await updateComment(postId, commentId, newComment);
             comments.content = newComment;
@@ -47,13 +47,13 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
         setNewComment(comments.content);
         setIsEditing(false);
     };
-
+    
     return (
         <div className='shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
-                    <div className="w-32 rounded-ls">
-                        <img className='w-20 h-20 ' src={authorData?.avatarUrl} />
+                    <div className="flex justify-center">
+                        <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4' src={authorData?.avatarUrl} />
                     </div>
                     <div className='flex flex-col w-full h-full'>
                         <div className='comment-author-date w-full flex mt-3'>
@@ -81,22 +81,22 @@ const Comment = ({ comments, commentId, postId, currentUser, handleDeleteComment
                 </div>
             </div>
             <div className='comment-buttons flex flex-row items-center justify-end mb-3 ml-auto'>
-                {currentUser === comments.author && isEditing &&
+                {(currentUser === comments.author || isAdmin === true )&& isEditing &&
                     <button className='mr-3' onClick={handleSaveComment}>
                         <FontAwesomeIcon icon={faSave} />
                     </button>
                 }
-                {currentUser === comments.author && isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && isEditing &&
                     <button className='mr-5' onClick={handleCancelEdit}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
                 }
-                {currentUser === comments.author && !isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && !isEditing &&
                     <button className='mr-3' onClick={handleEdit} >
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
                 }
-                {currentUser === comments.author && !isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && !isEditing &&
                     <button className='mr-5' onClick={() => handleDeleteComment(commentId)} type="primary">
                         <FontAwesomeIcon icon={faTrash} />
                     </button>

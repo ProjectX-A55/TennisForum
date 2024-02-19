@@ -93,8 +93,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const handleAddComment = async (event) => {
         event.preventDefault();
-        if (comment.length <= 0) {
-            alert('Comment cannot be empty');
+        if (comment.length < 4 || comment.length > 1024) {
+            alert('Comment must be between 4 and 1024 characters.');
             return;
         }
         try {
@@ -208,7 +208,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                     <button onClick={toggleLike} className="btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</button>
                 </div>
                 <div className='user-buttons'>
-                    {userData?.username === post.author || userData.isAdmin === true && (
+                    {(userData?.username === post.author || userData?.isAdmin === true) && (
                         <>
                             <div className='edit-button mr-5'>
                                 {isEditing && (
@@ -223,10 +223,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             </div>
             <div className='add-comment w-3/4 mt-10 ml-20 '>
                 <form onSubmit={handleAddComment}>
-                    <div className='comment-area flex'>
-                        <div className="avatar w-32 h-24 rounded-md mr-3 shadow shadow-2xl">
-                            <img className='rounded-md' src={userData.avatarUrl} alt="" />
-                        </div>
+                    <div className='flex justify-center'>
+                            <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m' src={userData.avatarUrl} alt="" />
                         <div className='flex w-full h-full relative'>
                             <div className='w-full flex'>
                                 <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-full shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
@@ -245,7 +243,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                 <div className="flex-shrink-0 mb-3" >
                     {Object.keys(allComments).length === 0 && <div className="text-center">No comments yet</div>}
                     {Object.keys(allComments).map((commentKey) =>
-                        <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
+                        <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} isAdmin={userData.isAdmin} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                     ).reverse()}
                 </div>
             </div>

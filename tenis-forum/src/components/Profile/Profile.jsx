@@ -23,7 +23,7 @@ const Profile = () => {
     };
 
     const handleSubmit = async (event) => {
-        debugger
+        
         event.preventDefault();
 
         if (isEditing) {
