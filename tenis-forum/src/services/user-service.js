@@ -1,6 +1,6 @@
 import { get, set, ref, query, equalTo, orderByChild, update } from 'firebase/database';
-import { db, storage } from '../config/firebase-config';
-import { getDownloadURL, uploadBytes, ref as Sref } from 'firebase/storage'
+import { db } from '../config/firebase-config';
+
 
 
 export const getUserByUserName = async (username) => {

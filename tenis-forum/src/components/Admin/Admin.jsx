@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../services/user-service";
+import { getAllUsers, getUserPosts } from "../../services/user-service";
 
 
 const Admin = () => {
     const [users, setUsers] = useState([]);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
 
@@ -16,7 +17,13 @@ const Admin = () => {
         fetchUsers();
     }, []);
 
-
+    // useEffect(() => {
+    //     getUserPosts(users[15]?.username).then((snapshot) => {
+    //        setCount(Object.keys(snapshot.val()).length);
+    //     });
+        
+    // }, [users]);
+    console.log(users[15]?.username);
     return (
 
         <div className="overflow-x-auto">
@@ -29,9 +36,10 @@ const Admin = () => {
                                 <input type="checkbox" className="checkbox" />
                             </label>
                         </th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>User name</th>
+                        <th>Email</th>
+                        <th>Number of posts</th>
+                        <th>Blocked</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -51,19 +59,20 @@ const Admin = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="font-bold">{user.firstName}</div>
-                                        <div className="text-sm opacity-50">{user.lastName}</div>
+                                        <div className="font-bold">{user.username}</div>
+                                        <div className="text-sm opacity-50">{`${user.firstName} ${user.lastName}`}</div>
+
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                Zemlak, Daniel and Leannon
-                                <br />
-                                <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                <div className="email">{user.email}</div>
                             </td>
-                            <td>Purple</td>
                             <th>
-                                <button className="btn btn-ghost btn-xs">details</button>
+                                <div className="font-normal">145 posts</div>
+                            </th>
+                            <th>
+                                <div className="blocked">{user.isBlocked.toString()}</div>
                             </th>
                         </tr>))}
                 </tbody>
@@ -71,9 +80,10 @@ const Admin = () => {
                 <tfoot>
                     <tr>
                         <th></th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>User name</th>
+                        <th>Email</th>
+                        <th>Number of posts</th>
+                        <th>Blocked</th>
                         <th></th>
                     </tr>
                 </tfoot>
