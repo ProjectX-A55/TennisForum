@@ -74,14 +74,15 @@ export const updatePost = async (postId, title, content, views, tags) => {
 };
 
 
-export const deletePost = async (username, postId) => {
+export const deletePost = async (userData, postId) => {
     const postSnapshot = await get(ref(db, `posts/${postId}`));
     if (!postSnapshot.exists()) {
         throw new Error('Post does not exist');
     }
 
     const post = postSnapshot.val();
-    if (post.author !== username | userData.isAdmin === true ) {
+    
+    if (post.author !== userData.username && userData.isAdmin !== true) {
         throw new Error('Only the author can delete this post');
     }
 
