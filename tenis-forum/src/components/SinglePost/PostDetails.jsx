@@ -233,12 +233,9 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         )}
                     </div>
                 </div>
-
-
-
                 <div className='shadow shadow-2xl border border-amber-950 rounded-md text-wrap mr-5 ml-5 mt-10' style={{ overflowWrap: 'break-word' }}>
                     <div className='text-center mt-3 mb-3'>
-                        <h1>Comments</h1>
+                        <h1><b>Comments</b></h1>
                     </div>
                     <div className="flex-shrink-0 mb-3" >
                         {Object.keys(allComments).length === 0 && <div className="text-center">No comments yet</div>}
