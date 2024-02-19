@@ -47,7 +47,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDele
         setNewComment(comments.content);
         setIsEditing(false);
     };
-    debugger
+    
     return (
         <div className='shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
             <div className='add-comment w-full '>
@@ -81,22 +81,22 @@ const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDele
                 </div>
             </div>
             <div className='comment-buttons flex flex-row items-center justify-end mb-3 ml-auto'>
-                {currentUser === comments.author || isAdmin === true && isEditing &&
+                {(currentUser === comments.author || isAdmin === true )&& isEditing &&
                     <button className='mr-3' onClick={handleSaveComment}>
                         <FontAwesomeIcon icon={faSave} />
                     </button>
                 }
-                {currentUser === comments.author || isAdmin === true && isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && isEditing &&
                     <button className='mr-5' onClick={handleCancelEdit}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
                 }
-                {currentUser === comments.author || isAdmin === true && !isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && !isEditing &&
                     <button className='mr-3' onClick={handleEdit} >
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
                 }
-                {currentUser === comments.author || isAdmin === true && !isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && !isEditing &&
                     <button className='mr-5' onClick={() => handleDeleteComment(commentId)} type="primary">
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
