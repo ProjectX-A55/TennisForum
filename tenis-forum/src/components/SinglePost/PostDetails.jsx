@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Comment from '../Comments/Comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faHeart, faComment, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import TagsInput, { mapTags } from '../TagsInput/TagsInput';
 
 /**
  * 
@@ -21,6 +22,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [post, setPost] = useState(postProp);
     const [title, setTitle] = useState(postProp.title);
+    const [tags, setTags] = useState(postProp.tags);
     const [content, setContent] = useState(postProp.content);
     const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState([]);
@@ -38,6 +40,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
     useEffect(() => {
         setTitle(post.title);
         setContent(post.content);
+        setTags(mapTags(post.tags));
     }, [post]);
 
     useEffect(() => {
@@ -59,7 +62,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
     const handleEdit = async () => {
         if (isEditing) {
             try {
-                await updatePost(post.id, title, content);
+                await updatePost(post.id, title, content, post.views, tags.map((tag) => tag.label));
                 const updatedPost = await getPostById(post.id);
                 setPost(updatedPost);
             } catch (error) {
@@ -121,13 +124,16 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                 </div>
                 {isEditing ? (
                     <>
-                        <div className='mr-5 ml-5 mt-5 mb-5'>
+                        <div className='mr-5 ml-5 mt-2 mb-2'>
                             <label htmlFor="input" className="label">
                                 <span className="text-base label-text">Title</span>
                             </label>
                             <input value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Title" className="w-full input input-bordered" />
                         </div>
-                        <div className='mr-5 ml-5 mt-5 mb-5'>
+                        <div className='mr-5 ml-5 mt-2 mb-2'>
+                            <TagsInput updateTags={setTags} alreadySelectedTags={tags}/>
+                        </div>
+                        <div className='mr-5 ml-5 mt-2 mb-2'>
                             <label htmlFor="textarea" className="label">
                                 <span className="text-base label-text">Content</span>
                             </label>

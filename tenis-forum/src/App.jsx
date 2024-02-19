@@ -50,7 +50,7 @@ function App() {
               <Route path='/posts/:id' element={<Authenticated><PostDetailsView /></Authenticated>} />
               <Route path='/posts-create' element={<Authenticated><CreatePost /></Authenticated>} />
               <Route path='/general-discussions' element={<Authenticated><ManagePosts filter={'General Discussions'} /></Authenticated>} />
-              {/* <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} /> */}
+              <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} />
               <Route path='/men-s-tennis' element={<Authenticated><ManagePosts filter={`Men's Tennis`} /></Authenticated>} />
               <Route path='/women-s-tennis' element={<Authenticated><ManagePosts filter={`Women's Tennis`} /></Authenticated>} />
               <Route path='*' element={<NotFound />} />
