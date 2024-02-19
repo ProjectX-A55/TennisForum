@@ -120,7 +120,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const handleDelete = async () => {
         try {
-            await deletePost(userData.username, post.id);
+            await deletePost(userData, post.id);
             navigate('/posts');
         } catch (error) {
             console.error('Failed to delete post:', error);
