@@ -30,7 +30,7 @@ const LogIn = () => {
             const credentials = await loginUser(form.email, form.password);
             setContext({ user: credentials.user, userData: null });
         } catch (error) {
-            console.log(error);
+            alert('Wrong username or password')
         }
     };
 
