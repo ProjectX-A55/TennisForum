@@ -62,7 +62,24 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const handleEdit = async () => {
         if (isEditing) {
+
+            if (title.length < 16 || title.length > 64) {
+                alert('Title must be between 16 and 64 characters.');
+                return;
+            }
+
+            if (content.length < 32 || content.length > 8192) {
+                alert('Title must be between 32 and 8192 characters.');
+                return;
+            }
+
+            if (tags.length < 1) {
+                alert('You must choose at least one tag.');
+                return;
+            }
+
             try {
+
                 await updatePost(post.id, title, content, post.views, tags.map((tag) => tag.label));
                 const updatedPost = await getPostById(post.id);
                 setPost(updatedPost);
@@ -188,7 +205,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             </div>
             <div className='buttons mt-4 flex items-center justify-between'>
                 <div className='like-dislike-button ml-5'>
-                    <button onClick={toggleLike} className="btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike post' : 'Like post'}</button>
+                    <button onClick={toggleLike} className="btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</button>
                 </div>
                 <div className='user-buttons'>
                     {userData?.username === post.author && (

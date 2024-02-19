@@ -89,7 +89,7 @@ const AllPosts = ({ postsFromProps }) => {
             </div>
         ) : (
             <div>
-                <h1 style={{ fontSize: '2em' }}>No posts found. Do you want to create one? You will get a treat, promise.</h1 >
+                <h1 style={{ fontSize: '2em' }}>No posts found. Do you want to create one? We have cookies.</h1 >
                 <div className="create-post">
                     <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
                     

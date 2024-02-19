@@ -25,8 +25,18 @@ const Register = () => {
 
     const register = async () => {
 
-        if (form.username.length < 4) {
-            alert("Username must be at least 4 characters long.");
+        if (form.username.length < 4 || form.username.length > 42) {
+            alert("Username must be between 4 and 42 characters long.");
+            return;
+        }
+
+        if (form.firstName.length < 4 || form.firstName.length > 32) {
+            alert("Username must be between 4 and 42 characters long.");
+            return;
+        }
+
+        if (form.lastName.length < 4 || form.lastName.length > 32) {
+            alert("Username must be between 4 and 42 characters long.");
             return;
         }
 
