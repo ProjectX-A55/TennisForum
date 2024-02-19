@@ -52,8 +52,7 @@ const Profile = () => {
 
         setIsEditing(false);
     };
-
-
+    
     return (
         <div>
             {isEditing ? (

@@ -6,7 +6,7 @@ import { addComment, deleteComment, getComments, getCommentsCount } from '../../
 import { useNavigate } from 'react-router-dom';
 import Comment from '../Comments/Comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faHeart, faComment, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
 import TagsInput, { mapTags } from '../TagsInput/TagsInput';
 
 /**
@@ -14,6 +14,7 @@ import TagsInput, { mapTags } from '../TagsInput/TagsInput';
  * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string, tags: string, topic: string}, togglePostLike: function}} param0 
  * @returns 
  */
+
 const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const { userData } = useContext(AppContext);

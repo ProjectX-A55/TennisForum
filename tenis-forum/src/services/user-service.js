@@ -53,4 +53,4 @@ export async function uploadAvatar(userData, file) {
 
   alert('file uploaded')
   return getDownloadURL(snapshot.ref);
-} 
+}
