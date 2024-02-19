@@ -61,6 +61,22 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const handleEdit = async () => {
         if (isEditing) {
+
+            if (title.length < 16 || title.length > 64) {
+                alert('Title must be between 16 and 64 characters.');
+                return;
+            }
+
+            if (content.length < 32 || content.length > 8192) {
+                alert('Title must be between 32 and 8192 characters.');
+                return;
+            }
+
+            if (tags.length < 1) {
+                alert('You must choose at least one tag.');
+                return;
+            }
+
             try {
 
                 await updatePost(post.id, title, content, post.views, tags.map((tag) => tag.label));
