@@ -23,11 +23,11 @@ const Profile = () => {
     };
 
     const handleSubmit = async (event) => {
-        
+
         event.preventDefault();
 
         if (isEditing) {
-            
+
             if (formData.firstName.length < 4 || formData.firstName.length > 32) {
                 alert('First name must be between 4 and 32 characters.');
                 return;
@@ -64,31 +64,33 @@ const Profile = () => {
 
         setIsEditing(false);
     };
-    
+
     return (
         <div>
             {isEditing ? (
                 <div className="relative w-full flex flex-col justify-center">
-                    <form onSubmit={handleSubmit} className="w-full p-6 m-auto bg-gray rounded-lg shadow-2xl ring-2 ring-white lg:max-w-xl border border-amber-950">
-                        <div className="flex justify-center">
-                            <img src={userData.avatarUrl} className="w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4" alt="User Avatar" />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2">Edit Avatar:</label>
-                            <input type="file" onChange={handleFileChange} className="file-input w-full max-w-xs" />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2">Edit First Name:</label>
-                            <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block mb-2">Edit Last Name:</label>
-                            <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
-                        </div>
-                        <button type="submit" className="btn btn-primary w-1/2 pr-20">Save</button>
-                        <button type="submit" className="btn btn-primary w-1/2 pl-20">Back</button>
-                    </form>
-                </div>
+                <form onSubmit={handleSubmit} className="w-full p-6 m-auto bg-gray rounded-lg shadow-2xl ring-2 ring-white lg:max-w-xl border border-amber-950">
+                    <div className="flex justify-center">
+                        <img src={userData.avatarUrl} className="w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4" alt="User Avatar" />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Edit Avatar:</label>
+                        <input type="file" onChange={handleFileChange} className="file-input w-full max-w-xs" />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Edit First Name:</label>
+                        <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Edit Last Name:</label>
+                        <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
+                    </div>
+                    <div className="flex justify-between">
+            <button type="submit" className="btn btn-primary w-1/2 pr-2 text-center">Save</button>
+            <button type="submit" className="btn btn-primary w-1/2 pl-2 ml-2 mr-2 text-center">Back</button>
+        </div>
+                </form>
+            </div>
             ) : (
                 <div className="relative w-full flex flex-col justify-center border">
                     <div className="w-full p-6 m-auto bg-gray rounded-lg border border-amber-950 shadow-2xl ring-2 ring-white lg:max-w-xl">

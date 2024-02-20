@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllUsers, getUserByUserName, getUserPosts, updateUser } from "../../services/user-service";
 
 
+
 const Admin = () => {
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +37,11 @@ const Admin = () => {
         setUsers(prevUsers => prevUsers.map(u => u.username === username ? { ...u, isBlocked: user.isBlocked } : u));
     };
 
+    const totalPages = Math.ceil(users.length / usersPerPage);
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -43,12 +49,12 @@ const Admin = () => {
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
-    
+
 
     return (
         <div className="overflow-x-auto">
             <input className="input input-bordered w-24 md:w-auto mt-2 mb-2" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search users" />
-            <table className="table">
+            <table className="table ">
                 {/* head */}
                 <thead>
                     <tr>
@@ -101,9 +107,12 @@ const Admin = () => {
                     ))}
                 </tbody>
             </table>
-            <div className="join grid grid-cols-2 w-1/4 mx-auto mt-7">
-                {currentPage > 1 && <button className="join-item btn btn-outline" onClick={() => paginate(currentPage - 1)}>Previous</button>}
-                {currentPage < Math.ceil(users.length / usersPerPage) && <button className="join-item btn btn-outline" onClick={() => paginate(currentPage + 1)}>Next</button>}
+            <div className="justify-center flex">
+                {currentPage > 1 && <button className="join-item btn btn-outline mr-1" onClick={() => paginate(currentPage - 1)}>Previous</button>}
+                {pageNumbers.map(number => (
+                    <button key={number} className={`join-item btn mr-1 ${number === currentPage ? 'btn-primary' : ''}`} onClick={() => paginate(number)}>{number}</button>
+                ))}
+                {currentPage < totalPages && <button className="join-item btn btn-outline" onClick={() => paginate(currentPage + 1)}>Next</button>}
             </div>
         </div>
 

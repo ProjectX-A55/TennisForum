@@ -7,6 +7,8 @@ const AllPosts = ({ postsFromProps }) => {
     const [posts, setPosts] = useState([])
     const [searchParams, setSearchParams] = useSearchParams();
     const [sortType, setSortType] = useState('newest');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(5);
 
     const navigate = useNavigate()
 
@@ -36,6 +38,7 @@ const AllPosts = ({ postsFromProps }) => {
         ))
     }
 
+
     const sortPosts = (posts) => {
         switch (sortType) {
             case 'newest':
@@ -53,6 +56,18 @@ const AllPosts = ({ postsFromProps }) => {
         }
     }
 
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const totalPages = Math.ceil(posts.length / postsPerPage);
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
     return (
         posts.length > 0 ? (
             <div className="posts w-full mt-7 mb-5">
@@ -64,28 +79,35 @@ const AllPosts = ({ postsFromProps }) => {
                             </div>
                         </div>
                         <div className="flex">
-                        <div className="create-post">
-                            <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
-                        </div>
-                        <div className="sort">
-                            <div className="dropdown dropdown-bottom">
-                                <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
-                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a onClick={() => setSortType('newest')}>Newest</a></li>
-                                    <li><a onClick={() => setSortType('oldest')}>Oldest</a></li>
-                                    <li><a onClick={() => setSortType('mostLiked')}>Most Liked</a></li>
-                                    <li><a onClick={() => setSortType('mostCommented')}>Most Commented</a></li>
-                                    <li><a onClick={() => setSortType('mostViews')}>Most Views</a></li>
-                                </ul>
+                            <div className="create-post">
+                                <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
                             </div>
-                        </div>
+                            <div className="sort">
+                                <div className="dropdown dropdown-bottom">
+                                    <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li><a onClick={() => setSortType('newest')}>Newest</a></li>
+                                        <li><a onClick={() => setSortType('oldest')}>Oldest</a></li>
+                                        <li><a onClick={() => setSortType('mostLiked')}>Most Liked</a></li>
+                                        <li><a onClick={() => setSortType('mostCommented')}>Most Commented</a></li>
+                                        <li><a onClick={() => setSortType('mostViews')}>Most Views</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="all-posts">
-                    {sortPosts(posts).map((post) => (
+                    {sortPosts(currentPosts).map((post) => (
                         <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
                     ))}
+                </div>
+                <div className="justify-center flex">
+                    {currentPage > 1 && <button className="join-item btn btn-outline mr-1" onClick={() => paginate(currentPage - 1)}>Previous</button>}
+                    {pageNumbers.map(number => (
+                        <button key={number} className={`join-item btn mr-1 ${number === currentPage ? 'btn-primary' : ''}`} onClick={() => paginate(number)}>{number}</button>
+                    ))}
+                    {currentPage < totalPages && <button className="join-item btn btn-outline" onClick={() => paginate(currentPage + 1)}>Next</button>}
                 </div>
             </div>
         ) : (
@@ -93,7 +115,6 @@ const AllPosts = ({ postsFromProps }) => {
                 <h1 style={{ fontSize: '2em' }}>No posts found. Do you want to create one? We have cookies.</h1 >
                 <div className="create-post">
                     <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
-                    
                 </div>
                 <div onClick={() => navigate('/posts')} role="button" className="btn m-1">Back</div>
             </div>

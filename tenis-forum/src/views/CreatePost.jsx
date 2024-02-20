@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import AppContext from "../context/AppContext";
 import { addPost } from "../services/post-service";
 import { useNavigate } from "react-router-dom";
-import ReactSelect from 'react-select';
 import TagsInput from "../components/TagsInput/TagsInput";
 
 const CreatePost = () => {
