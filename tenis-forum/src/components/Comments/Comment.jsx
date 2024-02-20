@@ -12,7 +12,7 @@ import { getUserData } from '../../services/user-service';
  * @param {{comments: { id: string, author: string, content: string, createdOn: string, authorId: string,},  commentId: string, postId: string, currentUser: string, handleDeleteComment: function}} comments 
  */
 
-const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDeleteComment }) => {
+const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin, handleDeleteComment }) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [newComment, setNewComment] = useState(comments.content);
@@ -81,17 +81,17 @@ const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDele
                 </div>
             </div>
             <div className='comment-buttons flex flex-row items-center justify-end mb-3 ml-auto'>
-                {(currentUser === comments.author || isAdmin === true ) && isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && isBlocked === false && isEditing &&
                     <button className='mr-3' onClick={handleSaveComment}>
                         <FontAwesomeIcon icon={faSave} />
                     </button>
                 }
-                {(currentUser === comments.author || isAdmin === true) && isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && isBlocked === false && isEditing &&
                     <button className='mr-5' onClick={handleCancelEdit}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
                 }
-                {(currentUser === comments.author || isAdmin === true) && !isEditing &&
+                {(currentUser === comments.author || isAdmin === true) && isBlocked === false && !isEditing &&
                     <button className='mr-3' onClick={handleEdit} >
                         <FontAwesomeIcon icon={faEdit} />
                     </button>

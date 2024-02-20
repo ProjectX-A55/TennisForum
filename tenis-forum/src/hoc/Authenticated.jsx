@@ -19,14 +19,14 @@ export default function Authenticated({ children }) {
     return <Navigate replace to="/login" state={{ from: location }} />
   }
 
-  if (userData.isBlocked === true) {
-    return (
-      <div>
-          <h1 style={{ fontSize: '2em' }}>You can't see posts or leave comments because you are banned. Sorry not sorry. Hasta la vista, baby. </h1 >
-          <div onClick={() => navigate('/')} role="button" className="btn m-1">Back</div>
-      </div>
-  )
-  }
+  // if (userData.isBlocked === true) {
+  //   return (
+  //     <div>
+  //         <h1 style={{ fontSize: '2em' }}>You can't see posts or leave comments because you are banned. Sorry not sorry. Hasta la vista, baby. </h1 >
+  //         <div onClick={() => navigate('/')} role="button" className="btn m-1">Back</div>
+  //     </div>
+  // )
+  // }
 
   return (
     <>

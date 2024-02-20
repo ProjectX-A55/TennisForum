@@ -220,7 +220,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         <button onClick={toggleLike} className=" btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</button>
                     </div>
                     <div className='user-buttons'>
-                        {(userData?.username === post.author || userData?.isAdmin === true) && (
+                        {(userData?.username === post.author || userData?.isAdmin === true) && userData?.isBlocked === false && (
                             <>
                                 <div className='edit-button mr-5'>
                                     {isEditing && (
@@ -240,9 +240,9 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                     <div className="flex-shrink-0 mb-3" >
                         {Object.keys(allComments).length === 0 && <div className="text-center">No comments yet</div>}
                         {Object.keys(allComments).map((commentKey) =>
-                            <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} isAdmin={userData.isAdmin} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
+                            <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} isBlocked={userData.isBlocked} isAdmin={userData.isAdmin} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                         )}
-                        <div className='add-comment w-3/4 mt-10 ml-20 '>
+                        {userData.isBlocked ? <h1 className="shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby. </h1 > : <div className='add-comment w-3/4 mt-10 ml-20 '>
                             <form onSubmit={handleAddComment}>
                                 <div className='flex justify-center'>
                                     <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData.avatarUrl} alt="User Avatar" />
@@ -256,7 +256,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>
