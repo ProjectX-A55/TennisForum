@@ -2,13 +2,13 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { logoutUser } from "../../services/auth-service"
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
-import { getAllUsers } from "../../services/user-service";
+
 
 export function HeaderComponent() {
 
     const { user, setContext } = useContext(AppContext)
     const { userData } = useContext(AppContext)
-    const [users, setUsers] = useState([])
+   
     const [avatarUrl, setAvatarUrl] = useState(userData?.avatarUrl);
 
     const navigate = useNavigate();
@@ -17,21 +17,13 @@ export function HeaderComponent() {
         setAvatarUrl(userData?.avatarUrl);
     }, [userData]);
 
-    useEffect(() => {
-
-        const fetchUsers = async () => {
-            const usersSnapshot = await getAllUsers();
-            const users = usersSnapshot.val();
-            setUsers(users ? Object.values(users) : []);
-        };
-
-        fetchUsers();
-    }, []);
-
+   
     const logout = async () => {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
+
+    
     
     return (
         <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center fixed top-0 w-full z-10 shadow shadow-xl">
@@ -41,12 +33,12 @@ export function HeaderComponent() {
                 <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><NavLink to="/posts-create">Create post</NavLink></li>
-                        <li><NavLink to="/posts">All posts</NavLink></li>
-                        <li><NavLink to="/general-discussions">General Discussions</NavLink></li>
-                        <li><NavLink to="/live-matches">Live Matches</NavLink></li>
-                        <li><NavLink to="/women-s-tennis">Women's Tennis</NavLink></li>
-                        <li><NavLink to="/men-s-tennis">Men's Tennis</NavLink></li>
+                        <li><NavLink to="/posts-create">{`Create post`}</NavLink></li>
+                        <li><NavLink to="/posts">{`All posts`}</NavLink></li>
+                        <li><NavLink to="/general-discussions">{`General Discussions`}</NavLink></li>
+                        <li><NavLink to="/live-matches">{`Live Matches`}</NavLink></li>
+                        <li><NavLink to="/women-s-tennis">{`Women's Tennis`}</NavLink></li>
+                        <li><NavLink to="/men-s-tennis">{`Men's Tennis`}</NavLink></li>
                     </ul>
                 </div>
             </div>
