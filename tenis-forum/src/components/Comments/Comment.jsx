@@ -81,7 +81,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isAdmin, handleDele
                 </div>
             </div>
             <div className='comment-buttons flex flex-row items-center justify-end mb-3 ml-auto'>
-                {(currentUser === comments.author || isAdmin === true )&& isEditing &&
+                {(currentUser === comments.author || isAdmin === true ) && isEditing &&
                     <button className='mr-3' onClick={handleSaveComment}>
                         <FontAwesomeIcon icon={faSave} />
                     </button>

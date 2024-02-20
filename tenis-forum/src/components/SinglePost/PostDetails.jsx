@@ -133,7 +133,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-    debugger
+    
     return (
         <div>
             <div className="place-content-center flex flex-col w-auto">

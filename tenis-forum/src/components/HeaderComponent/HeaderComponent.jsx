@@ -42,7 +42,7 @@ export function HeaderComponent() {
                     <div tabIndex={0} role="button" className="btn m-1">Menu</div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li><NavLink to="/posts-create">Create post</NavLink></li>
-                        <li><NavLink to="/posts">All post</NavLink></li>
+                        <li><NavLink to="/posts">All posts</NavLink></li>
                         <li><NavLink to="/general-discussions">General Discussions</NavLink></li>
                         <li><NavLink to="/live-matches">Live Matches</NavLink></li>
                         <li><NavLink to="/women-s-tennis">Women's Tennis</NavLink></li>
