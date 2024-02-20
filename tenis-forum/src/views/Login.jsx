@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { loginUser } from "../services/auth-service";
-
 
 const LogIn = () => {
     const { user, setContext } = useContext(AppContext);
@@ -45,20 +44,24 @@ const LogIn = () => {
                     <div className="card-body">
                         <div className="form-control">
                             <label htmlFor="email">Email: </label>
-                            <input className="input input-bordered" 
-                            value={form.email} onChange={updateForm('email')} 
-                            type="text" placeholder="email" 
-                            name="email" />
+                            <input className="input input-bordered"
+                                value={form.email} onChange={updateForm('email')}
+                                type="text" placeholder="email"
+                                name="email" />
                         </div>
                         <div className="form-control">
                             <label htmlFor="password">Password: </label>
-                            <input className="input input-bordered" 
-                            value={form.password} onChange={updateForm('password')} 
-                            type="password" placeholder="password" 
-                            name="password" />
+                            <input className="input input-bordered"
+                                value={form.password} onChange={updateForm('password')}
+                                type="password" placeholder="password"
+                                name="password" />
                         </div>
-                        <div className="form-control mt-6">
+                        <div className="form-control mt-4">
                             <button className="btn btn-primary" onClick={login}>Log in</button>
+                        </div>
+                        <div>
+                            <span className="mr-2">Don't have an account?</span>
+                            <NavLink to="/register" className="text-blue-600 hover:text-blue-800 hover:underline">Register</NavLink>
                         </div>
                     </div>
                 </div>
