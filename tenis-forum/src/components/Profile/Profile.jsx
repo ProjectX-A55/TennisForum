@@ -85,8 +85,8 @@ const Profile = () => {
                             <label className="block mb-2">Edit Last Name:</label>
                             <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
                         </div>
-                        <button type="submit" className="btn btn-primary w-1/2">Save</button>
-                        <button type="submit" className="btn btn-primary w-1/2">Back</button>
+                        <button type="submit" className="btn btn-primary w-1/2 pr-20">Save</button>
+                        <button type="submit" className="btn btn-primary w-1/2 pl-20">Back</button>
                     </form>
                 </div>
             ) : (

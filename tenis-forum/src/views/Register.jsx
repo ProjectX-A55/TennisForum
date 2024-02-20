@@ -45,12 +45,11 @@ const Register = () => {
             alert("Please enter a valid email.");
             return;
         }
-        //TODO: Add password validation
-        // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
-        // if (!passwordRegex.test(form.password)) {
-        //     alert("Password must be at least 8 characters long, contain at least one letter, one number and one special character.");
-        //     return;
-        // }
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+        if (!passwordRegex.test(form.password)) {
+            alert("Password must be at least 8 characters long, contain at least one letter, one number and one special character.");
+            return;
+        }
 
         try {
             const user = await getUserByUserName(form.username);
