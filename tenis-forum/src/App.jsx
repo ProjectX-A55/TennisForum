@@ -17,6 +17,7 @@ import ManagePosts from './views/ManagePosts'
 import Footer from './components/Footer/Footer'
 import NotFound from './views/404'
 import AdminPanelView from './views/AdminPanelView'
+import AdminRoute from './hoc/AdminRoute'
 
 function App() {
   const [context, setContext] = useState({
@@ -36,6 +37,7 @@ function App() {
     }
   }, [user]);
 
+  
   return (
     <BrowserRouter>
       <AppContext.Provider value={{ ...context, setContext }}>
@@ -54,7 +56,7 @@ function App() {
               <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} />
               <Route path='/men-s-tennis' element={<Authenticated><ManagePosts filter={`Men's Tennis`} /></Authenticated>} />
               <Route path='/women-s-tennis' element={<Authenticated><ManagePosts filter={`Women's Tennis`} /></Authenticated>} />
-              <Route path='/admin' element={<AdminPanelView />} />
+              <Route path='/admin' element={<AdminRoute userData={context.userData}><AdminPanelView/></AdminRoute>}/>
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>

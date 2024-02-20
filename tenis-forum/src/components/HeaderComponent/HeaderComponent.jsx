@@ -28,13 +28,11 @@ export function HeaderComponent() {
         fetchUsers();
     }, []);
 
-    
-
     const logout = async () => {
         await logoutUser()
         setContext({ user: null, userData: null })
     }
-
+    
     return (
         <div className="navbar bg-base-100 mb-10 border rounded flex justify-between items-center fixed top-0 w-full z-10 shadow shadow-xl">
 
@@ -68,6 +66,7 @@ export function HeaderComponent() {
                         <ul tabIndex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                             <li><NavLink to="/profile">Profile</NavLink></li>
                             <li onClick={logout} role="button"><NavLink to="/">Log out</NavLink></li>
+                            {userData?.isAdmin && <li><NavLink to="/admin">Admin panel</NavLink></li>}
                         </ul>
                     </div>
                 )
