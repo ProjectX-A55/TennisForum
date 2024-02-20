@@ -31,6 +31,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
     const [postCommentsCount, setPostCommentsCount] = useState(0);
     const [initialPost, setInitialPost] = useState(post);
     const [authorAvatar, setAuthorAvatar] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [commentPerPage] = useState(5);
 
     useEffect(() => {
         if (post && post.comments) {
@@ -133,7 +135,19 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             console.error('Failed to delete post:', error);
         }
     }
-    
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const totalPages = Math.ceil(Object.keys(allComments).length / commentPerPage);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
+    const indexOfLastPost = currentPage * commentPerPage;
+    const indexOfFirstPost = indexOfLastPost - commentPerPage;
+    const currentComment = Object.keys(allComments).slice(indexOfFirstPost, indexOfLastPost);
+
     return (
         <div>
             <div className="place-content-center flex flex-col w-auto">
@@ -183,7 +197,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                 </div>
                                 <div className='card content shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
                                     <p className='ml-5 mr-5 mb-5 mt-5'>
-                                        {post.content.trim().split('\n').map((paragraph) => <p>{paragraph}<br/></p>)}
+                                        {post.content.trim().split('\n').map((paragraph) => <p>{paragraph}<br /></p>)}
                                     </p>
                                 </div>
                             </>)}
@@ -238,19 +252,26 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         <h1><b>Comments</b></h1>
                     </div>
                     <div className="flex-shrink-0 mb-3" >
-                        {Object.keys(allComments).length === 0 && <div className="text-center">No comments yet</div>}
-                        {Object.keys(allComments).map((commentKey) =>
+                        {Object.keys(allComments).length === 0 && <div className="text-center">{`No comments yet`}</div>}
+                        {currentComment.map((commentKey) =>
                             <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} isBlocked={userData.isBlocked} isAdmin={userData.isAdmin} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                         )}
-                        {userData.isBlocked ? <h1 className="shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby. </h1 > : <div className='add-comment w-3/4 mt-10 ml-20 '>
+                        <div className="justify-center flex">
+                            {currentPage > 1 && <button className="join-item btn btn-outline mr-1" onClick={() => paginate(currentPage - 1)}>Previous</button>}
+                            {pageNumbers.map(number => (
+                                <button key={number} className={`join-item btn mr-1 ${number === currentPage ? 'btn-primary' : ''}`} onClick={() => paginate(number)}>{number}</button>
+                            ))}
+                            {currentPage < totalPages && <button className="join-item btn btn-outline" onClick={() => paginate(currentPage + 1)}>Next</button>}
+                        </div>
+                        {userData.isBlocked ? <h1 className="shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 > : <div className='add-comment w-3/4 mt-10 ml-20 '>
                             <form onSubmit={handleAddComment}>
-                                <div className='flex justify-center'>
+                                <div className='flex justify-center mb-5'>
                                     <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData.avatarUrl} alt="User Avatar" />
                                     <div className='flex w-full h-full relative'>
                                         <div className='w-full flex'>
                                             <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
                                             <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch '>
-                                                <button className="btn btn-outline btn-primary self-stretch" type="submit">Add comment</button>
+                                                <button className="btn btn-outline btn-primary self-stretch" type="submit">{`Add comment`}</button>
                                             </div>
                                         </div>
                                     </div>
