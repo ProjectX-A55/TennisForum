@@ -28,21 +28,25 @@ const Home = () => {
 
 
     const sortPosts = (posts) => {
+        let sortedPosts;
         switch (sortType) {
             case 'mostCommented':
-                return [...posts].sort((a, b) => (b.comments ? Object.values(b.comments).length : 0) - (a.comments ? Object.values(a.comments).length : 0));
+                sortedPosts = [...posts].sort((a, b) => (b.comments ? Object.values(b.comments).length : 0) - (a.comments ? Object.values(a.comments).length : 0));
+                break;
             case 'mostViews':
-                return [...posts].sort((a, b) => (b.views ? b.views : 0) - (a.views ? a.views : 0));
+                sortedPosts = [...posts].sort((a, b) => (b.views ? b.views : 0) - (a.views ? a.views : 0));
+                break;
             default:
-                return posts.slice(0, 10);
+                sortedPosts = [...posts];
+                break;
         }
+        return sortedPosts.slice(0, 10);
     }
 
     return (
-
         <div className="posts w-auto w-full  mb-5 justify-center">
-
             <div className="stats shadow shadow-2xl flex mb-10 w-2/4 mx-auto border border-amber-950">
+
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -68,9 +72,8 @@ const Home = () => {
                     <div className="stat-title">Users</div>
                     <div className="stat-value">{usersNumber}</div>
                     <div className="stat-desc">↗︎ 400 (22%)</div>
-
                 </div>
-
+                
             </div>
             <div className="all-posts">
                 <div className="flex mb-5 w-3/4 mx-auto">

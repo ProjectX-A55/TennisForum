@@ -5,6 +5,7 @@ import { getAllUsers, getUserByUserName, getUserPosts, updateUser } from "../../
 const Admin = () => {
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState('');
     const usersPerPage = 6;
 
     useEffect(() => {
@@ -38,13 +39,15 @@ const Admin = () => {
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
-
+    const currentUsers = users.filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase())).slice(indexOfFirstUser, indexOfLastUser);
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
+    
+
     return (
         <div className="overflow-x-auto">
+            <input className="input input-bordered w-24 md:w-auto mt-2 mb-2" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search users" />
             <table className="table">
                 {/* head */}
                 <thead>

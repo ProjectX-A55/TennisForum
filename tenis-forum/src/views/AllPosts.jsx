@@ -22,8 +22,9 @@ const AllPosts = ({ postsFromProps }) => {
     }, [postsFromProps])
 
     useEffect(() => {
-        setPosts(posts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())))
-    }, [search])
+        const filteredPosts = postsFromProps.filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
+        setPosts(filteredPosts);
+    }, [search, postsFromProps])
 
     const togglePostLike = (username, id) => {
         setPosts(posts.map(post => {
