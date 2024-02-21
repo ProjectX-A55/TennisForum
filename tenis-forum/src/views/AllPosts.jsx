@@ -57,7 +57,7 @@ const AllPosts = ({ postsFromProps }) => {
     }
 
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    
     const totalPages = Math.ceil(posts.length / postsPerPage);
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
@@ -67,6 +67,7 @@ const AllPosts = ({ postsFromProps }) => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         posts.length > 0 ? (

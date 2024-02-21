@@ -37,15 +37,23 @@ const Admin = () => {
         setUsers(prevUsers => prevUsers.map(u => u.username === username ? { ...u, isBlocked: user.isBlocked } : u));
     };
 
-    const totalPages = Math.ceil(users.length / usersPerPage);
+    // Filter users first
+    const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    // Then calculate total pages
+    const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
 
+    // Then calculate the indices
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase())).slice(indexOfFirstUser, indexOfLastUser);
+
+    // Then get the current users
+    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
