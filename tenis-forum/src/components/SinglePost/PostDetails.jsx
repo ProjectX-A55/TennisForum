@@ -197,7 +197,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                 </div>
                                 <div className='card content shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
                                     <p className='ml-5 mr-5 mb-5 mt-5'>
-                                        {post.content.trim().split('\n').map((paragraph) => <p>{paragraph}<br /></p>)}
+                                        {post.content.trim().split('\n').map((paragraph, index) => <p key={index}>{paragraph}<br /></p>)}
                                     </p>
                                 </div>
                             </>)}
