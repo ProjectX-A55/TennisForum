@@ -162,7 +162,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                 <span>{`On: ${post.createdOn}`}</span>
                             </div>
                             <div>
-                                <img src={authorAvatar} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full shadow-lg mr-4 ml-4" alt="User Avatar" />
+                                <img src={authorAvatar} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full ring ring-accent ring-offset-base-100 ring-offset-5 mr-4 ml-4" alt="User Avatar" />
                             </div>
                         </div>
                     </div>

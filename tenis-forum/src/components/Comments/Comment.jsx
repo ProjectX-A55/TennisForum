@@ -53,7 +53,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin,
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
                     <div className="flex justify-center ml-3">
-                        <img className='w-24 h-24 sm:w-20 sm:h-20 md:w-16 md:h-16 lg:w-12 lg:h-12 rounded-full shadow-lg mt-4' src={authorData?.avatarUrl} />
+                        <img className='w-24 h-24 sm:w-20 sm:h-20 md:w-16 md:h-16 lg:w-12 lg:h-12 rounded-full ring ring-accent ring-offset-base-100 ring-offset-5 mt-4' src={authorData?.avatarUrl} />
                     </div>
                     <div className='flex flex-col w-full h-full'>
                         <div className='comment-author-date w-full flex m-5'>
