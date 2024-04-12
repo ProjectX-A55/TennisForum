@@ -52,9 +52,10 @@ const CreatePost = () => {
 
     return (
         <>
-            {userData.isBlocked ? <h1 className="shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>You can't create a new post because you are banned. Sorry not sorry. Hasta la vista, baby. </h1 > 
+            {userData.isBlocked ? 
+            <h1 className="shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7">{`You can't create a new post because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 > 
                 :
-                <div className="relative w-full flex flex-col  justify-center ">
+                <div className="relative w-full flex flex-col  justify-center mt-12">
                     <div className="w-full p-6 m-auto bg-gray rounded-md shadow-2xl ring-2 ring-white lg:max-w-xl" style={{ borderColor: '#654321' }}>
                         <h1 className="text-3xl font-semibold text-center">Create a post</h1>
                         <div>
