@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 import { updateUser } from "../../services/user-service";
 import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
@@ -10,6 +10,7 @@ const Profile = () => {
 
     const [formData, setFormData] = useState(userData)
     const [file, setFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
@@ -21,6 +22,18 @@ const Profile = () => {
             [event.target.name]: event.target.value
         });
     };
+
+    useEffect(() => {
+        if (!file) {
+            setPreviewUrl(null);
+            return;
+        }
+
+        const objectUrl = URL.createObjectURL(file);
+        setPreviewUrl(objectUrl);
+
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [file]);
 
     const handleSubmit = async (event) => {
 
@@ -36,7 +49,7 @@ const Profile = () => {
         }
 
         try {
-            let avatarUrl = userData.avatarUrl;
+            let avatarUrl = userData?.avatarUrl;
             if (file) {
                 const storageReference = storageRef(storage, `avatars/${userData.username}`);
                 await uploadBytes(storageReference, file);
@@ -60,74 +73,12 @@ const Profile = () => {
 
     };
 
-    console.log(formData)
     return (
-        // <div>
-        //     {isEditing ? (
-        //         <div className="relative w-full flex flex-col justify-center">
-        //             <form onSubmit={handleSubmit} className="w-full p-6 m-auto bg-gray rounded-lg shadow-2xl ring-2 ring-white lg:max-w-xl border border-amber-950">
-        //                 <div className="flex justify-center">
-        //                     <img src={userData.avatarUrl} className="w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4" alt="User Avatar" />
-        //                 </div>
-        //                 <div className="mb-4">
-        //                     <label className="block mb-2">Edit Avatar:</label>
-        //                     <input type="file" onChange={handleFileChange} className="file-input w-full max-w-xs" />
-        //                 </div>
-        //                 <div className="mb-4">
-        //                     <label className="block mb-2">Edit First Name:</label>
-        //                     <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full input input-bordered" />
-        //                 </div>
-        //                 <div className="mb-4">
-        //                     <label className="block mb-2">Edit Last Name:</label>
-        //                     <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full input input-bordered" />
-        //                 </div>
-        //                 <div className="flex justify-between">
-        //                     <button type="submit" className="btn btn-primary w-1/2 pr-2 text-center">Save</button>
-        //                     <button type="submit" className="btn btn-primary w-1/2 pl-2 ml-2 mr-2 text-center">Back</button>
-        //                 </div>
-        //             </form>
-        //         </div>
-        //     ) : (
-        //         <div className="relative w-full flex flex-col justify-center border">
-        //             <div className="w-full p-6 m-auto bg-gray rounded-lg border border-amber-950 shadow-2xl ring-2 ring-white lg:max-w-xl">
-        //                 <div className="flex justify-center">
-        //                     <img src={userData.avatarUrl} className="w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4" alt="User Avatar" />
-        //                 </div>
-        //                 <div className="p-4 lg:p-6">
-        //                     <div className="mb-4 " >
-        //                         <label className="block mb-2">Username:</label>
-        //                         <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
-        //                             {userData.username}
-        //                         </div>
-        //                     </div>
-        //                     <div className="mb-4">
-        //                         <label className="block mb-2">Email:</label>
-        //                         <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
-        //                             {userData.email}
-        //                         </div>
-        //                     </div>
-        //                     <div className="mb-4">
-        //                         <label className="block mb-2">First Name:</label>
-        //                         <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
-        //                             {userData?.firstName}
-        //                         </div>
-        //                     </div>
-        //                     <div className="mb-4">
-        //                         <label className="block mb-2">Last Name:</label>
-        //                         <div className="w-full p-2 m-auto bg-gray rounded-lg shadow-lg ring-2 ring-white lg:max-w-xl border border-amber-950">
-        //                             {userData?.lastName}
-        //                         </div>
-        //                     </div>
-        //                     <button className="btn btn-primary w-full mt-7" onClick={() => setIsEditing(true)}>Edit Profile</button>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     )}
-        // </div>
+
         <div className="flex flex-col lg:flex-row">
             <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:w-1/6 ml-5 mb-5 lg:mb-0">
                 <div className="">
-                    <ul className="menu bg-base-200 w-56 rounded-box">
+                    <ul className="menu w-56 rounded-box border shadow">
                         <li><a>Item 1</a></li>
                         <li><a>Item 2</a></li>
                         <li><a>Item 3</a></li>
@@ -143,10 +94,10 @@ const Profile = () => {
                                 <div className="items-start flex flex-col mt-2">
                                     <div className="avatar">
                                         <div className="w-28 rounded-full">
-                                            <img src={userData?.avatarUrl} />
+                                            <img src={previewUrl || userData?.avatarUrl} />
                                         </div>
                                     </div>
-                                    <input type="file" onChange={handleFileChange} className="file-input w-full max-w-xs" />
+                                    <input type="file" onChange={handleFileChange} className="file-input w-full max-w-xs mt-2" />
                                 </div>
                             </div>
                         </div>
@@ -157,21 +108,21 @@ const Profile = () => {
                         <div id="firs-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">User name</label>
-                                <input type="text" placeholder="Type here" className="input input-bordered w-full" />
+                                <input type="text" placeholder="Type here" className="input input-bordered w-full mt-2" />
                             </div>
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">Email</label>
-                                <input type="text" placeholder="Type here" className="input input-bordered w-full" />
+                                <input type="text" placeholder="Type here" className="input input-bordered w-full mt-2" />
                             </div>
                         </div>
                         <div id="second-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">First name</label>
-                                <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="input input-bordered w-full" />
+                                <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">Last name</label>
-                                <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="input input-bordered w-full" />
+                                <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
 
                         </div>
@@ -183,6 +134,7 @@ const Profile = () => {
                 </div>
             </form>
         </div>
+        
     );
 
 };
