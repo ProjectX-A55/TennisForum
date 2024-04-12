@@ -50,53 +50,53 @@ const PostInfo = ({ post }) => {
 
     
     return (
-        <div className="flex flex-row justify-center items-center h-auto mb-4">
-            <div className=" border border-amber-950 rounded-lg w-3/4 shadow-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
-                <div className="card-normal cursor-pointer flex" onClick={handleClick}>
-                    <div className='w-1/4'>
-                        <div className="avatar ml-12 mb-4 mt-4">
-                            <div className="w-36 h-36 btn btn-ghost btn-circle avatar">
-                                <img src={author?.avatarUrl} />
-                            </div>
+
+    <div className="flex flex-col md:flex-row justify-center items-center h-auto mb-4">
+        <div className="border border-amber-950 rounded-lg w-full md:w-3/4 shadow-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
+            <div className="card-normal cursor-pointer flex flex-col md:flex-row" onClick={handleClick}>
+                <div className='w-full md:w-1/4'>
+                    <div className="avatar ml-12 mb-4 mt-4">
+                        <div className="w-36 h-36 btn btn-ghost btn-circle avatar">
+                            <img src={author?.avatarUrl} />
                         </div>
                     </div>
-                    <div className='w-3/4'>
-                        <div className="title mt-3">
-                            <h1 className="text-start">{post.title}</h1>
-                        </div>
-                        <div className='mt-10'>
-                            {postInfo.tags?.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}
-                        </div>
-                        <div className='postInfo flex flex-row justify-between'>
-                            <div className='user-info text-sm mt-5'>
-                                <div>
-                                    <p >{`Posted by: ${post.author}`}</p>
-                                    <p >{`Posted on: ${post.createdOn}`}</p>
-                                </div>
+                </div>
+                <div className='w-full md:w-3/4'>
+                    <div className="title mt-3">
+                        <h1 className="text-start">{post.title}</h1>
+                    </div>
+                    <div className='mt-10'>
+                        {postInfo.tags?.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}
+                    </div>
+                    <div className='postInfo flex flex-col md:flex-row justify-between'>
+                        <div className='user-info text-sm mt-5'>
+                            <div>
+                                <p >{`Posted by: ${post.author}`}</p>
+                                <p >{`Posted on: ${post.createdOn}`}</p>
                             </div>
-                            <div className='w-1/4 flex flex-col mr-6'>
-                                <div className='flex-grow'>
-                                </div>
-                                <div className='flex-grow'>
-                                </div>
-                                <div className='flex mb-1 justify-between'>
-                                    <div className='views flex flex-row mr-5'>
-                                        <span className='mr-2'>{postInfo?.views}</span>
-                                        <div>
-                                            <FontAwesomeIcon icon={faEye} />
-                                        </div>
+                        </div>
+                        <div className='w-full md:w-1/4 flex flex-col mr-6'>
+                            <div className='flex-grow'>
+                            </div>
+                            <div className='flex-grow'>
+                            </div>
+                            <div className='flex mb-1 justify-between'>
+                                <div className='views flex flex-row mr-5'>
+                                    <span className='mr-2'>{postInfo?.views}</span>
+                                    <div>
+                                        <FontAwesomeIcon icon={faEye} />
                                     </div>
-                                    <div className='views flex flex-row mx-5'>
-                                        <span className='mr-2'>{post.liked?.length}</span>
-                                        <div>
-                                            <FontAwesomeIcon icon={faHeart} />
-                                        </div>
+                                </div>
+                                <div className='views flex flex-row mx-5'>
+                                    <span className='mr-2'>{post.liked?.length}</span>
+                                    <div>
+                                        <FontAwesomeIcon icon={faHeart} />
                                     </div>
-                                    <div className='views flex flex-row ml-5 '>
-                                        <span className='mr-2'>{postCommentsCount}</span>
-                                        <div>
-                                            <FontAwesomeIcon icon={faComment} />
-                                        </div>
+                                </div>
+                                <div className='views flex flex-row ml-5 '>
+                                    <span className='mr-2'>{postCommentsCount}</span>
+                                    <div>
+                                        <FontAwesomeIcon icon={faComment} />
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,8 @@ const PostInfo = ({ post }) => {
                 </div>
             </div>
         </div>
-    );
+    </div>
+);
 };
 
 PostInfo.propTypes = {

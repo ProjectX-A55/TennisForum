@@ -38,7 +38,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin,
         try {
             await updateComment(postId, commentId, newComment);
             comments.content = newComment;
-        } 
+        }
         catch (error) { console.log(error); }
         setIsEditing(false);
     };
@@ -47,16 +47,16 @@ const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin,
         setNewComment(comments.content);
         setIsEditing(false);
     };
-    
+
     return (
         <div className='shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7' style={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
             <div className='add-comment w-full '>
                 <div className='comment-area flex'>
-                    <div className="flex justify-center">
-                        <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg m-4' src={authorData?.avatarUrl} />
+                    <div className="flex justify-center ml-3">
+                        <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mt-4' src={authorData?.avatarUrl} />
                     </div>
                     <div className='flex flex-col w-full h-full'>
-                        <div className='comment-author-date w-full flex mt-3'>
+                        <div className='comment-author-date w-full flex mt-3 ml-5'>
                             <p className='comment-author mr-2 font-bold'>{comments.author}</p>
                             <p>commented {formatDistanceToNow(new Date(comments.createdOn))} ago</p>
                         </div>
@@ -72,8 +72,12 @@ const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin,
                                     />
                                 </div>
                             ) : (
-                                <div className='comment-content'>
-                                    <p>{comments.content.trim().split('\n').map((paragraph) => <p>{paragraph}<br/></p>)}</p>
+                                <div className='comment-content m-5'>
+                                    <div>
+                                        {comments.content.trim().split('\n').map((paragraph, index) =>
+                                            <p key={index}>{paragraph}</p>
+                                        )}
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -118,6 +122,8 @@ Comment.propTypes = {
     postId: PropTypes.string,
     currentUser: PropTypes.string,
     handleDeleteComment: PropTypes.func,
+    isBlocked: PropTypes.bool,
+    isAdmin: PropTypes.bool
 
 }
 export default Comment;
