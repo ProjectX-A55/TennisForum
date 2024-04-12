@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllUsers, getUserByUserName, getUserPosts, updateUser } from "../../services/user-service";
 
-
-
 const Admin = () => {
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -37,10 +35,8 @@ const Admin = () => {
         setUsers(prevUsers => prevUsers.map(u => u.username === username ? { ...u, isBlocked: user.isBlocked } : u));
     };
 
-    // Filter users first
+    
     const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    // Then calculate total pages
     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
     const pageNumbers = [];
@@ -48,11 +44,9 @@ const Admin = () => {
         pageNumbers.push(i);
     }
 
-    // Then calculate the indices
+
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-
-    // Then get the current users
     const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -115,7 +109,7 @@ const Admin = () => {
                     ))}
                 </tbody>
             </table>
-            <div className="justify-center flex">
+            <div className="justify-center flex mt-5">
                 {currentPage > 1 && <button className="join-item btn btn-outline mr-1" onClick={() => paginate(currentPage - 1)}>Previous</button>}
                 {pageNumbers.map(number => (
                     <button key={number} className={`join-item btn mr-1 ${number === currentPage ? 'btn-primary' : ''}`} onClick={() => paginate(number)}>{number}</button>

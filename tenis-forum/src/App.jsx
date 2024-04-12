@@ -37,10 +37,13 @@ function App() {
     }
   }, [user]);
 
-  
+
+  console.log(user)
+
   return (
-    <BrowserRouter>
-      <AppContext.Provider value={{ ...context, setContext }}>
+    <AppContext.Provider value={{ ...context, setContext }}>
+      <BrowserRouter>
+
         <HeaderComponent />
         <div className='min-h-screen place-content-center flex flex-row flex-wrap content-center shrink pt-28'>
           <div className='flex-wrap content-center justify-center max-w-screen-2xl w-full h-auto'>
@@ -56,14 +59,15 @@ function App() {
               <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} />
               <Route path='/men-s-tennis' element={<Authenticated><ManagePosts filter={`Men's Tennis`} /></Authenticated>} />
               <Route path='/women-s-tennis' element={<Authenticated><ManagePosts filter={`Women's Tennis`} /></Authenticated>} />
-              <Route path='/admin' element={<AdminRoute userData={context.userData}><AdminPanelView/></AdminRoute>}/>
+              <Route path='/admin' element={<AdminRoute userData={context.userData}><AdminPanelView /></AdminRoute>} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
         </div>
         <Footer />
-      </AppContext.Provider>
-    </BrowserRouter>
+
+      </BrowserRouter>
+    </AppContext.Provider>
   )
 }
 

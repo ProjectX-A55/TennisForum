@@ -29,7 +29,6 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
     const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState([]);
     const [postCommentsCount, setPostCommentsCount] = useState(0);
-    const [initialPost, setInitialPost] = useState(post);
     const [authorAvatar, setAuthorAvatar] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [commentPerPage] = useState(5);
