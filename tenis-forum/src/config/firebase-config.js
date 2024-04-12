@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase } from 'firebase/database';
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { useState, useEffect } from "react";
 
 
@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: "tennis-forum-12fa0",
   storageBucket: "tennis-forum-12fa0.appspot.com",
   messagingSenderId: "625602299697",
-  appId: "1:625602299697:web:19c66cdb8a52b5519d9210",
+  appId: "1:625602299697:web:19c66cdb8a52b5519d9210"
 };
 
 
@@ -28,7 +28,6 @@ export function useAuth() {
 
   return currentUser;
 }
-
 
 
 export const auth = getAuth(app);
