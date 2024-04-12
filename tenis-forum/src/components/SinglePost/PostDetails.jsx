@@ -149,20 +149,20 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
     const currentComment = Object.keys(allComments).slice(indexOfFirstPost, indexOfLastPost);
 
     return (
-        <div>
+        <div className='mt-12'>
             <div className="place-content-center flex flex-col w-auto">
                 <div className='card shadow shadow-2xl border border-amber-950 text-wrap mr-5 ml-5' style={{ overflowWrap: 'break-word' }}>
-                    <div className='post-info w-full justify-between h-1/6 flex flex-row mt-2 mr-2 ml-2'>
+                    <div className='post-info w-full justify-between h-1/6 flex flex-row m-2'>
                         <div className='topic ml-3'>
                             <span>{post.topic}</span>
                         </div>
-                        <div className='author-date flex items-start justify-between'>
+                        <div className='author-data flex'>
                             <div>
                                 <span>{`Posted by: ${post.author}`}</span><br />
                                 <span>{`On: ${post.createdOn}`}</span>
                             </div>
                             <div>
-                                <img src={authorAvatar} className="w-12 h-12 lg:w-12 lg:h-12 rounded-full shadow-lg mr-4 ml-4" alt="User Avatar" />
+                                <img src={authorAvatar} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full shadow-lg mr-4 ml-4" alt="User Avatar" />
                             </div>
                         </div>
                     </div>
@@ -247,6 +247,25 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         )}
                     </div>
                 </div>
+                {userData.isBlocked ?
+                    <h1 className="shadow shadow-2xl box rounded-md flex flex-row border border-amber-950 text-wrap sm:ml-3 sm:mr-3 sm:mt-3 sm:mb-3 md:ml-5 md:mr-5 md:mt-5 md:mb-5 lg:ml-7 lg:mr-7 lg:mt-7 lg:mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 >
+                    :
+                    <div className='add-comment sm:w-full md:w-3/4 lg:w-3/4 mt-10 sm:ml-5 md:ml-10 lg:ml-20 '>
+                        <form onSubmit={handleAddComment}>
+                            <div className='flex justify-center mb-5'>
+                                <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData.avatarUrl} alt="User Avatar" />
+                                <div className='flex w-full h-full relative'>
+                                    <div className='w-full flex'>
+                                        <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
+                                        <div className='add-comment-button 1/6 mt-3 ml-3 flex items'>
+                                            <button className="btn btn-outline btn-primary" type="submit">{`Add comment`}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
                 <div className='shadow shadow-2xl border border-amber-950 rounded-md text-wrap mr-5 ml-5 mt-10' style={{ overflowWrap: 'break-word' }}>
                     <div className='text-center mt-3 mb-3'>
                         <h1><b>Comments</b></h1>
@@ -263,21 +282,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                             ))}
                             {currentPage < totalPages && <button className="join-item btn btn-outline" onClick={() => paginate(currentPage + 1)}>Next</button>}
                         </div>
-                        {userData.isBlocked ? <h1 className="shadow shadow-2xl box rounded-md flex flex-row  border border-amber-950 text-wrap ml-7 mr-7 mt-7 mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 > : <div className='add-comment w-3/4 mt-10 ml-20 '>
-                            <form onSubmit={handleAddComment}>
-                                <div className='flex justify-center mb-5'>
-                                    <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData.avatarUrl} alt="User Avatar" />
-                                    <div className='flex w-full h-full relative'>
-                                        <div className='w-full flex'>
-                                            <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
-                                            <div className='add-comment-button 1/6 mt-3 ml-3 flex items-stretch '>
-                                                <button className="btn btn-outline btn-primary self-stretch" type="submit">{`Add comment`}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>}
+
                     </div>
                 </div>
             </div>
