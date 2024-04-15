@@ -24,10 +24,7 @@ const AllPosts = ({ postsFromProps }) => {
         setSearchParams({ search: value });
     };
 
-    useEffect(() => {
-        setPosts(postsFromProps)
-        return (() => setPosts(null))
-    }, [postsFromProps])
+    console.log(postsFromProps)
 
     useEffect(() => {
         const filteredPosts = postsFromProps.filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
@@ -63,16 +60,17 @@ const AllPosts = ({ postsFromProps }) => {
     }
 
 
-
     const totalPages = Math.ceil(posts.length / postsPerPage);
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
 
+    const sortedPosts = sortPosts(posts);
+
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
@@ -105,7 +103,7 @@ const AllPosts = ({ postsFromProps }) => {
                     </div>
                 </div>
                 <div id="all-posts">
-                    {sortPosts(currentPosts).map((post) => (
+                    {currentPosts.map((post) => (
                         <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
                     ))}
                 </div>

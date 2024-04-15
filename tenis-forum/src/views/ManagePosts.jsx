@@ -23,6 +23,7 @@ const ManagePosts = ({ filter }) => {
         })
     }, [filter])
 
+
     return (
         <AllPosts postsFromProps={posts} />
     )

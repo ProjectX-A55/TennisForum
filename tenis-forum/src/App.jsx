@@ -37,9 +37,6 @@ function App() {
     }
   }, [user]);
 
-
-  console.log(user)
-
   return (
     <AppContext.Provider value={{ ...context, setContext }}>
       <BrowserRouter>
