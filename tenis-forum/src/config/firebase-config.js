@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAPsq4gobElVQBs3pA0MVXNzRnaPNhBewk",
+  apiKey: import.meta.env.VITE_FIRE_BASE_KEY,
   authDomain: "tennis-forum-12fa0.firebaseapp.com",
   databaseURL: "https://tennis-forum-12fa0-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "tennis-forum-12fa0",

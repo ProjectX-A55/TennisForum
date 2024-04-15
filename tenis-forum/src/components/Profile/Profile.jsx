@@ -78,14 +78,14 @@ const Profile = () => {
         <div className="flex flex-col lg:flex-row">
             <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:w-1/6 ml-5 mb-5 lg:mb-0">
                 <div className="">
-                    <ul className="menu w-56 rounded-box border shadow">
+                    <ul className="menu w-56 rounded-box border border-amber-950 shadow-2xl">
                         <li><a>Item 1</a></li>
                         <li><a>Item 2</a></li>
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
             </aside>
-            <form onSubmit={handleSubmit} className="bg-base-300 shadow sm:rounded-xl sm:overflow-hidden w-full lg:w-5/6 mr-5">
+            <form onSubmit={handleSubmit} className="border border-amber-950 shadow-2xl sm:rounded-xl sm:overflow-hidden w-full lg:w-5/6 mr-5">
                 <div className=" py-6 px-4 sm:p-6 flex flex-col lg:flex-col">
                     <div id="upper-part" className="flex">
                         <div id="upper-firs-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">

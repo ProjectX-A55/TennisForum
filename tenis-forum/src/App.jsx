@@ -43,7 +43,6 @@ function App() {
   return (
     <AppContext.Provider value={{ ...context, setContext }}>
       <BrowserRouter>
-
         <HeaderComponent />
         <div className='min-h-screen place-content-center flex flex-row flex-wrap content-center shrink pt-28'>
           <div className='flex-wrap content-center justify-center max-w-screen-2xl w-full h-auto'>

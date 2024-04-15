@@ -239,7 +239,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                     {isEditing && (
                                         <button onClick={() => { setPost(postProp); setIsEditing(false); }} className="btn btn-outline btn-error mr-3">Cancel</button>
                                     )}
-                                    <button onClick={() => { handleEdit(); setInitialPost(post); }} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
+                                    <button onClick={() => { handleEdit();}} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
                                     <button onClick={handleDelete} className="btn btn-outline btn-error">Delete</button>
                                 </div>
                             </>
