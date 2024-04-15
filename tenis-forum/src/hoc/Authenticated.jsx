@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import AppContext from '../context/AppContext';
+import { auth } from '../config/firebase-config';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import Loading from '../components/Loading/Loading';
 
 /**
  * 
@@ -10,13 +13,13 @@ import AppContext from '../context/AppContext';
  */
 
 export default function Authenticated({ children }) {
-  const { user } = useContext(AppContext);
-  const { userData, setContext } = useContext(AppContext)
+  const { userData } = useContext(AppContext);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const location = useLocation();
   
-  if (!user) {
-    return <Navigate replace to="/login" state={{ from: location }} />
+  if (!loading && !user) {
+    return <Navigate replace to="/login" state={{ from: location.pathname }} />
   }
 
   // if (userData.isBlocked === true) {
@@ -28,11 +31,7 @@ export default function Authenticated({ children }) {
   // )
   // }
 
-  return (
-    <>
-      {children}
-    </>
-  )
+  return <>{userData ? children : <Loading />}</>;
 }
 
 Authenticated.propTypes = {
