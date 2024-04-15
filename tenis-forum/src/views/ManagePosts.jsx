@@ -1,6 +1,13 @@
 import AllPosts from "./AllPosts";
 import { useState, useEffect } from "react";
 import { getAllPosts } from "../services/post-service";
+import PropTypes from 'prop-types';
+
+/**
+ * 
+ * @param {{filter: string}} param0 
+ * @returns 
+ */
 
 const ManagePosts = ({ filter }) => {
     const [posts, setPosts] = useState([])
@@ -19,6 +26,10 @@ const ManagePosts = ({ filter }) => {
     return (
         <AllPosts postsFromProps={posts} />
     )
+}
+
+ManagePosts.propTypes = {
+    filter: PropTypes.string
 }
 
 export default ManagePosts
