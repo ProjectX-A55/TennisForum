@@ -24,7 +24,7 @@ function App() {
     user: null,
     userData: null,
   });
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     if (user) {

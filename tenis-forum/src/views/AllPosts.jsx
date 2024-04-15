@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import PostInfo from "../components/SinglePost/PostInfo";
 import PropTypes from 'prop-types';
+import Loading from '../components/Loading/Loading';
 
 /**
  * @param {{postsFromProps: Array}} param0
@@ -15,6 +16,7 @@ const AllPosts = ({ postsFromProps }) => {
     const [sortType, setSortType] = useState('newest');
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const navigate = useNavigate()
 
@@ -24,12 +26,18 @@ const AllPosts = ({ postsFromProps }) => {
         setSearchParams({ search: value });
     };
 
-    console.log(postsFromProps)
-
+   
     useEffect(() => {
-        const filteredPosts = postsFromProps.filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
-        setPosts(filteredPosts);
-    }, [search, postsFromProps])
+    const filteredPosts = postsFromProps.filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
+    setPosts(filteredPosts);
+    if (postsFromProps.length > 0) {
+        setIsLoaded(true); // Set isLoaded to true only if postsFromProps is not empty
+    }
+}, [search, postsFromProps]);
+
+    if (!isLoaded) {
+        return <Loading />;
+    }
 
     const togglePostLike = (username, id) => {
         setPosts(posts.map(post => {
@@ -74,7 +82,7 @@ const AllPosts = ({ postsFromProps }) => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-        posts.length > 0 ? (
+        posts?.length > 0 ? (
             <div className="posts w-full mt-12 mb-5">
                 <div className="my-nav flex justify-center items-center h-auto mb-10 sm:flex-col md:flex-row">
                     <div className="card w-full sm:w-3/4 flex flex-col sm:flex-row justify-between">

@@ -109,21 +109,21 @@ const Profile = () => {
                         <div id="firs-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">User name</label>
-                                <input type="text" name="username" value={formData.username} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
+                                <input type="text" name="username" value={formData?.username} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">Email</label>
-                                <input type="text" name="email" value={formData.email} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
+                                <input type="text" name="email" value={formData?.email} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
                         </div>
                         <div id="second-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">First name</label>
-                                <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
+                                <input type="text" name="firstName" value={formData?.firstName} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">Last name</label>
-                                <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
+                                <input type="text" name="lastName" value={formData?.lastName} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
 
                         </div>
@@ -135,7 +135,7 @@ const Profile = () => {
                 </div>
             </form>
         </div>
-        
+
     );
 
 };
