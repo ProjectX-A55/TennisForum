@@ -73,6 +73,7 @@ const Profile = () => {
 
     };
 
+
     return (
 
         <div className="flex flex-col lg:flex-row">
@@ -108,11 +109,11 @@ const Profile = () => {
                         <div id="firs-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">User name</label>
-                                <input type="text" placeholder="Type here" className="input input-bordered w-full mt-2" />
+                                <input type="text" name="username" value={formData.username} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
                             <div className="flex flex-col w-3/4">
                                 <label htmlFor="">Email</label>
-                                <input type="text" placeholder="Type here" className="input input-bordered w-full mt-2" />
+                                <input type="text" name="email" value={formData.email} onChange={handleInputChange} className="input input-bordered w-full mt-2" />
                             </div>
                         </div>
                         <div id="second-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">
@@ -129,7 +130,7 @@ const Profile = () => {
                     </div>
                     <div id="button-part" className="flex mt-5 justify-between mr-10">
                         <div></div>
-                        <button type="submit" className="btn btn-accent mr-9">Save</button>
+                        <button type="submit" className="btn btn-outline btn-accent">Save</button>
                     </div>
                 </div>
             </form>

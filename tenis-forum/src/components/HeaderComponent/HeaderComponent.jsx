@@ -23,8 +23,6 @@ export function HeaderComponent() {
         setContext({ user: null, userData: null })
     }
 
-
-
     return (
 
         <div className="navbar bg-base-100 mb-10 border rounded flex flex-col lg:flex-row justify-between items-center fixed top-0 w-full z-10 shadow shadow-xl">

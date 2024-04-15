@@ -37,8 +37,8 @@ const LogIn = () => {
         <div className="hero min-h-screen ">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Log in</h1>
-                    <p className="py-6">You need to be logged in to view this topic. Log in or create a new account now.</p>
+                    <h1 className="text-5xl font-bold">{`Log in`}</h1>
+                    <p className="py-6">{`You need to be logged in to view this topic. Log in or create a new account now.`}</p>
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-lg bg-base-100  border border-amber-950 shadow-2xl">
                     <div className="card-body">
@@ -57,10 +57,10 @@ const LogIn = () => {
                                 name="password" />
                         </div>
                         <div className="form-control mt-4">
-                            <button className="btn btn-primary" onClick={login}>Log in</button>
+                            <button className="btn btn-primary" onClick={login}>{`Log in`}</button>
                         </div>
                         <div>
-                            <span className="mr-2">Don't have an account?</span>
+                            <span className="mr-2">{`Don't have an account?`}</span>
                             <NavLink to="/register" className="text-blue-600 hover:text-blue-800 hover:underline">Register</NavLink>
                         </div>
                     </div>
