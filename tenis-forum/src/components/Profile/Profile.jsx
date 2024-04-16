@@ -128,7 +128,7 @@ const Profile = () => {
 
                         </div>
                     </div>
-                    <div id="button-part" className="flex mt-5 justify-between mr-10">
+                    <div id="button-part" className="flex mt-5 justify-between mr-20">
                         <div></div>
                         <button type="submit" className="btn btn-outline btn-accent">Save</button>
                     </div>

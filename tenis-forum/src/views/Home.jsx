@@ -4,6 +4,7 @@ import { getAllPosts } from "../services/post-service";
 import PostInfo from "../components/SinglePost/PostInfo";
 import { getAllComments } from "../services/comment-service";
 import { formatDate } from "../services/date-format";
+import {tennisApi} from "../services/tennis-api/";
 
 const Home = () => {
 
@@ -11,6 +12,7 @@ const Home = () => {
     const [usersNumber, setUsersNumber] = useState(0);
     const [sortType, setSortType] = useState('mostViews');
     const [allComments, setAllComments] = useState([]);
+    const [results, setResults] = useState([]);
 
     useEffect(() => {
         getAllPosts().then(setPosts)
@@ -26,6 +28,11 @@ const Home = () => {
         });
     }, []);
 
+    useEffect(() => {
+       tennisApi().then(setResults)
+     }, []);
+
+     console.log(results);
 
     const sortPosts = (posts) => {
         let sortedPosts;
@@ -73,7 +80,7 @@ const Home = () => {
                     <div className="stat-value">{usersNumber}</div>
                     <div className="stat-desc">↗︎ 400 (22%)</div>
                 </div>
-                
+
             </div>
             <div className="all-posts">
                 <div className="flex mb-5 w-3/4 mx-auto">
