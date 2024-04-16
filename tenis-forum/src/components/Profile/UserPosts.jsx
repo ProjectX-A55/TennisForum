@@ -70,7 +70,6 @@ const UserPosts = ({ userData }) => {
                                         <tr>
                                             <td colSpan={5} className='font-semibold mt-3'>No posts to display.</td>
                                         </tr>
-
                                     )}
                             </tbody>
                         </table>

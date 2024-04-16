@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { getAllPosts } from '../../services/post-service';
 import { NavLink } from 'react-router-dom';
 
-
-
 /**
  * @param {{
 * userData: {username: string, email: string, firstName: string, lastName: string, avatarUrl: string}, }} userData
@@ -30,7 +28,6 @@ const UserComments = ({ userData }) => {
         })
 
     }, [userData])
-
 
     return (
         <div className="flex flex-col lg:flex-row w-full">

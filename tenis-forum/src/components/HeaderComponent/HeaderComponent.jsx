@@ -3,20 +3,16 @@ import { logoutUser } from "../../services/auth-service"
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 
-
 export function HeaderComponent() {
 
     const { user, setContext } = useContext(AppContext)
     const { userData } = useContext(AppContext)
-
     const [avatarUrl, setAvatarUrl] = useState(userData?.avatarUrl);
-
     const navigate = useNavigate();
 
     useEffect(() => {
         setAvatarUrl(userData?.avatarUrl);
     }, [userData]);
-
 
     const logout = async () => {
         await logoutUser()

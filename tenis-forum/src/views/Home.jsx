@@ -4,7 +4,6 @@ import { getAllPosts } from "../services/post-service";
 import PostInfo from "../components/SinglePost/PostInfo";
 import { getAllComments } from "../services/comment-service";
 import { formatDate } from "../services/date-format";
-import {tennisApi} from "../services/tennis-api/";
 
 const Home = () => {
 
@@ -12,7 +11,6 @@ const Home = () => {
     const [usersNumber, setUsersNumber] = useState(0);
     const [sortType, setSortType] = useState('mostViews');
     const [allComments, setAllComments] = useState([]);
-
 
     useEffect(() => {
         getAllPosts().then(setPosts)
@@ -27,9 +25,6 @@ const Home = () => {
             setUsersNumber(Object.keys(snapshot.val()).length);
         });
     }, []);
-
-    
-
 
     const sortPosts = (posts) => {
         let sortedPosts;

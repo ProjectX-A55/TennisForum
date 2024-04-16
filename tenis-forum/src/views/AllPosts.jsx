@@ -17,16 +17,14 @@ const AllPosts = ({ postsFromProps }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
     const [isLoaded, setIsLoaded] = useState(false);
-
     const navigate = useNavigate()
-
     const search = searchParams.get('search') || '';
 
     const setSearch = (value) => {
         setSearchParams({ search: value });
     };
 
-   
+
     useEffect(() => {
     const filteredPosts = postsFromProps.filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
     setPosts(filteredPosts);
@@ -48,7 +46,6 @@ const AllPosts = ({ postsFromProps }) => {
         }
         ))
     }
-
 
     const sortPosts = (posts) => {
         switch (sortType) {

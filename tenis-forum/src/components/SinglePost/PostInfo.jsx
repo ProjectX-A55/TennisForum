@@ -16,6 +16,7 @@ const PostInfo = ({ post }) => {
     const [author, setAuthor] = useState(null);
     const [postInfo, setPostInfo] = useState(post);
     const [postCommentsCount, setPostViewsComments] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (postInfo && postInfo.comments) {
@@ -46,9 +47,6 @@ const PostInfo = ({ post }) => {
         navigate(`/posts/${post.id}`);
     }
 
-    const navigate = useNavigate();
-
-    
     return (
 
     <div className="flex flex-col md:flex-row justify-center items-center h-auto mb-4">

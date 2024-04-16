@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getUserData } from '../../services/user-service';
 
-
 /**
  * 
  * @param {{comments: { id: string, author: string, content: string, createdOn: string, authorId: string,},  commentId: string, postId: string, currentUser: string, handleDeleteComment: function}} comments 
@@ -27,7 +26,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin,
                 }
             }
         })();
-    }, [])
+    }, [comments])
 
     const handleEdit = () => {
         setIsEditing(true);

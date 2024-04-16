@@ -41,7 +41,6 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
         }
     }, [post])
 
-
     useEffect(() => {
         (async () => {
             const authorSnapshot = await getUserByUserName(post.author);
@@ -51,9 +50,6 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             setAuthorAvatar(authorSnapshot.val()[Object.keys(authorSnapshot.val())[0]]);
         })()
     }, [post]);
-
-
-    
 
     useEffect(() => {
         getComments(post.id).then(setAllComments)
@@ -100,7 +96,6 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
         setIsEditing(!isEditing);
     }
 
-
     const handleAddComment = async (event) => {
         event.preventDefault();
         if (comment.length < 4 || comment.length > 5000) {
@@ -137,7 +132,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
         }
     }
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     const totalPages = Math.ceil(Object.keys(allComments).length / commentPerPage);
 
     const pageNumbers = [];
@@ -147,7 +142,9 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const indexOfLastPost = currentPage * commentPerPage;
     const indexOfFirstPost = indexOfLastPost - commentPerPage;
-    const currentComment = Object.keys(allComments).slice(indexOfFirstPost, indexOfLastPost);
+    const allCommentsReversed = Object.keys(allComments).reverse();
+    const currentComment = allCommentsReversed.slice(indexOfFirstPost, indexOfLastPost);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className='mt-12'>
@@ -241,7 +238,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                     {isEditing && (
                                         <button onClick={() => { setPost(postProp); setIsEditing(false); }} className="btn btn-outline btn-error mr-3">Cancel</button>
                                     )}
-                                    <button onClick={() => { handleEdit();}} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
+                                    <button onClick={() => { handleEdit(); }} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
                                     <button onClick={handleDelete} className="btn btn-outline btn-error">Delete</button>
                                 </div>
                             </>
@@ -283,7 +280,6 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                             ))}
                             {currentPage < totalPages && <button className="join-item btn btn-outline" onClick={() => paginate(currentPage + 1)}>Next</button>}
                         </div>
-
                     </div>
                 </div>
             </div>

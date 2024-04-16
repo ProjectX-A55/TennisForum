@@ -35,7 +35,6 @@ const Admin = () => {
         setUsers(prevUsers => prevUsers.map(u => u.username === username ? { ...u, isBlocked: user.isBlocked } : u));
     };
 
-    
     const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase()));
     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
@@ -44,14 +43,10 @@ const Admin = () => {
         pageNumbers.push(i);
     }
 
-
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
-
     const paginate = pageNumber => setCurrentPage(pageNumber);
-
-
 
     return (
         <div className="overflow-x-auto">
