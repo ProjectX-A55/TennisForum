@@ -12,7 +12,7 @@ const Home = () => {
     const [usersNumber, setUsersNumber] = useState(0);
     const [sortType, setSortType] = useState('mostViews');
     const [allComments, setAllComments] = useState([]);
-    const [results, setResults] = useState([]);
+
 
     useEffect(() => {
         getAllPosts().then(setPosts)
@@ -28,11 +28,8 @@ const Home = () => {
         });
     }, []);
 
-    useEffect(() => {
-       tennisApi().then(setResults)
-     }, []);
+    
 
-     console.log(results);
 
     const sortPosts = (posts) => {
         let sortedPosts;

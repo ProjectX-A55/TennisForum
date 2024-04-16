@@ -3,10 +3,6 @@ import { db } from '../config/firebase-config';
 
 
 
-export const getUserByUserName = async (username) => {
-
-  return get(ref(db, `users/${username}`));
-};
 
 export const createUserUserName = (username, firstName, lastName, uid, email,) => {
 
@@ -54,3 +50,9 @@ export const listenForUserChanges = (username, callback) => {
   });
 };
 
+
+export const getUserByUserName = async (username) => {
+
+  return get(ref(db, `users/${username}`));
+  
+};

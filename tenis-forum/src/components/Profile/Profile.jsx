@@ -17,23 +17,20 @@ const Profile = () => {
     }
 
     return (
-
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:flex-row lg:space-x-5">
             <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:w-1/6 ml-5 mb-5 lg:mb-0">
-                <div className="">
-                    <ul className="menu w-56 rounded-box border border-amber-950 shadow-2xl">
+                <div className="w-full lg:w-56">
+                    <ul className="menu w-full lg:w-56 rounded-box border border-amber-950 shadow-2xl">
                         <li onClick={() => setState('profile')}><a>Profile</a></li>
                         <li onClick={() => setState('my-posts')}><a>My Posts</a></li>
                         <li onClick={() => setState('my-comments')}><a>My Comments</a></li>
                     </ul>
                 </div>
             </aside>
-            {componentsMap[state]}
-
-
+            <div className="w-full ml-5 lg:ml-0">
+                {componentsMap[state]}
+            </div>
         </div>
-
-
     );
 
 };

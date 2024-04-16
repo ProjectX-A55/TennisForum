@@ -44,13 +44,16 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     useEffect(() => {
         (async () => {
-            const authorSnapshot = (await getUserByUserName(post.author));
+            const authorSnapshot = await getUserByUserName(post.author);
             setTitle(post.title);
             setContent(post.content);
             setTags(mapTags(post.tags));
             setAuthorAvatar(authorSnapshot.val()[Object.keys(authorSnapshot.val())[0]]);
         })()
     }, [post]);
+
+
+    
 
     useEffect(() => {
         getComments(post.id).then(setAllComments)
@@ -87,7 +90,6 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             }
 
             try {
-
                 await updatePost(post.id, title, content, post.views, tags.map((tag) => tag.label));
                 const updatedPost = await getPostById(post.id);
                 setPost(updatedPost);
@@ -246,13 +248,13 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         )}
                     </div>
                 </div>
-                {userData.isBlocked ?
+                {userData?.isBlocked ?
                     <h1 className="shadow shadow-2xl box rounded-md flex flex-row border border-amber-950 text-wrap sm:ml-3 sm:mr-3 sm:mt-3 sm:mb-3 md:ml-5 md:mr-5 md:mt-5 md:mb-5 lg:ml-7 lg:mr-7 lg:mt-7 lg:mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 >
                     :
                     <div className='add-comment sm:w-full md:w-3/4 lg:w-3/4 mt-10 sm:ml-5 md:ml-10 lg:ml-20 '>
                         <form onSubmit={handleAddComment}>
                             <div className='flex justify-center mb-5'>
-                                <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData.avatarUrl} alt="User Avatar" />
+                                <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData?.avatarUrl} alt="User Avatar" />
                                 <div className='flex w-full h-full relative'>
                                     <div className='w-full flex'>
                                         <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />

@@ -1,4 +1,4 @@
-import { ref, push, get, query, orderByChild, update, remove } from 'firebase/database';
+import { ref, push, get, query, orderByChild, update, remove} from 'firebase/database';
 import { db } from '../config/firebase-config';
 
 export const addPost = async (author, title, content, topic = "General Discussions", tags = []) => {
@@ -81,7 +81,7 @@ export const deletePost = async (userData, postId) => {
     }
 
     const post = postSnapshot.val();
-    
+
     if (post.author !== userData.username && userData.isAdmin !== true) {
         throw new Error('Only the author can delete this post');
     }

@@ -79,9 +79,6 @@ const UserProfile = ({ userData, setContext }) => {
 
     };
 
-    console.log(formData)
-
-
     return (
 
         <div className="flex flex-col lg:flex-row w-full">
@@ -140,8 +137,8 @@ const UserProfile = ({ userData, setContext }) => {
 
 
 UserProfile.propTypes = {
-    userData: PropTypes.object.isRequired,
-    setContext: PropTypes.func.isRequired
+    userData: PropTypes.object,
+    setContext: PropTypes.func
 };
 
 
