@@ -75,7 +75,7 @@ const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin,
                                 <div className='mb-5 ml-5 mr-5'>
                                     <div>
                                         {comments.content.trim().split('\n').map((paragraph, index) =>
-                                            <p key={index}>{paragraph}</p>
+                                            <p key={index} className='text-ellipsis'>{paragraph}</p>
                                         )}
                                     </div>
                                 </div>
