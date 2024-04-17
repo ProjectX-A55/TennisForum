@@ -229,7 +229,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                 </div>
                 <div className='buttons mt-4 flex items-center justify-between'>
                     <div className='like-dislike-button ml-5'>
-                        <button onClick={toggleLike} className=" btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</button>
+                        <button data-testid='like-button' onClick={toggleLike} className=" btn btn-outline btn-primary">{post.liked.includes(userData?.username) ? 'Dislike' : 'Like'}</button>
                     </div>
                     <div className='user-buttons'>
                         {(userData?.username === post.author || userData?.isAdmin === true) && userData?.isBlocked === false && (
@@ -254,9 +254,9 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                 <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData?.avatarUrl} alt="User Avatar" />
                                 <div className='flex w-full h-full relative'>
                                     <div className='w-full flex'>
-                                        <textarea placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
+                                        <textarea data-testid='comment-input' placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
                                         <div className='add-comment-button 1/6 mt-3 ml-3 flex items'>
-                                            <button className="btn btn-outline btn-primary" type="submit">{`Add comment`}</button>
+                                            <button data-testid="comment-button" className="btn btn-outline btn-primary" type="submit">{`Add comment`}</button>
                                         </div>
                                     </div>
                                 </div>
