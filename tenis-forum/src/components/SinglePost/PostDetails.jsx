@@ -165,7 +165,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         </div>
                     </div>
                     {isEditing ? (
-                        <>
+                        <div id='edit-post'>
                             <div className='mr-5 ml-5 mt-2 mb-2'>
                                 <label htmlFor="input" className="label">
                                     <span className="text-base label-text">Title</span>
@@ -181,7 +181,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                 </label>
                                 <textarea value={content} onChange={e => setContent(e.target.value)} type="text" placeholder="Edit content" className="textarea textarea-bordered w-full shadow shadow-2xl" />
                             </div>
-                        </>
+                        </div>
                     )
                         :
                         (
@@ -198,7 +198,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                         {post.content.trim().split('\n').map((paragraph, index) => <p key={index}>{paragraph}<br /></p>)}
                                     </p>
                                 </div>
-                            </>)}
+                            </>
+                        )}
                     <div className='post-info w-full justify-between h-1/6 flex flex-row ml-2'>
                         <div className='topic ml-3 mb-5'>
                             <span>{post.tags.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}</span>
@@ -238,7 +239,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                     {isEditing && (
                                         <button onClick={() => { setPost(postProp); setIsEditing(false); }} className="btn btn-outline btn-error mr-3">Cancel</button>
                                     )}
-                                    <button onClick={() => { handleEdit(); }} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
+                                    <button data-testid='edit-button' onClick={() => { handleEdit(); }} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
                                     <button onClick={handleDelete} className="btn btn-outline btn-error">Delete</button>
                                 </div>
                             </>

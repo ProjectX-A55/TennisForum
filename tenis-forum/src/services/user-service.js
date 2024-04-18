@@ -1,9 +1,6 @@
 import { get, set, ref, query, equalTo, orderByChild, update, onValue } from 'firebase/database';
 import { db } from '../config/firebase-config';
 
-
-
-
 export const createUserUserName = (username, firstName, lastName, uid, email,) => {
 
   return set(ref(db, `users/${username}`), {
@@ -41,15 +38,6 @@ export const updateUser = async (username, userData) => {
   const userRef = ref(db, `users/${username}`)
   await update(userRef, userData)
 }
-
-export const listenForUserChanges = (username, callback) => {
-  const userRef = ref(db, `users/${username}`);
-
-  onValue(userRef, (snapshot) => {
-    callback(snapshot.val());
-  });
-};
-
 
 export const getUserByUserName = async (username) => {
 
