@@ -7,9 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
 
 /**
- * 
- * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string}, togglePostLike: function}} props
- * @returns 
+ * PostInfo component for the application.
+ *
+ * This component displays a brief overview of a post, including the title, author, creation date, views, likes, and comments count. 
+ * It also provides functionality for viewing the full post. The state of the post and the author are managed using the useState hook 
+ * and the useEffect hook is used to fetch the post and author data and update the state when the data changes.
+ *
+ * @component
+ * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string}, togglePostLike: function}} props - The post data and a function to toggle the like status of the post.
+ * @returns {JSX.Element} - A JSX element representing the post info.
  */
 const PostInfo = ({ post }) => {
 

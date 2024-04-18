@@ -7,8 +7,14 @@ import { faTrash, faEdit, faSave, faTimes } from '@fortawesome/free-solid-svg-ic
 import { getUserData } from '../../services/user-service';
 
 /**
+ *  * Comment component for displaying a single comment.
+ *
+ * This component displays the author's avatar, the author's name, the comment's content, and the time since the comment was posted. It also provides functionality for editing and deleting the comment.
  * 
  * @param {{comments: { id: string, author: string, content: string, createdOn: string, authorId: string,},  commentId: string, postId: string, currentUser: string, handleDeleteComment: function}} comments 
+ * return (
+ *   <Comment comments={comments} commentId={commentId} postId={postId} currentUser={currentUser} isBlocked={isBlocked} isAdmin={isAdmin} handleDeleteComment={handleDeleteComment} />
+ * )
  */
 
 const Comment = ({ comments, commentId, postId, currentUser, isBlocked, isAdmin, handleDeleteComment }) => {

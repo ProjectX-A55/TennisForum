@@ -3,6 +3,15 @@ import { logoutUser } from "../../services/auth-service"
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 
+/**
+ * Header component for the application.
+ *
+ * This component displays the navigation bar, which includes links to different pages of the application, a dropdown menu, and a user profile section. The user profile section includes an avatar, and if the user is logged in, a dropdown with links to the admin panel (if the user is an admin), the user's profile, and a logout button. If the user is not logged in, the user profile section includes links to the register and login pages.
+ *
+ * @component
+ * @example
+* @returns {JSX.Element} - A JSX element representing the header component.
+ */
 export function HeaderComponent() {
 
     const { user, setContext } = useContext(AppContext)

@@ -1,3 +1,14 @@
+/**
+ * Footer component for the application.
+ *
+ * This component displays a copyright notice.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Footer />
+ * )
+ */
 const Footer = () => {
 
     return (

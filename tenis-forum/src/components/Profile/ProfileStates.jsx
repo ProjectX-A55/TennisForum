@@ -1,11 +1,19 @@
 import { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
-
 import UserProfile from "./UserProfile";
 import UserComments from "./UserComments";
 import UserPosts from "./UserPosts";
 
-const Profile = () => {
+/**
+ * Profile component for the application.
+ *
+ * This component displays the user's profile, their posts, and their comments. It uses the AppContext to get the user's data and a state variable to determine which component to display (UserProfile, UserPosts, or UserComments). The state variable is updated when the user clicks on the corresponding link in the sidebar.
+ *
+ * @component
+ * @example
+* @returns {JSX.Element} - A JSX element representing the user profile.
+ */
+const ProfileStates = () => {
 
     const { userData, setContext } = useContext(AppContext)
     const [state, setState] = useState('profile')
@@ -35,4 +43,4 @@ const Profile = () => {
 
 };
 
-export default Profile;
+export default ProfileStates;

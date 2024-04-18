@@ -1,10 +1,21 @@
 import { useState, useEffect } from "react";
 import { getAllUsers } from "../services/user-service";
 import { getAllPosts } from "../services/post-service";
-import PostInfo from "../components/SinglePost/PostInfo";
+import PostInfo from "../components/Post/PostInfo";
 import { getAllComments } from "../services/comment-service";
 import { formatDate } from "../services/date-format";
 
+/**
+ * Home is a functional component that displays the home page.
+ * It uses the useState and useEffect hooks from React to manage and update the state.
+ * It also uses the getAllUsers, getAllPosts, getAllComments functions from the respective services to fetch all users, posts, and comments.
+ * The PostInfo component is used to display individual post information.
+ * The formatDate function is used to format the date for display.
+ *
+ * @component
+ * @example
+ * @returns {JSX.Element} - A JSX element that displays the home page with posts, comments, and user statistics.
+ */
 const Home = () => {
 
     const [posts, setPosts] = useState([])

@@ -4,9 +4,17 @@ import { getAllPosts } from '../../services/post-service';
 import { NavLink } from 'react-router-dom';
 
 /**
+ * UserComments component for the application.
+ *
+ * This component displays all the comments made by the user. It fetches all posts and filters out the ones where the user has made a comment. 
+ * It then maps over these posts and creates an array of comments made by the user. 
+ * These comments are displayed in a table with columns for the comment number, creation date, content, and a link to the post the comment was made on.
+ *
+ * @component
  * @param {{
 * userData: {username: string, email: string, firstName: string, lastName: string, avatarUrl: string}, }} userData
-* 
+* @example
+* @returns {JSX.Element} - A JSX element representing all of the user comments.
 */
 const UserComments = ({ userData }) => {
 

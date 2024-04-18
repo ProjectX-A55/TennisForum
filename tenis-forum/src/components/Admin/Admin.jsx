@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
 import { getAllUsers, getUserByUserName, getUserPosts, updateUser } from "../../services/user-service";
 
+/**
+ * Admin component for managing users.
+ *
+ * This component fetches all users from the database, allows for searching users by username, 
+ * and provides functionality for blocking/unblocking users. It also implements pagination for the user list.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Admin />
+ * )
+ */
 const Admin = () => {
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,8 +35,9 @@ const Admin = () => {
         };
 
         fetchUsers();
-    }, []);
 
+    }, []);
+   
     const blockUser = async (username) => {
         const userSnapshot = await getUserByUserName(username);
         const user = userSnapshot.val();
@@ -34,7 +47,7 @@ const Admin = () => {
 
         setUsers(prevUsers => prevUsers.map(u => u.username === username ? { ...u, isBlocked: user.isBlocked } : u));
     };
-
+    console.log(users)
     const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchTerm.toLowerCase()));
     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
@@ -50,8 +63,8 @@ const Admin = () => {
 
     return (
         <div className="overflow-x-auto">
-            <input className="input input-bordered w-24 md:w-auto mt-2 mb-2" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search users" />
-            <table className="table ">
+            <input className="input input-bordered w-24 md:w-auto mt-2 mb-2 ml-2" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search users" />
+            <table className="table">
                 {/* head */}
                 <thead>
                     <tr>

@@ -3,6 +3,17 @@ import AppContext from "../context/AppContext";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { loginUser } from "../services/auth-service";
 
+/**
+ * LogIn is a functional component that provides a form for logging in.
+ * It uses the useContext, useState, and useEffect hooks from React to manage and update the state.
+ * It also uses the useNavigate and useLocation hooks from react-router-dom to navigate to the previous page after a successful login.
+ * The loginUser function from the auth-service is used to authenticate the user.
+ *
+ * @component
+ * @example
+
+ * @returns {JSX.Element} - A JSX element that provides a form for logging in or a message if the login fails.
+ */
 const LogIn = () => {
     const { user, setContext } = useContext(AppContext);
     const [form, setForm] = useState({

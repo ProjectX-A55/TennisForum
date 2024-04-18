@@ -4,7 +4,16 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { createUserUserName, getUserByUserName } from "../services/user-service";
 import { registerUser } from "../services/auth-service";
 
-
+/**
+ * Register is a functional component that provides a form for user registration.
+ * It uses the useContext and useState hooks from React to manage and update the state.
+ * It also uses the useNavigate hook from react-router-dom to navigate to the home page after a successful registration.
+ * The createUserUserName, getUserByUserName functions from the user-service and registerUser function from the auth-service are used to register the user.
+ *
+ * @component
+ * @example
+ * @returns {JSX.Element} - A JSX element that provides a form for user registration or a message if the registration fails.
+ */
 const Register = () => {
 
     const { setContext } = useContext(AppContext)
@@ -106,6 +115,5 @@ const Register = () => {
         </div>
     )
 }
-
 
 export default Register;

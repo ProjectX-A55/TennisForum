@@ -8,16 +8,16 @@ import { useEffect, useState } from 'react'
 import { auth } from './config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getUserData } from './services/user-service'
-import CreatePost from './views/CreatePost'
+import CreatePost from './components/Post/CreatePost'
 import PostDetailsView from './views/PostDetailsView'
 import Authenticated from './hoc/Authenticated'
 import { HeaderComponent } from './components/HeaderComponent/HeaderComponent'
-import UserProfile from './components/Profile/Profile'
-import ManagePosts from './views/ManagePosts'
+import ProfileStates from './components/Profile/ProfileStates'
+import ManagePosts from './components/Post/ManagePosts'
 import Footer from './components/Footer/Footer'
 import NotFound from './views/404'
-import AdminPanelView from './views/AdminPanelView'
 import AdminRoute from './hoc/AdminRoute'
+import Admin from './components/Admin/Admin'
 
 function App() {
   const [context, setContext] = useState({
@@ -48,14 +48,14 @@ function App() {
               <Route path='/register' element={<Register />} />
               <Route path='/login' element={<LogIn />} />
               <Route path='/posts' element={<Authenticated><ManagePosts filter={null} /></Authenticated>} />
-              <Route path='/profile' element={<Authenticated><UserProfile /></Authenticated>} />
+              <Route path='/profile' element={<Authenticated><ProfileStates /></Authenticated>} />
               <Route path='/posts/:id' element={<Authenticated><PostDetailsView /></Authenticated>} />
               <Route path='/posts-create' element={<Authenticated><CreatePost /></Authenticated>} />
               <Route path='/general-discussions' element={<Authenticated><ManagePosts filter={'General Discussions'} /></Authenticated>} />
               <Route path='/live-matches' element={<Authenticated><ManagePosts filter={'Live Matches'} /></Authenticated>} />
               <Route path='/men-s-tennis' element={<Authenticated><ManagePosts filter={`Men's Tennis`} /></Authenticated>} />
               <Route path='/women-s-tennis' element={<Authenticated><ManagePosts filter={`Women's Tennis`} /></Authenticated>} />
-              <Route path='/admin' element={<AdminRoute userData={context.userData}><AdminPanelView /></AdminRoute>} />
+              <Route path='/admin' element={<AdminRoute userData={context.userData}><Admin/></AdminRoute>} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>

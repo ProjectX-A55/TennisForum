@@ -5,13 +5,20 @@ import { storage } from "../../config/firebase-config";
 import PropTypes from 'prop-types';
 
 /**
+ * UserProfile component for the application.
+ *
+ * This component displays a form for the user to update their profile information. 
+ * It includes fields for the user's username, email, first name, last name, and avatar. 
+ * The avatar field is a file input that allows the user to upload a new avatar. 
+ * The form data is managed using the useState hook and the form is submitted using the 
+ * handleSubmit function, which updates the user's data in the database and in the context.
+ *
  * @param {{
  * userData: {username: string, email: string, firstName: string, lastName: string, avatarUrl: string}, 
  * setContext: function
- * }} userData
- * 
+ * }} param0
+* @returns {JSX.Element} - A JSX element representing the user profile.
  */
-
 const UserProfile = ({ userData, setContext }) => {
 
     const [formData, setFormData] = useState(userData || {})

@@ -6,9 +6,14 @@ import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom';
 
 /**
+ * UserPosts component for the application.
+ *
+ * This component displays all the posts made by the user. It fetches all posts and filters out the ones authored by the user. These posts are displayed in a table with columns for the post number, creation date, title, stats (views, likes, comments), and a link to view the post.
+ *
  * @param {{
-* userData: {username: string, email: string, firstName: string, lastName: string, avatarUrl: string}, }} userData
-* 
+ * userData: {username: string, email: string, firstName: string, lastName: string, avatarUrl: string}, }} userData
+ * @example
+* @returns {JSX.Element} - A JSX element representing all of the user posts.
 */
 const UserPosts = ({ userData }) => {
 

@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import PostInfo from "../components/SinglePost/PostInfo";
+import PostInfo from "../components/Post/PostInfo";
 import PropTypes from 'prop-types';
 import Loading from '../components/Loading/Loading';
 
 /**
- * @param {{postsFromProps: Array}} param0
- * @returns
-*/
-
+ * AllPosts is a functional component that displays all posts.
+ * It uses the useState, useEffect hooks from React and useSearchParams, useNavigate hooks from react-router-dom 
+ * to manage and update the state and navigate between pages.
+ * It also uses the PostInfo component to display individual post information.
+ *
+ * @component
+ * @example
+ 
+ * @param {{postsFromProps: Array}} param0 - An array of posts passed as a prop.
+ * @returns {JSX.Element} - A JSX element that displays all posts or a message if no posts are found.
+ */
 const AllPosts = ({ postsFromProps }) => {
 
     const [posts, setPosts] = useState([])
@@ -26,12 +33,12 @@ const AllPosts = ({ postsFromProps }) => {
 
 
     useEffect(() => {
-    const filteredPosts = postsFromProps.filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
-    setPosts(filteredPosts);
-    if (postsFromProps.length > 0) {
-        setIsLoaded(true); // Set isLoaded to true only if postsFromProps is not empty
-    }
-}, [search, postsFromProps]);
+        const filteredPosts = postsFromProps.filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
+        setPosts(filteredPosts);
+        if (postsFromProps.length > 0) {
+            setIsLoaded(true);
+        }
+    }, [search, postsFromProps]);
 
     if (!isLoaded) {
         return <Loading />;

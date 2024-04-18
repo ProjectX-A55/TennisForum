@@ -11,11 +11,17 @@ import { faEye, faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
 import TagsInput, { mapTags } from '../TagsInput/TagsInput';
 
 /**
- * 
- * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string, tags: string, topic: string}, togglePostLike: function}} param0 
- * @returns 
+ * PostDetails component for the application.
+ *
+ * This component displays the details of a post, including the title, content, tags, author, and comments. 
+ * It also provides functionality for liking the post, editing the post, adding a comment, deleting a comment, 
+ * and deleting the post. The state of the post and the comments are managed using the useState hook and the useEffect hook 
+ * is used to fetch the post and comments data and update the state when the data changes.
+ *
+ * @component
+ * @param {{post: {id: string, title: string, content: string, createdOn: string, liked: array, author: string, tags: string, topic: string}, togglePostLike: function}} param0 - The post data and a function to toggle the like status of the post.
+ * @returns {JSX.Element} - A JSX element representing the post details.
  */
-
 const PostDetails = ({ post: postProp, togglePostLike }) => {
 
     const { userData } = useContext(AppContext);

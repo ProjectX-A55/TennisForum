@@ -33,7 +33,8 @@ export const createUserUserName = (username, firstName, lastName, uid, email,) =
  * Retrieves the data for a specific user.
  *
  * @param {string} uid - The unique ID of the user.
- * @returns {Promise<Object|null>} A promise that resolves with the user data object, or null if the user does not exist. The user data object includes properties 'username', 'firstName', 'lastName', 'uid', and 'email'.
+ * @returns {Promise<Object|null>} A promise that resolves with the user data object, or null if the user does not exist. 
+ * The user data object includes properties 'username', 'firstName', 'lastName', 'uid', and 'email'.
  * @throws {Error} If the database operation fails.
  */
 export const getUserData = (uid) => {
@@ -45,7 +46,8 @@ export const getUserData = (uid) => {
  * Retrieves all posts authored by a specific user.
  *
  * @param {string} username - The username of the user.
- * @returns {Promise<Array>} A promise that resolves with an array of posts authored by the user. Each post is an object with properties 'id', 'createdOn', and 'liked'. If no posts exist, an empty array is returned.
+ * @returns {Promise<Array>} A promise that resolves with an array of posts authored by the user. 
+ * Each post is an object with properties 'id', 'createdOn', and 'liked'. If no posts exist, an empty array is returned.
  * @throws {Error} If the database operation fails.
  */
 export const getUserPosts = (username) => {
@@ -56,7 +58,8 @@ export const getUserPosts = (username) => {
 /**
  * Retrieves all users from the database.
  *
- * @returns {Promise<Array>} A promise that resolves with an array of users. Each user is an object with properties 'username', 'firstName', 'lastName', 'uid', and 'email'. If no users exist, an empty array is returned.
+ * @returns {Promise<Array>} A promise that resolves with an array of users. Each user is an object with properties 
+ * 'username', 'firstName', 'lastName', 'uid', and 'email'. If no users exist, an empty array is returned.
  * @throws {Error} If the database operation fails.
  */
 export const getAllUsers = async () => {
@@ -82,7 +85,8 @@ export const updateUser = async (username, userData) => {
  * Retrieves the data for a user by their username.
  *
  * @param {string} username - The username of the user.
- * @returns {Promise<Object|null>} A promise that resolves with the user data object, or null if the user does not exist. The user data object includes properties 'username', 'firstName', 'lastName', 'uid', and 'email'.
+ * @returns {Promise<Object|null>} A promise that resolves with the user data object, or null if the user does not exist. 
+ * The user data object includes properties 'username', 'firstName', 'lastName', 'uid', and 'email'.
  * @throws {Error} If the database operation fails.
  */
 export const getUserByUserName = async (username) => {

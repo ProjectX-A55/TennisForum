@@ -1,9 +1,20 @@
 import { useContext, useState } from "react";
-import AppContext from "../context/AppContext";
-import { addPost } from "../services/post-service";
+import AppContext from "../../context/AppContext";
+import { addPost } from "../../services/post-service";
 import { useNavigate } from "react-router-dom";
-import TagsInput from "../components/TagsInput/TagsInput";
+import TagsInput from "../TagsInput/TagsInput";
 
+/**
+ * CreatePost is a functional component that provides a form for creating a new post.
+ * It uses the useContext and useState hooks from React to manage and update the state.
+ * It also uses the useNavigate hook from react-router-dom to navigate to the posts page after a post is created.
+ * The TagsInput component is used to select tags for the post.
+ *
+ * @component
+ * @example
+ 
+ * @returns {JSX.Element} - A JSX element that provides a form for creating a new post or a message if the user is blocked.
+ */
 const CreatePost = () => {
     const { userData } = useContext(AppContext);
     const [post, setPost] = useState({

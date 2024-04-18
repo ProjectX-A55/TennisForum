@@ -1,5 +1,16 @@
 import { useNavigate } from "react-router-dom";
 
+/**
+ * NotFound is a functional component that displays a 404 error page.
+ * It uses the useNavigate hook from react-router-dom to navigate back to the home page.
+ *
+ * @component
+ * @example
+ * return (
+ *   <NotFound />
+ * )
+ * @returns {JSX.Element} - A JSX element representing a 404 error page.
+ */
 const NotFound = () => {
 
     const navigate = useNavigate();
