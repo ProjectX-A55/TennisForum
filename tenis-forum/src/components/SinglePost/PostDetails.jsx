@@ -240,7 +240,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                         <button onClick={() => { setPost(postProp); setIsEditing(false); }} className="btn btn-outline btn-error mr-3">Cancel</button>
                                     )}
                                     <button data-testid='edit-button' onClick={() => { handleEdit(); }} className=" mr-3 btn btn-outline btn-success">{isEditing ? 'Save' : 'Edit'}</button>
-                                    <button onClick={handleDelete} className="btn btn-outline btn-error">Delete</button>
+                                    <button data-testid='delete-button' onClick={handleDelete} className="btn btn-outline btn-error">Delete</button>
                                 </div>
                             </>
                         )}

@@ -113,7 +113,6 @@ describe("PostDetails", () => {
 
         expect(getByText(/you are banned/i)).toBeInTheDocument();
 
-
     });
 
 });
