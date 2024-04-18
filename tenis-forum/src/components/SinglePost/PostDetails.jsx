@@ -247,7 +247,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                     </div>
                 </div>
                 {userData?.isBlocked ?
-                    <h1 className="shadow shadow-2xl box rounded-md flex flex-row border border-amber-950 text-wrap sm:ml-3 sm:mr-3 sm:mt-3 sm:mb-3 md:ml-5 md:mr-5 md:mt-5 md:mb-5 lg:ml-7 lg:mr-7 lg:mt-7 lg:mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 >
+                    <h1 data-testid="user-blocked" className="shadow shadow-2xl box rounded-md flex flex-row border border-amber-950 text-wrap sm:ml-3 sm:mr-3 sm:mt-3 sm:mb-3 md:ml-5 md:mr-5 md:mt-5 md:mb-5 lg:ml-7 lg:mr-7 lg:mt-7 lg:mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 >
                     :
                     <div className='add-comment sm:w-full md:w-3/4 lg:w-3/4 mt-10 sm:ml-5 md:ml-10 lg:ml-20 '>
                         <form onSubmit={handleAddComment}>

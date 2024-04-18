@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getByTestId, render, screen, getByText } from "@testing-library/react";
+import {  render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import userEvent from '@testing-library/user-event';
 import PostDetails from "../../../src/components/SinglePost/PostDetails";
@@ -24,7 +24,7 @@ describe("PostDetails", () => {
         user: 'Test User',
         userData: {
             username: mockPost.author,
-            isAdmin: true,
+            isAdmin: false,
             isBlocked: false
         }
     };
@@ -88,6 +88,32 @@ describe("PostDetails", () => {
         expect(editButton).toHaveTextContent('Edit');
         await user.click(editButton);
         expect(editButton).toHaveTextContent('Save');
+    });
+
+
+    it("check if the user is blocked", () => {
+        const mockSetContext = () => { };
+
+        const context = {
+            user: 'Test User',
+            userData: {
+                username: mockPost.author,
+                isAdmin: false,
+                isBlocked: true
+            }
+        };
+
+        const { getByText } = render(
+            <Router>
+                <AppContext.Provider value={{ ...context, setContext: mockSetContext }}>
+                    <PostDetails post={mockPost} togglePostLike={() => mockTogglePostLike(context.user)} />
+                </AppContext.Provider>
+            </Router>
+        );
+
+        expect(getByText(/you are banned/i)).toBeInTheDocument();
+
+
     });
 
 });
