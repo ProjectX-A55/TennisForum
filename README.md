@@ -67,9 +67,9 @@ To get a local copy up and running follow these simple steps.
 6. Enjoy!
 
 ### Contact
-Your Name - @your_twitter - email@example.com
+Your Name - [LinkedIn](https://www.linkedin.com/in/yuliyan-petrov/) - [Email](mailto:yuliyanpetrov88@gmail.com)
 
-Project Link: https://github.com/ProjectX-A55/TennisForum
+Project Link: [TennisForum](https://github.com/ProjectX-A55/TennisForum)
 
 Acknowledgements
 - Firebase
