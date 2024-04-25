@@ -54,9 +54,8 @@ const Home = () => {
     }
 
     return (
-        <div className="posts w-auto w-full  mb-5 justify-center">
-            <div className="stats shadow shadow-2xl flex mb-10 w-2/4 mx-auto border border-amber-950">
-
+        <div className="posts w-full mb-5 justify-center mt-10">
+            <div className="stats shadow shadow-2xl flex mb-10 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/2 mx-auto border border-amber-950">
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -85,17 +84,18 @@ const Home = () => {
                 </div>
 
             </div>
-            <div className="all-posts">
-                <div className="flex mb-5 w-3/4 mx-auto">
-                    <div onClick={() => setSortType('mostViews')} className="cursor-pointer grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">TOP 10 MOST POPULAR</div>
-                    <div className="divider divider-horizontal">OR</div>
-                    <div onClick={() => setSortType('mostCommented')} className="cursor-pointer grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">TOP 10 MOST COMMENTED</div>
+            <div className="all-posts-home">
+                <div className="flex flex-col sm:flex-row mb-5 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4 mx-auto">
+                    <div onClick={() => setSortType('mostViews')} className="cursor-pointer grid h-20 flex-grow card bg-base-300 rounded-box place-items-center p-2 sm:mr-2">TOP 10 MOST POPULAR</div>
+                    <div className="divider divider-horizontal mx-auto sm:mx-0 px-2">OR</div>
+                    <div onClick={() => setSortType('mostCommented')} className="cursor-pointer grid h-20 flex-grow card bg-base-300 rounded-box place-items-center p-2 sm:ml-2">TOP 10 MOST COMMENTED</div>
                 </div>
-                {sortPosts(posts).map((post) => (
-                    <PostInfo key={post.id} post={post} />
-                ))}
+                <div className="mx-2 sm:mr-0">
+                    {sortPosts(posts).map((post) => (
+                        <PostInfo key={post.id} post={post} />
+                    ))}
+                </div>
             </div>
-
         </div>
 
     );

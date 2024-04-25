@@ -87,19 +87,17 @@ const AllPosts = ({ postsFromProps }) => {
 
     return (
         posts?.length > 0 ? (
-            <div className="posts w-full mt-12 mb-5">
+            <div className="posts w-full mt-12 mb-5 ">
                 <div className="my-nav flex justify-center items-center h-auto mb-10 sm:flex-col md:flex-row">
                     <div className="card w-full sm:w-3/4 flex flex-col sm:flex-row justify-between">
-                        <div className="search">
-                            <div className="form-control">
-                                <input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder="Search" className="input input-bordered w-full sm:w-24 md:w-auto" />
-                            </div>
+                        <div id="search-home" className="mx-1 sm:mx-2">
+                            <input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder="Search" className="input input-bordered w-full sm:w-24 md:w-auto" />
                         </div>
                         <div className="flex flex-col sm:flex-row">
-                            <div className="create-post">
+                            <div id="create-post-home">
                                 <div onClick={() => navigate('/posts-create')} role="button" className="btn m-1">Create Post</div>
                             </div>
-                            <div className="sort">
+                            <div id="sort-home">
                                 <div className="dropdown dropdown-bottom">
                                     <div tabIndex={0} role="button" className="btn m-1">Sort By</div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -114,7 +112,7 @@ const AllPosts = ({ postsFromProps }) => {
                         </div>
                     </div>
                 </div>
-                <div id="all-posts">
+                <div id="all-posts" className="mx-2 sm:mr-0">
                     {currentPosts.map((post) => (
                         <PostInfo key={post.id} post={post} togglePostLike={togglePostLike} />
                     ))}
