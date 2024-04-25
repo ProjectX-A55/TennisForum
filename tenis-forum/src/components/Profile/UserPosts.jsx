@@ -28,7 +28,7 @@ const UserPosts = ({ userData }) => {
 
     return (
         <div className="flex flex-col lg:flex-row w-full">
-            <div className="border border-amber-950 shadow-2xl sm:rounded-xl sm:overflow-hidden w-full lg:w-5/6 mr-5">
+            <div className="border border-amber-950 shadow-2xl sm:rounded-xl sm:overflow-hidden w-full lg:w-5/6 mr-5 rounded-xl">
                 <div className=" py-6 px-4 sm:p-6 flex flex-col lg:flex-col">
                     <div className="overflow-x-auto">
                         <table className="table min-w-full">

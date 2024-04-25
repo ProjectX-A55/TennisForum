@@ -88,8 +88,8 @@ const UserProfile = ({ userData, setContext }) => {
 
     return (
 
-        <div className="flex flex-col lg:flex-row w-full">
-            <form onSubmit={handleSubmit} className="border border-amber-950 shadow-2xl sm:rounded-xl sm:overflow-hidden w-full lg:w-5/6 mr-5">
+        <div className="flex flex-col  w-full">
+            <form onSubmit={handleSubmit} className="border border-amber-950 shadow-2xl sm:m-0 sm:rounded-xl w-full rounded-xl">
                 <div className=" py-6 px-4 sm:p-6 flex flex-col lg:flex-col">
                     <div id="upper-part" className="flex">
                         <div id="upper-firs-column" className="w-full lg:w-1/2 flex flex-col justify-center items-center">

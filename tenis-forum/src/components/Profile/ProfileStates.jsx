@@ -26,7 +26,7 @@ const ProfileStates = () => {
 
     return (
         <div className="flex flex-col lg:flex-row lg:space-x-10">
-            <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:w-1/6 ml-5 mb-5 lg:mb-0">
+            <aside className="sm:m-0 mb-5 mt-12 mr-2 ml-2">
                 <div className="w-full lg:w-56">
                     <ul className="menu w-full lg:w-56 rounded-box border border-amber-950 shadow-2xl">
                         <li onClick={() => setState('profile')}><a>Profile</a></li>
@@ -35,7 +35,7 @@ const ProfileStates = () => {
                     </ul>
                 </div>
             </aside>
-            <div className="w-full lg:ml-0">
+            <div className="w-full sm:m-0 ml-2 mr-2">
                 {componentsMap[state]}
             </div>
         </div>

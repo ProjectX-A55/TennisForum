@@ -157,7 +157,8 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
             <div className="place-content-center flex flex-col w-auto">
                 <div className='card shadow shadow-2xl border border-amber-950 text-wrap mr-5 ml-5' style={{ overflowWrap: 'break-word' }}>
                     <div className='post-info w-full justify-between h-1/6 flex flex-row mt-2'>
-                        <div className='topic ml-3'>
+                        <div className='flex flex-col ml-3'>
+                            <span>Topic:</span>
                             <span>{post.topic}</span>
                         </div>
                         <div className='flex flex-row mr-2'>
@@ -199,7 +200,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
+                                <div className='shadow shadow-2xl ml-10 mr-10 mb-5 rounded-lg border border-amber-950'>
                                     <div className='ml-5 mr-5 mb-5 mt-5'>
                                         {post.content.trim().split('\n').map((paragraph, index) => <p key={index}>{paragraph}<br /></p>)}
                                     </div>
@@ -210,7 +211,7 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         <div className='topic ml-3 mb-5'>
                             <span>{post.tags.map((tag, index) => <button className="btn btn-xs mr-1" key={index}>{tag}</button>)}</span>
                         </div>
-                        <div className='author-date mr-3'>
+                        <div className='author-date mr-5'>
                             <div className='flex mb-1 justify-between mr-3'>
                                 <div className='views flex flex-row mr-5'>
                                     <span className='mr-2'>{post?.views}</span>
