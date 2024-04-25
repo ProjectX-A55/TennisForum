@@ -49,18 +49,17 @@ To get a local copy up and running follow these simple steps.
 2. Install NPM packages
     ```sh
     npm install
-3. Enter your Firebase configuration in config/firebase-config.js
-   ```js
-   const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIRE_BASE_KEY,
-  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-  databaseURL: import.meta.env.VITE_DATA_BASE_URL,
-  projectId: import.meta.env.VITE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_APP_ID
-    };
-    ```
+3. Enter your Firebase configuration in `config/firebase-config.js`
+     ```js
+     const firebaseConfig = {
+         apiKey: import.meta.env.VITE_FIRE_BASE_KEY,
+         authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+         databaseURL: import.meta.env.VITE_DATA_BASE_URL,
+         projectId: import.meta.env.VITE_PROJECT_ID,
+         storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+         messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+         appId: import.meta.env.VITE_APP_ID
+     };
 4. Run the project
     ```sh
     npm run dev
