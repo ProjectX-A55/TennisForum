@@ -60,6 +60,7 @@ To get a local copy up and running follow these simple steps.
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_APP_ID
 };
+    ```
 4. Run the project
     ```sh
     npm run dev
