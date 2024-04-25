@@ -59,7 +59,7 @@ To get a local copy up and running follow these simple steps.
   storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_APP_ID
-};
+    };
     ```
 4. Run the project
     ```sh
