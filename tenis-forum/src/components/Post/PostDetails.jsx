@@ -156,17 +156,17 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
         <div className='mt-12'>
             <div className="place-content-center flex flex-col w-auto">
                 <div className='card shadow shadow-2xl border border-amber-950 text-wrap mr-5 ml-5' style={{ overflowWrap: 'break-word' }}>
-                    <div className='post-info w-full justify-between h-1/6 flex flex-row m-2'>
+                    <div className='post-info w-full justify-between h-1/6 flex flex-row mt-2'>
                         <div className='topic ml-3'>
                             <span>{post.topic}</span>
                         </div>
-                        <div className='author-data flex'>
+                        <div className='flex flex-row mr-2'>
                             <div>
                                 <span>{`Posted by: ${post.author}`}</span><br />
                                 <span>{`On: ${post.createdOn}`}</span>
                             </div>
-                            <div>
-                                <img src={authorAvatar} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full ring ring-accent ring-offset-base-100 ring-offset-5 mr-4 ml-4" alt="User Avatar" />
+                            <div className='flex justify-center items-center'>
+                                <img src={authorAvatar} className="w-8 h-8 rounded-full ring ring-accent ring-offset-base-100 ring-offset-5 mr-4 ml-4" alt="User Avatar" />
                             </div>
                         </div>
                     </div>
@@ -192,17 +192,17 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                         :
                         (
                             <>
-                                <div className="content-title">
-                                    <div className="post-title-info">
-                                        <div className='post-title text-center mb-10 mt-5'>
+                                <div id="content-title">
+                                    <div id="post-title-info">
+                                        <div className='text-center mb-10 mt-5'>
                                             <p className="text-2xl font-bold">{post.title}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className='card content shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
-                                    <p className='ml-5 mr-5 mb-5 mt-5'>
+                                <div className='shadow shadow-2xl ml-10 mr-10 mb-5  border border-amber-950'>
+                                    <div className='ml-5 mr-5 mb-5 mt-5'>
                                         {post.content.trim().split('\n').map((paragraph, index) => <p key={index}>{paragraph}<br /></p>)}
-                                    </p>
+                                    </div>
                                 </div>
                             </>
                         )}
@@ -253,16 +253,16 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                     </div>
                 </div>
                 {userData?.isBlocked ?
-                    <h1 data-testid="user-blocked" className="shadow shadow-2xl box rounded-md flex flex-row border border-amber-950 text-wrap sm:ml-3 sm:mr-3 sm:mt-3 sm:mb-3 md:ml-5 md:mr-5 md:mt-5 md:mb-5 lg:ml-7 lg:mr-7 lg:mt-7 lg:mb-7" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 >
+                    <h1 data-testid="user-blocked" className="shadow shadow-2xl box rounded-md flex flex-row border border-amber-950 text-wrap mt-5" style={{ fontSize: '1.5em', padding: '10px' }}>{`You can't leave a comment because you are banned. Sorry not sorry. Hasta la vista, baby.`} </h1 >
                     :
-                    <div className='add-comment sm:w-full md:w-3/4 lg:w-3/4 mt-10 sm:ml-5 md:ml-10 lg:ml-20 '>
+                    <div className='add-comment sm:w-full md:w-3/4 lg:w-3/4 mt-10 sm:ml-5 mr-5'>
                         <form onSubmit={handleAddComment}>
                             <div className='flex justify-center mb-5'>
                                 <img className='w-24 h-24 lg:w-24 lg:h-24 rounded-full shadow-lg mr-3 ml-3' src={userData?.avatarUrl} alt="User Avatar" />
                                 <div className='flex w-full h-full relative'>
-                                    <div className='w-full flex'>
+                                    <div className='w-full flex flex-row justify-between'>
                                         <textarea data-testid='comment-input' placeholder="Add your comment ..." className="textarea textarea-bordered w-5/6 shadow shadow-2xl h-24" value={comment} onChange={e => setComment(e.target.value)} />
-                                        <div className='add-comment-button 1/6 mt-3 ml-3 flex items'>
+                                        <div className='add-comment-button 1/6 mt-5 ml-3'>
                                             <button data-testid="comment-button" className="btn btn-outline btn-primary" type="submit">{`Add comment`}</button>
                                         </div>
                                     </div>
@@ -275,12 +275,16 @@ const PostDetails = ({ post: postProp, togglePostLike }) => {
                     <div className='text-center mt-3 mb-3'>
                         <h1><b>Comments</b></h1>
                     </div>
-                    <div className="flex-shrink-0 mb-3" >
+                    <div id="comments" >
                         {Object.keys(allComments).length === 0 && <div className="text-center">{`No comments yet`}</div>}
                         {currentComment.map((commentKey) =>
-                            <Comment key={commentKey} comments={allComments[commentKey]} postId={post.id} currentUser={userData.username} isBlocked={userData.isBlocked} isAdmin={userData.isAdmin} commentId={commentKey} handleDeleteComment={handleDeleteComment} />
+                            <Comment key={commentKey}
+                                comments={allComments[commentKey]}
+                                postId={post.id} currentUser={userData.username}
+                                isBlocked={userData.isBlocked} isAdmin={userData.isAdmin}
+                                commentId={commentKey} handleDeleteComment={handleDeleteComment} />
                         )}
-                        <div className="justify-center flex">
+                        <div className="justify-center flex mb-5">
                             {currentPage > 1 && <button className="join-item btn btn-outline mr-1" onClick={() => paginate(currentPage - 1)}>Previous</button>}
                             {pageNumbers.map(number => (
                                 <button key={number} className={`join-item btn mr-1 ${number === currentPage ? 'btn-primary' : ''}`} onClick={() => paginate(number)}>{number}</button>

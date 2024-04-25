@@ -59,10 +59,8 @@ const PostInfo = ({ post }) => {
             <div className="border border-amber-950 rounded-lg w-full md:w-3/4 shadow-lg shadow-2xl transform transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
                 <div className="card-normal cursor-pointer flex flex-col md:flex-row" onClick={handleClick}>
                     <div className='w-full md:w-1/4'>
-                        <div className="avatar ml-12 mb-4 mt-4">
-                            <div className="w-36 h-36 btn btn-ghost btn-circle avatar">
-                                <img src={author?.avatarUrl} />
-                            </div>
+                        <div className="w-36 h-36 mask mask-squircle avatar ml-12 mb-4 mt-4 sm:flex sm:items-center sm:justify-center">
+                            <img src={author?.avatarUrl} />
                         </div>
                     </div>
                     <div className='w-full md:w-3/4 m-2 sm:mx-0'>
