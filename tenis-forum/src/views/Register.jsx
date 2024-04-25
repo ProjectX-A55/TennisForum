@@ -34,31 +34,31 @@ const Register = () => {
 
     const register = async () => {
 
-        // if (form.username.length < 4 || form.username.length > 42) {
-        //     alert("Username must be between 4 and 42 characters long.");
-        //     return;
-        // }
+        if (form.username.length < 4 || form.username.length > 42) {
+            alert("Username must be between 4 and 42 characters long.");
+            return;
+        }
 
-        // if (form.firstName.length < 4 || form.firstName.length > 32) {
-        //     alert("Username must be between 4 and 42 characters long.");
-        //     return;
-        // }
+        if (form.firstName.length < 4 || form.firstName.length > 32) {
+            alert("Username must be between 4 and 42 characters long.");
+            return;
+        }
 
-        // if (form.lastName.length < 4 || form.lastName.length > 32) {
-        //     alert("Username must be between 4 and 42 characters long.");
-        //     return;
-        // }
+        if (form.lastName.length < 4 || form.lastName.length > 32) {
+            alert("Username must be between 4 and 42 characters long.");
+            return;
+        }
 
-        // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        // if (!emailRegex.test(form.email)) {
-        //     alert("Please enter a valid email.");
-        //     return;
-        // }
-        // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
-        // if (!passwordRegex.test(form.password)) {
-        //     alert("Password must be at least 8 characters long, contain at least one letter, one number and one special character.");
-        //     return;
-        // }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(form.email)) {
+            alert("Please enter a valid email.");
+            return;
+        }
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+        if (!passwordRegex.test(form.password)) {
+            alert("Password must be at least 8 characters long, contain at least one letter, one number and one special character.");
+            return;
+        }
 
         try {
             const user = await getUserByUserName(form.username);

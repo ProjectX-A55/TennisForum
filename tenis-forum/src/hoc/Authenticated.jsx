@@ -26,7 +26,9 @@ export default function Authenticated({ children }) {
   if (!loading && !user) {
     return <Navigate replace to="/login" state={{ from: location.pathname }} />
   }
-
+  //TODO: 1. TRQBVA DA SLOJA TOAST VMESTO ALERTS !!!!!!!!!!!!!!!!!!!!
+  //TODO: 2. Trqbva da napravq komponent za bloknaite users che desi se e prestarala s toq red tuka
+  
   if (userData.isBlocked === true) {
     return (
       <div>

@@ -7,12 +7,12 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIRE_BASE_KEY,
-  authDomain: "tennis-forum-12fa0.firebaseapp.com",
-  databaseURL: "https://tennis-forum-12fa0-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "tennis-forum-12fa0",
-  storageBucket: "tennis-forum-12fa0.appspot.com",
-  messagingSenderId: "625602299697",
-  appId: "1:625602299697:web:19c66cdb8a52b5519d9210"
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_DATA_BASE_URL,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID
 };
 
 

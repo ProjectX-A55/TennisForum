@@ -97,7 +97,8 @@ const CreatePost = () => {
                             <button className="btn btn-primary w-full" onClick={createPost} type="primary">Create post</button>
                         </div>
                     </div>
-                </div>}
+                </div>
+            }
         </>
     );
 };
